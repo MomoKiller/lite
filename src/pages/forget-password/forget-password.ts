@@ -57,7 +57,6 @@ export class ForgetPasswordPage {
 		}
 	}
 	getCheckCode(){
-		let self = this;
 		const body = {
 				"orgNum": this.orgCode,
 				"loginName": this.loginInfo,

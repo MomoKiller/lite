@@ -1,4 +1,4 @@
-import { Component,ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, AlertController, LoadingController } from 'ionic-angular';
 import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
 

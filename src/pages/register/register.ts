@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, Navbar, LoadingController, Platfor
 import { DomSanitizer } from '@angular/platform-browser';
 import { TranslateService } from "@ngx-translate/core";
 
-declare var Window,Window;
+declare var Window,window;
 @IonicPage()
 @Component({
   selector: 'page-register',

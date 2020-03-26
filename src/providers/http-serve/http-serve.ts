@@ -138,7 +138,6 @@ export class HttpServeProvider {
 		}));
 	}
 	public angular_check_line(url, callback) {
-		let self = this;
 		return Observable.from(new Promise((resolve, reject) => {
 			this.jsonp.get(url)
 				.subscribe(

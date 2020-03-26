@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpServeProvider } from '../../providers/http-serve/http-serve';
 import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
 import { ProductdetailPage } from '../../pages/productdetail/productdetail';
-declare var Window,window,store,indexLibrary;
+declare var Window,store,indexLibrary;
 /**
  * Generated class for the SelfContactPage page.
  *
@@ -36,8 +36,6 @@ export class SelfContactPage {
 						if(this.currentCommodityType === 4){
 							this.selfContractList[i].QBidPrice = data[4][0] || 0;
 							this.selfContractList[i].QAskPrice = data[6][0] || 0;
-							// const tmp_dc = indexLibrary.Subtr(this.selfContractList[i].QAskPrice,this.selfContractList[i].QBidPrice)/this.selfContractList[i].unionMinPrices;
-							// this.selfContractList[i].cfd = indexLibrary.formatFloat(window.Math.abs(tmp_dc),0);
 							this.selfContractList[i].QHighPrice = data[12];
 							this.selfContractList[i].QLowPrice = data[13];
 							this.selfContractList[i].QLastPrice = data[2];

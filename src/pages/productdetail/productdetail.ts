@@ -51,7 +51,7 @@ export class ProductdetailPage {
 	) { }
 
 	public id:string = Window.nowProId;
-	private unionMinPrices:number;
+	public unionMinPrices:number;
 
 	//合约类型
 	public commodityType:number = -1;
@@ -132,7 +132,7 @@ export class ProductdetailPage {
 	}
 
 	private tmpProductListCloning:boolean = false;
-	private scrollContentH:number;
+	public scrollContentH:number;
 	private KlineColumnH = null;
 	private KlineColumnW = null;
 	getFirstData(isFirst = false) {

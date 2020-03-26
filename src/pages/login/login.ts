@@ -26,7 +26,7 @@ declare var store, Window, window;
 export class LoginPage {
 	private loader: any;
 	private config = Window.config;
-	private lineData = this.config.line;
+	public lineData = this.config.line;
 	public logoImg = null;
 	/* 记住密码赋值 */
 	public orgcode: string = '';
