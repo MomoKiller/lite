@@ -31,7 +31,6 @@ import { DocumentaryPage } from '../pages/documentary/documentary';
 import { ProductdetailPage } from '../pages/productdetail/productdetail';
 import { ForgetPasswordPage } from '../pages/forget-password/forget-password';
 /* provider */
-import { TraderProvider } from '../providers/trader/trader';
 import { HttpServeProvider } from '../providers/http-serve/http-serve';
 import { SocketServeProvider } from '../providers/socket-serve/socket-serve';
 
@@ -88,10 +87,9 @@ import { SocketServeProvider } from '../providers/socket-serve/socket-serve';
 		StatusBar,
 		SplashScreen,
 		{provide: ErrorHandler, useClass: IonicErrorHandler},
-		SocketServeProvider,
 		HTTP,
+		SocketServeProvider,
 		HttpServeProvider,
-		TraderProvider,
 		ScreenOrientation,
 		Keyboard
 	]
