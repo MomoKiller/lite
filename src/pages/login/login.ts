@@ -146,7 +146,6 @@ export class LoginPage {
 						if (Window.config.orgcode) {
 							tmp_orgcode = data.content.orgCode;
 							var num = 0;
-							// 配置项包含 ['*']
 							if (Window.config.orgcode[0] == '*') {
 								num++;
 							} else {
@@ -195,77 +194,68 @@ export class LoginPage {
 							Window.openReconnect = true;
 							Window.changeUser = true;
 							self._socket.creatNewSocket(function () {
-								/* 获取产品币种 */
-								let currencyJson;
-								self._http.postJson('client/config/currency/query/by/userid', { userId: Window.userInfo.userId }, function (data) {
-									currencyJson = JSON.parse(data.content);
-									Window.currencyJson = currencyJson;
-									/* 获取所有分类 */
-									self._http.postJson("client/config/product/category/query/list", {}, function (res) {
-										if (res.code == '000000') {
-											Window.allContractNav = JSON.parse(res.content);
-											/* 获取所有合约 */
-											self._http.get("client/config/product/product/query/list/null", function (_data) {
-												Window.allProductList = [];
-												let productList = JSON.parse(_data.content);
-												console.log('[合约列表]', productList);
-												for (let i = 0, r = productList.length; i < r; i++) {
-													Window.allProductList.push({
-														categoryId: productList[i].categoryId, // 分类ID
-														categoryIds: productList[i].categoryIds, // 分类ID数组
-														productId: productList[i].productId, // 合约ID
-														// 200303 合约名称，合约代码 --start--
-														productName: productList[i].commodityName, // 合约名称
-														productCode: productList[i].contractCode, // 合约代码
-														commodityCode: productList[i].commodityCode,
-														// 200303 合约名称，合约代码 --end--
-														commodityId: productList[i].commodityId, // 合约品种ID 
-														color: '',//涨跌颜色标识
-														QLastPrice: 0,//最新价
-														QChangeRate: 0,//涨幅
-														QChangeValue: 0,//涨跌值
-														QAskQty: 0,//卖一
-														QBidQty: 0,//买一
-														oldPrice: 0,
-														oldPriceChange: 1,
-														QTotalQty: 0,
-														Apercent: 0,
-														unionMinPrices: productList[i].unionMinPrices,
-														Stamp: 0,
-														QHighPrice: 0,
-														QPreClosingPrice: 0,
-														QLowPrice: 0,
-														QPositionQty: 0,
-														QOpeningPrice: 0,
-														_QAskPrice: [],
-														_QAskQty: [],
-														_QBidPrice: [],
-														_QBidQty: [],
-														commoditySort: productList[i].commoditySort,
-														contractSort: productList[i].contractSort,
-														priceGearsNum: productList[i].priceGearsNum,
-														marketSort: productList[i].marketSort,
-														contractNum: productList[i].contractNum,
-														/**
-														 * commodityType 
-														 * 0:期货 1:连续 2:股配 3:股权期货 4:差价 5:股票
-														 */
-														commodityType: productList[i].commodityType,
-														/* minOrderVol 最小合约交易手数 */
-														minOrderVol: productList[i].minOrderVol
-													});
+								/* 获取所有分类 */
+								self._http.postJson("client/config/product/category/query/list", {}, function (res) {
+									if (res.code == '000000') {
+										Window.allContractNav = JSON.parse(res.content);
+										/* 获取所有合约 */
+										self._http.get("client/config/product/product/query/list/null", function (_data) {
+											Window.allProductList = [];
+											let productList = JSON.parse(_data.content);
+											console.log('[合约列表]', productList);
+											for (let i = 0, r = productList.length; i < r; i++) {
+												Window.allProductList.push({
+													categoryId: productList[i].categoryId, 			// 分类ID
+													categoryIds: productList[i].categoryIds, 		// 分类ID数组
+													productId: productList[i].productId, 			// 合约ID
+													productName: productList[i].commodityName, 		// 合约名称
+													productCode: productList[i].contractCode, 		// 合约代码
+													commodityCode: productList[i].commodityCode,
+													commodityId: productList[i].commodityId, 		// 合约品种ID 
+													color: '',										// 涨跌颜色标识
+													QLastPrice: 0,									//最新价
+													QChangeRate: 0,									//涨幅
+													QChangeValue: 0,								//涨跌值
+													QAskQty: 0,										//卖一
+													QBidQty: 0,										//买一
+													oldPrice: 0,
+													oldPriceChange: 1,
+													QTotalQty: 0,
+													Apercent: 0,
+													unionMinPrices: productList[i].unionMinPrices,
+													Stamp: 0,
+													QHighPrice: 0,
+													QPreClosingPrice: 0,
+													QLowPrice: 0,
+													QPositionQty: 0,
+													QOpeningPrice: 0,
+													_QAskPrice: [],
+													_QAskQty: [],
+													_QBidPrice: [],
+													_QBidQty: [],
+													commoditySort: productList[i].commoditySort,
+													contractSort: productList[i].contractSort,
+													priceGearsNum: productList[i].priceGearsNum,
+													marketSort: productList[i].marketSort,
+													contractNum: productList[i].contractNum,
+													/**
+													 * commodityType 
+													 * 0:期货 1:连续 2:股配 3:股权期货 4:差价 5:股票
+													 */
+													commodityType: productList[i].commodityType,
+													minOrderVol: productList[i].minOrderVol			// 最小合约交易手数
+												});
+											}
+											Window.showIonicMenu(true);
+											for (let i in self.config.line) {
+												if (i == self.config.env) {
+													Window.config = self.config.line[i];
+													break;
 												}
-												Window.showIonicMenu(true);
-												for (let i in self.config.line) {
-													if (i == self.config.env) {
-														Window.config = self.config.line[i];
-														break;
-													}
-												}
-												self.navCtrl.setRoot(TabsPage);
-											});
-										}
-									});
+											}
+											self.navCtrl.setRoot(TabsPage);
+										});
+									}
 								});
 							});
 						}
