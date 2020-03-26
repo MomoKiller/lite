@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>OTP 交易平台</title>
+  <meta name="viewport"
+    content="initial-scale=1, width=device-width, height=device-height, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/index.css">
+  <link rel="stylesheet" href="build/main.css">
+</head>
+
+<body>
+  <div id="enter-loading">
+    <div class="loading">
+      <div class="loader loader-1">
+        <div class="loader-outter"></div>
+        <div class="loader-inner"></div>
+      </div>
+      <h2>- Trading software startup -</h2>
+    </div>
+  </div>
+
+  <!--  Kline 容器 -->
+  <div id="kline_container"></div>
+
+  <!-- app 显示隐藏  -->
+  <ion-app class="ion-app"></ion-app>
+
+  <!--  微信|QQ打开 引导页  -->
+  <div class="navigator show-ios">
+    <div class="ak">
+      <img src="./assets/imgs/safari.jpg" alt="" width="100">
+      <h3>1.请点击右上角图标<img src="./assets/imgs/menu.jpg" alt="" class="icon">
+        <br>2.用safari浏览器打开</h3>
+    </div>
+  </div>
+  <div class="navigator show-android">
+    <div class="ak">
+      <img src="./assets/imgs/android.jpg" alt="" width="100">
+      <h3>1.请点击右上角图标<img src="./assets/imgs/menu.jpg" alt="" class="icon">或<img src="./assets/imgs/add.jpg" alt=""
+          class="icon">
+        <br>2.用默认浏览器打开</h3>
+    </div>
+  </div>
+
+  <!-- cordova.js required for cordova apps -->
+  <script src="cordova.js"></script>
+  <!-- other javascript lib danny -->
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/jquery.mousewheel.js"></script>
+  <script src="assets/js/mock.js"></script>
+  <script src="assets/js/kline.js"></script>
+  <!-- other javascript lib danny -->
+  <script src="assets/js/indexs.js"></script>
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/resizeListen.js"></script>
+  <script src="assets/js/socket.io.js"></script>
+  <script src="assets/js/jquery.qrcode.min.js"></script>
+  <!-- The polyfills js is generated during the build process -->
+  <script src="build/polyfills.js"></script>
+  <!-- The vendor js is generated during the build process It contains all of the dependencies in node_modules -->
+  <script src="build/vendor.js"></script>
+  <!-- The main bundle js is generated during the build process -->
+  <script src="build/main.js"></script>
+  <script src="assets/js/index.js"></script>
+</body>
+
+</html>
