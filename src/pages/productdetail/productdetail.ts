@@ -1,19 +1,15 @@
 import { Component , ViewChild} from '@angular/core';
-import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
 import { IonicPage, NavController, NavParams, ModalController, LoadingController, ToastController } from 'ionic-angular';
-import { AlertComponent } from '../../components/alert/alert';
-import { TraderContractPage } from '../trader-contract/trader-contract';
-import { HomePage } from '../home/home';
-import { SelfContactPage } from '../self-contact/self-contact';
-
-import { OpenAccountPage } from '../../pages/open-account/open-account';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
-
-
 /* http request */
-import { HttpServeProvider } from '../../providers/http-serve/http-serve';
 import { Platform } from 'ionic-angular';
 import { Slides,Navbar } from 'ionic-angular';
+import { ScreenOrientation } from '@ionic-native/screen-orientation'; 
+import { HttpServeProvider } from '../../providers/http-serve/http-serve';
+import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
+import { HomePage } from '../home/home';
+import { AlertComponent } from '../../components/alert/alert';
+import { SelfContactPage } from '../self-contact/self-contact';
+import { OpenAccountPage } from '../../pages/open-account/open-account';
 
 declare var Window:any,$:any,store,indexLibrary,window,kline;
 
@@ -898,28 +894,6 @@ export class ProductdetailPage {
 			 * commodityType 
 			 * 0:期货 1:连续 2:股配 3:股权期货 4:差价 5:股票
 			 */
-			// if(this.commodityType === 2){
-				// 股配交易模板
-				
-			// }
-			// else {
-				// 普通交易模板
-				modal = this.modalCtrl.create(TraderContractPage,{'id':this.id});
-				modal.onDidDismiss(data => {
-					if(this.tabStatus === 3 || this.tabStatus === 4){
-						if(this.supportNative){
-							this.screenOrientation.lock('any');
-						}
-					} else {
-						if(this.supportNative){
-							this.screenOrientation.lock('portrait');
-						}
-					}
-					this.socket.addSingleProListMb2Delay(this.id);
-					Window.nowProId = this.id;
-					this.getRealtimeData();
-				});
-			// }
 		}
 		else{
 			this.presentToast('请先开户','toast-red');

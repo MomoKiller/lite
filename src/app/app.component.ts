@@ -12,9 +12,6 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { ProductdetailPage } from '../pages/productdetail/productdetail';
 
 import { HomePage } from '../pages/home/home';
-import { SelfContactPage } from '../pages/self-contact/self-contact';
-import { DatareportPage } from '../pages/datareport/datareport';
-import { MyaccountPage } from '../pages/myaccount/myaccount';
 import { HttpServeProvider } from '../providers/http-serve/http-serve';
 import { TranslateService } from "@ngx-translate/core";
 
@@ -283,9 +280,6 @@ export class MyApp {
 	goBackLogic() {
 		var currentCmp = this.app.getActiveNav().getActive().component;
 		var isPage1 = currentCmp === HomePage;
-		var isPage2 = currentCmp === SelfContactPage;
-		var isPage3 = currentCmp === DatareportPage;
-		var isPage4 = currentCmp === MyaccountPage;
 
 		var isPage6 = currentCmp === ProductdetailPage;
 		if (isPage6) {
@@ -297,7 +291,7 @@ export class MyApp {
 			}
 		}
 		else {
-			if (isPage1 || isPage2 || isPage3 || isPage4) {
+			if (isPage1) {
 				this.checkPage = true
 			}
 			else {

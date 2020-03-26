@@ -1,11 +1,10 @@
-import { Component , ViewChild,ElementRef,ChangeDetectorRef} from '@angular/core';
-import { NavController,IonicPage, ToastController, ModalController} from 'ionic-angular';
-import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
-import { AlertComponent } from '../../components/alert/alert';
-import { HttpServeProvider } from '../../providers/http-serve/http-serve';
-import { ProductdetailPage } from '../../pages/productdetail/productdetail';
+import { Component, ViewChild,ElementRef,ChangeDetectorRef } from '@angular/core';
+import { NavController,IonicPage, ToastController, ModalController } from 'ionic-angular';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
-// 191016 -- 个人秘密修改入口 @wuwp
+import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
+import { HttpServeProvider } from '../../providers/http-serve/http-serve';
+import { AlertComponent } from '../../components/alert/alert';
+import { ProductdetailPage } from '../../pages/productdetail/productdetail';
 import { PersionPwdPage } from '../../pages/persion-pwd/persion-pwd';
 
 declare var $:any,Window,indexLibrary,window;

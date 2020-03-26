@@ -1,25 +1,15 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
 import { HTTP } from '@ionic-native/http';
-import { TabsPage } from '../pages/tabs/tabs';
-
-import { HomePage } from '../pages/home/home';
-import { SelfContactPage } from '../pages/self-contact/self-contact';
-import { DatareportPage } from '../pages/datareport/datareport';
-import { MyaccountPage } from '../pages/myaccount/myaccount';
-
-import { DisclaimerPage } from '../pages/disclaimer/disclaimer';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { LoginPage } from '../pages/login/login';
-import { ServicePage } from '../pages/service/service';
 
-import { SignPage } from '../pages/sign/sign';
-import { ResignPage } from '../pages/resign/resign';
-import { WithdrawPage } from '../pages/withdraw/withdraw';
-import { RechargePage } from '../pages/recharge/recharge';
+import { MyApp } from './app.component';
+import { TabsPage } from '../pages/tabs/tabs';
+import { HomePage } from '../pages/home/home';
+import { DisclaimerPage } from '../pages/disclaimer/disclaimer';
+import { LoginPage } from '../pages/login/login';
 
 import { AlertComponent } from '../components/alert/alert';
 import { CapitalComponent } from '../components/capital/capital';
@@ -31,31 +21,16 @@ import { ProductdetailPage } from '../pages/productdetail/productdetail';
 import { CapitalFlowPage } from '../pages/capital-flow/capital-flow';
 import { PersionPwdPage } from '../pages/persion-pwd/persion-pwd';
 import { GoldPwdPage } from '../pages/gold-pwd/gold-pwd';
-import { RealnamePage } from '../pages/realname/realname';
-import { OpenAccountPage } from '../pages/open-account/open-account';
-
-
 import { RegisterPage } from '../pages/register/register';
-import { PositionDetailPage } from '../pages/position-detail/position-detail';
 import { SltpBlockPage } from '../pages/sltp-block/sltp-block';
 import { CurrencyDetailPage } from '../pages/currency-detail/currency-detail';
-import { TraderContractPage } from '../pages/trader-contract/trader-contract';
-
-import { NoticePage } from '../pages/notice/notice';
-import { NoticeDetailPage } from '../pages/notice-detail/notice-detail';
-
 import { SubBankPage } from '../pages/sub-bank/sub-bank';
-
-import { VerificationModePage } from '../pages/verification-mode/verification-mode';
-
 import { ForgetPasswordPage } from '../pages/forget-password/forget-password';
+import { TraderProvider } from '../providers/trader/trader';
 
 import { HttpModule, JsonpModule } from '@angular/http';
-
-import { TraderProvider } from '../providers/trader/trader';
 import { Keyboard } from '@ionic-native/keyboard';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
-
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -68,29 +43,14 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 		LoginPage,
 		AlertComponent,
 		CapitalComponent,
-		DatareportPage,
-		MyaccountPage,
-		SignPage,
-		ResignPage,
-		WithdrawPage,
-		RechargePage,
 		ProductdetailPage,
 		CapitalFlowPage,
 		PersionPwdPage,
 		GoldPwdPage,
 		RegisterPage,
-		PositionDetailPage,
-		SelfContactPage,
 		ForgetPasswordPage,
 		SltpBlockPage,
 		CurrencyDetailPage,
-		TraderContractPage,
-		RealnamePage,
-		OpenAccountPage,
-		VerificationModePage,
-		ServicePage,
-		NoticePage,
-		NoticeDetailPage,
 		DisclaimerPage,
 		SubBankPage
 	],
@@ -118,29 +78,14 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 		HomePage,
 		TabsPage,
 		LoginPage,
-		DatareportPage,
-		MyaccountPage,
-		SignPage,
-		ResignPage,
-		WithdrawPage,
-		RechargePage,
 		ProductdetailPage,
 		CapitalFlowPage,
 		PersionPwdPage,
 		GoldPwdPage,
 		RegisterPage,
-		PositionDetailPage,
-		SelfContactPage,
 		ForgetPasswordPage,
 		SltpBlockPage,
 		CurrencyDetailPage,
-		TraderContractPage,
-		RealnamePage,
-		OpenAccountPage,
-		VerificationModePage,
-		ServicePage,
-		NoticePage,
-		NoticeDetailPage,
 		DisclaimerPage,
 		SubBankPage
 	],
@@ -156,8 +101,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 		Keyboard
 	]
 })
-
-
 
 export class AppModule {}
 export function HttpLoaderFactory(http: HttpClient) {
