@@ -27,16 +27,11 @@ import { MarketPage } from '../pages/market/market';
 import { WalletPage } from '../pages/wallet/wallet';
 import { GoldPwdPage } from '../pages/gold-pwd/gold-pwd';
 import { RegisterPage } from '../pages/register/register';
-import { SltpBlockPage } from '../pages/sltp-block/sltp-block';
 import { MyaccountPage } from '../pages/myaccount/myaccount';
-import { DisclaimerPage } from '../pages/disclaimer/disclaimer';
 import { PersionPwdPage } from '../pages/persion-pwd/persion-pwd';
-import { CapitalFlowPage } from '../pages/capital-flow/capital-flow';
 import { DocumentaryPage } from '../pages/documentary/documentary';
 import { ProductdetailPage } from '../pages/productdetail/productdetail';
-import { CurrencyDetailPage } from '../pages/currency-detail/currency-detail';
 import { ForgetPasswordPage } from '../pages/forget-password/forget-password';
-import { TraderContractPage } from '../pages/trader-contract/trader-contract';
 /* provider */
 import { TraderProvider } from '../providers/trader/trader';
 import { HttpServeProvider } from '../providers/http-serve/http-serve';
@@ -55,16 +50,11 @@ import { SocketServeProvider } from '../providers/socket-serve/socket-serve';
 		WalletPage,
 		GoldPwdPage,
 		RegisterPage,
-		SltpBlockPage,
 		MyaccountPage,
-		DisclaimerPage,
 		PersionPwdPage,
-		CapitalFlowPage,
 		DocumentaryPage,
 		ProductdetailPage,
-		CurrencyDetailPage,
-		ForgetPasswordPage,
-		TraderContractPage
+		ForgetPasswordPage
 	],
 	imports: [
 		BrowserModule,
@@ -93,16 +83,11 @@ import { SocketServeProvider } from '../providers/socket-serve/socket-serve';
 		WalletPage,
 		GoldPwdPage,
 		RegisterPage,
-		SltpBlockPage,
 		MyaccountPage,
-		DisclaimerPage,
 		PersionPwdPage,
-		CapitalFlowPage,
 		DocumentaryPage,
 		ProductdetailPage,
-		CurrencyDetailPage,
-		ForgetPasswordPage,
-		TraderContractPage
+		ForgetPasswordPage
 	],
 	providers: [
 		StatusBar,
