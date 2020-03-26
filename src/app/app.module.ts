@@ -17,6 +17,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 /* components */
 import { MyApp } from './app.component';
 import { AlertComponent } from '../components/alert/alert';
+import { CapitalComponent } from '../components/capital/capital';
 
 /* pages */
 import { TabsPage } from '../pages/tabs/tabs';
@@ -27,10 +28,13 @@ import { WalletPage } from '../pages/wallet/wallet';
 import { RegisterPage } from '../pages/register/register';
 import { MyaccountPage } from '../pages/myaccount/myaccount';
 import { PersionPwdPage } from '../pages/persionpwd/persionpwd';
+import { OpenAccountPage } from '../pages/openaccount/openaccount';
 import { DocumentaryPage } from '../pages/documentary/documentary';
 import { ProductdetailPage } from '../pages/productdetail/productdetail';
 import { ForgetPasswordPage } from '../pages/forgetpassword/forgetpassword';
+import { TraderContractPage } from '../pages/tradercontract/tradercontract';
 /* provider */
+import { TraderProvider } from '../providers/trader/trader';
 import { HttpServeProvider } from '../providers/http-serve/http-serve';
 import { SocketServeProvider } from '../providers/socket-serve/socket-serve';
 
@@ -39,6 +43,7 @@ import { SocketServeProvider } from '../providers/socket-serve/socket-serve';
 	declarations: [
 		MyApp,
 		AlertComponent,
+		CapitalComponent,
 		TabsPage,
 		HomePage,
 		LoginPage,
@@ -47,9 +52,11 @@ import { SocketServeProvider } from '../providers/socket-serve/socket-serve';
 		RegisterPage,
 		MyaccountPage,
 		PersionPwdPage,
+		OpenAccountPage,
 		DocumentaryPage,
 		ProductdetailPage,
-		ForgetPasswordPage
+		ForgetPasswordPage,
+		TraderContractPage
 	],
 	imports: [
 		BrowserModule,
@@ -79,15 +86,18 @@ import { SocketServeProvider } from '../providers/socket-serve/socket-serve';
 		RegisterPage,
 		MyaccountPage,
 		PersionPwdPage,
+		OpenAccountPage,
 		DocumentaryPage,
 		ProductdetailPage,
-		ForgetPasswordPage
+		ForgetPasswordPage,
+		TraderContractPage
 	],
 	providers: [
 		StatusBar,
 		SplashScreen,
 		{provide: ErrorHandler, useClass: IonicErrorHandler},
 		HTTP,
+		TraderProvider,
 		SocketServeProvider,
 		HttpServeProvider,
 		ScreenOrientation,
