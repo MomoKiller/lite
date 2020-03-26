@@ -2,17 +2,10 @@
 	<ion-navbar>
 		<ion-title>
 			<span>{{productName}}</span>
-			<!-- <span>{{productCode}}</span> -->
 			<span>{{productCode == '0001' ? commodityCode : commodityCode + productCode}}</span>
 		</ion-title>
-		<div class="header-opt">
-			<a [ngClass]="{'c_start':isJoinSelfContract == true}" (tap)="joinSelfContract()">
-				<i class="fa fa-star fa-lg"></i>
-			</a>
-		</div>
 	</ion-navbar>
 </ion-header>
-<!-- <ion-content scroll="false" [ngClass]="{'no-margin':isFullEcharts}" class="product-detail-page"> -->
 <!-- swipeBackEnabled="false" 禁止右滑退出 -->
 <ion-content scroll="false" [ngClass]="{'no-margin':isFullEcharts}" class="product-detail-page" swipeBackEnabled="false">
 	<div id="Kline-column"></div>

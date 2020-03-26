@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ModalController, NavParams, AlertController, LoadingController, ToastController } from 'ionic-angular';
-import { Platform } from 'ionic-angular'; 
+import { Platform } from 'ionic-angular';
 import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
 import { HttpServeProvider } from '../../providers/http-serve/http-serve';
 import { TranslateService } from "@ngx-translate/core";
@@ -32,14 +32,18 @@ export class LoginPage {
 	public username: string = '';
 	public password: string = '';
 
-	constructor(public plt: Platform, public loadingCtrl: LoadingController, public toastCtrl: ToastController, public alertCtrl: AlertController, public _http: HttpServeProvider, public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams, private _socket: SocketServeProvider, public translate: TranslateService) {
-		/* store JS */
-		/* 
-			store.set('username', 'marcus')//存值
-			store.get('username')//取值
-			store.remove('username')//移除某一项
-			store.clear()//清除全部
-		 */
+	constructor(
+		public plt: Platform, 
+		public loadingCtrl: LoadingController, 
+		public toastCtrl: ToastController, 
+		public alertCtrl: AlertController, 
+		public _http: HttpServeProvider, 
+		public modalCtrl: ModalController, 
+		public navCtrl: NavController, 
+		public navParams: NavParams, 
+		private _socket: SocketServeProvider, 
+		public translate: TranslateService
+	) {
 		const self = this;
 		Window.loginPageFreshConfig = () => {
 			self.config = Window.config;
@@ -52,24 +56,6 @@ export class LoginPage {
 			Window.isSaveLoginInfo = this.isSaveLoginInfo;
 		}
 		Window.showProList = [];
-		/* 获取签约信息 */
-		Window.getSignInfo = function (callback = function () { }) {
-			self._http.get("client/attachedaccount/get/user/signup", (res: any) => {
-				if (res.code == '000000') {
-					try {
-						Window.signUpInfo = JSON.parse(res.content);
-					} catch (e) {
-						Window.signUpInfo = undefined;
-					}
-					if (Window.signUpInfo === undefined) {
-						self.translate.get('获取实名信息失败').subscribe((res: string) => {
-							self.presentToast(res, 'toast-red');
-						});
-					}
-					callback();
-				}
-			});
-		}
 		/* 过期自动登录 */
 		Window.autoLogin = () => {
 			if (Window.changeUser == undefined) {
@@ -189,7 +175,6 @@ export class LoginPage {
 							sessionStorage.setItem('j_orgcode', orgcode);
 							sessionStorage.setItem('j_username', username);
 							sessionStorage.setItem('j_password', password);
-							Window.getSignInfo();
 							Window.userInfo = data.content;
 							Window.openReconnect = true;
 							Window.changeUser = true;

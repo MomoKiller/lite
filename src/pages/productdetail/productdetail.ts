@@ -607,9 +607,6 @@ export class ProductdetailPage {
     this.productCode = this.productList[this.currentIndex].productCode;
     // 200303 commodityCode 合约编码
     this.commodityCode = this.productList[this.currentIndex].commodityCode;
-    // 判断是否自选
-    this.isJoinSelfContract = false;
-    this.checkedSelfContract();
     //判断当前显示的图表
     if (this.chartsTime == 0) {
       this.changeChartTime(0, 1);
@@ -837,45 +834,6 @@ export class ProductdetailPage {
   reflashKline() {
     this.showRetry = false;
     this.changeChartTime(this.tabStatus === 3 ? 0 : 1, this.selectTimeChoose);
-  }
-
-  /* 检测是否已自选 */
-  public isJoinSelfContract: boolean = false;
-  checkedSelfContract() {
-    let selfContractList = store.get(Window.userInfo.userId);
-    if (selfContractList) {
-      let data = JSON.parse(selfContractList);
-      for (let i = 0, r = data.length; i < r; i++) {
-        if (data[i] == this.id) {
-          this.isJoinSelfContract = true;
-          break;
-        }
-      }
-    }
-  }
-  /* 加入自选 */
-  joinSelfContract() {
-    let selfContractList = store.get(Window.userInfo.userId);
-    if (!selfContractList) {
-      store.set(Window.userInfo.userId, '["' + this.id + '"]');
-      this.isJoinSelfContract = true;
-    }
-    else {
-      let data = JSON.parse(selfContractList);
-      if (this.isJoinSelfContract) {
-        for (let i = 0, r = data.length; i < r; i++) {
-          if (data[i] == this.id) {
-            data.splice(i, 1);
-          }
-        }
-        this.isJoinSelfContract = false;
-      }
-      else {
-        data.push(this.id);
-        this.isJoinSelfContract = true;
-      }
-      store.set(Window.userInfo.userId, JSON.stringify(data));
-    }
   }
   presentModal() {
     let modal;
