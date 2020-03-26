@@ -3,7 +3,6 @@ import { ToastController } from 'ionic-angular';
 import { Injectable } from '@angular/core';
 /* http request */
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/toPromise';
 import { HttpServeProvider } from '../../providers/http-serve/http-serve';
 declare var Window, io;
 
