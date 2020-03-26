@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ModalController, NavParams, AlertController, LoadingController, ToastController } from 'ionic-angular';
+import { Platform } from 'ionic-angular'; 
+import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
+import { HttpServeProvider } from '../../providers/http-serve/http-serve';
+import { TranslateService } from "@ngx-translate/core";
 import { TabsPage } from "../tabs/tabs";
 import { RegisterPage } from '../register/register';
 import { ForgetPasswordPage } from '../forget-password/forget-password';
-import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
-import { HttpServeProvider } from '../../providers/http-serve/http-serve';
-import { Platform } from 'ionic-angular';
-import { TranslateService } from "@ngx-translate/core";
 import { GoldPwdPage } from '../gold-pwd/gold-pwd';
 
 declare var store, Window, window;
@@ -80,11 +80,7 @@ export class LoginPage {
 				return;
 			}
 			if (self.isSaveLoginInfo && Window.changeUser) {
-				try {
-					self.logIn(store.get('j_orgcode'), store.get('j_username'), store.get('j_password'));
-				}
-				catch (e) {
-				}
+				self.logIn(store.get('j_orgcode'), store.get('j_username'), store.get('j_password'));
 			}
 		}
 		Window.autoLogin();

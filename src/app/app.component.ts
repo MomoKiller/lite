@@ -74,17 +74,12 @@ export class MyApp {
 			else {
 				//测试指定环境
 				Window.appVersion = "sunx_app_test";
-				// 调试--使用OTP环境
-				// Window.appVersion = "otp";
 				//监听浏览器返回
 				window.history.pushState(null, null, "#");
 				window.addEventListener("popstate", (e) => {
-					try {
-						let activeNav: NavController = this.app.getActiveNav();
-						activeNav.pop();
-						window.history.pushState(null, null, "#");
-					}
-					catch (e) { }
+					let activeNav: NavController = this.app.getActiveNav();
+					activeNav.pop();
+					window.history.pushState(null, null, "#");
 				});
 				afterGetVersion();
 			}

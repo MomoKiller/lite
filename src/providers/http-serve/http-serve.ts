@@ -1,6 +1,6 @@
 import { Http, Response, Jsonp } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
-import { Injectable, ViewChild } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ToastController } from 'ionic-angular';
 import { HTTP } from '@ionic-native/http';
 import { Observable } from 'rxjs';
