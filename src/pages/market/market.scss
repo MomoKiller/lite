@@ -1,148 +1,148 @@
-page-self-contact {
+page-market {
 	background-color: #fff;
 }
-page-self-contact .scroll-content {
+page-market .scroll-content {
 	overflow: hidden;
 }
-page-self-contact .out-con-inner {
+page-market .out-con-inner {
 	width: 100%;
 	position: relative;
 	zoom: 1;
 }
-page-self-contact .out-con {
+page-market .out-con {
 	color: #ddd;
-	height: calc(100% - 30px);
+	height: calc(100% - 59px);
 	width: 100%;
 	overflow: auto;
 }
-page-self-contact .market-title {
+page-market .market-title {
 	width: 100%;
 	height: 20px;
 	line-height: 20px;
 	font-size: 12px;
 	border-bottom: 1px solid #c3d0da;
-	border-top: 1px solid #c3d0da;
 	background: #eceef8;
+	margin-top: 4px;
 }
-page-self-contact ion-select {
+page-market ion-select {
 	max-width: none;
 }
-page-self-contact .title ul {
+page-market .title ul {
 	padding: 0;
 	margin: 0;
 }
-page-self-contact .title ul li {
+page-market .title ul li {
 	list-style: none;
 	text-align: center;
 }
-page-self-contact .title li {
+page-market .title li {
 	float: left;
 	padding: 0 5px;
 	background: #111;
 	color: #999;
 	text-align: left;
 }
-page-self-contact .trader-resource-list {
+page-market .trader-resource-list {
 	height: 50px;
 	font-size: 1.7rem;
 }
-page-self-contact .trader-resource-list.name {
+page-market .trader-resource-list.name {
 	height: 50px;
 }
-page-self-contact .trader-resource-list.name  a {
+page-market .trader-resource-list.name  a {
 	width: 120px;
 	height: 100%;
 	line-height: 20px;
 	float: left;
 	padding: 5px 10px;
 }
-page-self-contact .market-title span {
+page-market .market-title span {
 	display: block;
 	float: left;
 	color: #999;
 	padding: 0 5px;
 }
-page-self-contact .trader-resource-list > div {
+page-market .trader-resource-list > div {
 	height: 100%;
 	float: left;
 }
-page-self-contact .trader-resource-list.data {
+page-market .trader-resource-list.data {
 	width: 100%;
 	border-bottom: 1px solid #dedede;
 	color: #5c7688;
 	background: #fff;
 }
-page-self-contact .trader-resource-list.data > div {
+page-market .trader-resource-list.data > div {
 	line-height: 50px;
 }
-page-self-contact .trader-resource-list.data p {
+page-market .trader-resource-list.data p {
 	margin: 0;
 	line-height: 15px;
 	height: 20px;
 	overflow:hidden;
 }
-page-self-contact .trader-resource-list.data p:first-child {
+page-market .trader-resource-list.data p:first-child {
 	height: 30px;
 	line-height: 35px;
 	overflow:hidden;
 }
-page-self-contact .trader-resource-list.data div.cfd p {
+page-market .trader-resource-list.data div.cfd p {
 	height: 25px!important;
 	overflow:hidden;
 }
-page-self-contact .trader-resource-list.data div.cfd p:first-child {
+page-market .trader-resource-list.data div.cfd p:first-child {
 	line-height: 30px!important;
 }
-page-self-contact .trader-resource-list.data div.cfd p:last-child {
+page-market .trader-resource-list.data div.cfd p:last-child {
 	line-height: 20px!important;
 }
-page-self-contact .trader-resource-list.data span {
+page-market .trader-resource-list.data span {
 	display: block;
 }
-page-self-contact .trader-resource-list > div span {
+page-market .trader-resource-list > div span {
 	font-size: 15px;
 	font-weight: 600;
 }
-page-self-contact .trader-resource-list.data > div {
+page-market .trader-resource-list.data > div {
 	padding: 0 5px;
 }
-page-self-contact .trader-resource-list.name span {
+page-market .trader-resource-list.name span {
 	display: block;
 	height: 50%;
 }
-page-self-contact .trader-resource-list.name span:first-child {
+page-market .trader-resource-list.name span:first-child {
 	font-size: 1.3rem;
 	color: #fff;
 }
-page-self-contact .trader-resource-list.name span:last-child {
+page-market .trader-resource-list.name span:last-child {
 	font-size: 0.8rem;
 	color: #999;
 }
-page-self-contact .trader-resource-list.red {
+page-market .trader-resource-list.red {
 	color: red;
 }
-page-self-contact .trader-resource-list.green {
+page-market .trader-resource-list.green {
 	color: green;
 }
-page-self-contact .trader-resource-list mark {
+page-market .trader-resource-list mark {
 	padding: 3px;
 	background: transparent;
 	color: #ddd;
 }
-page-self-contact .trader-resource-list.red mark {
+page-market .trader-resource-list.red mark {
 	background: red;
 }
-page-self-contact .trader-resource-list.green mark {
+page-market .trader-resource-list.green mark {
 	background: green;
 }
-page-self-contact .turn-page {
+page-market .turn-page {
 	height: 30px;
 	line-height: 30px;
 	color: #ddd;
 	font-size: 12px;
 	width: 100%;
 }
-page-self-contact .turn-page .search input {
+page-market .turn-page .search input {
 	height: 30px;
 	line-height: 30px;
 	background: #999;
@@ -150,7 +150,7 @@ page-self-contact .turn-page .search input {
 	color: #333;
 	width: 100px;
 }
-page-self-contact .turn-page .search a {
+page-market .turn-page .search a {
 	float: left;
 	width: 20px;
 	height: 30px;
@@ -159,22 +159,22 @@ page-self-contact .turn-page .search a {
 	color: #777;
 	font-size: 1.2rem;
 }
-page-self-contact .ischange1.c_red {
+page-market .ischange1.c_red {
 	-webkit-animation-name: changeBg1;
 	-webkit-animation-duration: 1s;
 	-webkit-animation-delay: 0s;
 }
-page-self-contact .ischange2.c_red {
+page-market .ischange2.c_red {
 	-webkit-animation-name: changeBg2;
 	-webkit-animation-duration: 1s;
 	-webkit-animation-delay: 0s;
 }
-page-self-contact .ischange1.c_green {
+page-market .ischange1.c_green {
 	-webkit-animation-name: changeBg3;
 	-webkit-animation-duration: 1s;
 	-webkit-animation-delay: 0s;
 }
-page-self-contact .ischange2.c_green {
+page-market .ischange2.c_green {
 	-webkit-animation-name: changeBg4;
 	-webkit-animation-duration: 1s;
 	-webkit-animation-delay: 0s;
@@ -211,10 +211,10 @@ page-self-contact .ischange2.c_green {
 		background: #fff;
 	}
 }
-page-self-contact span.qty {
+page-market span.qty {
 	margin: 0 auto;
 }
-page-self-contact span.qty a {
+page-market span.qty a {
 	width: 40%;
 	height: 10px;
 	display: block;
@@ -222,20 +222,20 @@ page-self-contact span.qty a {
 	border: 1px solid #bbb;
 	overflow: hidden;
 }
-page-self-contact span.qty em {
+page-market span.qty em {
 	width: 30%;
 	text-align: center;
 }
-page-self-contact span.qty a,page-self-contact span.qty em {
+page-market span.qty a,page-market span.qty em {
 	float: left;
 }
-page-self-contact span.qty a i {
+page-market span.qty a i {
 	height: 10px;
 	background: red;
 	display: block;
 	margin-top: 0px;
 }
-page-self-contact ion-title select {
+page-market ion-title select {
 	background: transparent;
 	border: 0;
 	font-size: 14px;
@@ -243,29 +243,39 @@ page-self-contact ion-title select {
 	text-align: center;
 	text-align-last: center;
 }
-page-self-contact .scroll-x {
+page-market .scroll-x {
+	padding-top: 4px;
 	width: 100%;
 	height: 35px;
-	border-bottom: 1px solid #c3d0da;
+	overflow-y: none;
+	background: #488aff;
+	a {
+		color: #f8f8f8;
+	}
+	a.active {
+		color: #fff;
+	}
 }
-page-self-contact .scroll-x::-webkit-scrollbar {
+page-market .scroll-x::-webkit-scrollbar {
 	display: none;
 }
-page-self-contact .scroll-x .scroll-content {
+page-market .scroll-x .scroll-content {
 	background: #fff;
 }
-page-self-contact .scroll-x a {
+page-market .scroll-x a {
 	font-size: 14px;
-	padding: 9px;
+	padding: 8px 0px 4px 0px;
+	margin-bottom: 4px;
+	margin: 0 8px;
 }
-page-self-contact .trader-resource-list i.arrow {
+page-market .trader-resource-list i.arrow {
 	font-size: 10px!important;
 }
-page-self-contact .trader-resource-list.data div.w27p p {
+page-market .trader-resource-list.data div.w27p p {
 	height: 50px;
 	line-height: 50px;
 }
-page-self-contact .trader-resource-list.data div.w27p.QChangeRate p span {
+page-market .trader-resource-list.data div.w27p.QChangeRate p span {
 	height: 25px;
 	line-height: 25px;
 	margin-top: 12.5px;
@@ -273,10 +283,10 @@ page-self-contact .trader-resource-list.data div.w27p.QChangeRate p span {
 	color: #fff;
 	border-radius: 5px;
 }
-page-self-contact .common-title {
+page-market .common-title {
 	border: 0;
 }
-page-self-contact {
+page-market {
 	.scroll-content,
 	.toolbar-background,
 	ion-content,
@@ -289,11 +299,11 @@ page-self-contact {
 		background: #488aff!important;
 	}
 }
-page-self-contact .segment-button,
-page-self-contact ion-segment {
+page-market .segment-button,
+page-market ion-segment {
 	border: 0px!important;
 }
-page-self-contact ion-segment.segment-ios {
+page-market ion-segment.segment-ios {
 	height: 25px;
 	line-height: 25px;
 	top: 0px;

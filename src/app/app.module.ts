@@ -22,43 +22,49 @@ import { CapitalComponent } from '../components/capital/capital';
 /* pages */
 import { TabsPage } from '../pages/tabs/tabs';
 import { HomePage } from '../pages/home/home';
-import { DisclaimerPage } from '../pages/disclaimer/disclaimer';
 import { LoginPage } from '../pages/login/login';
-import { ProductdetailPage } from '../pages/productdetail/productdetail';
-import { CapitalFlowPage } from '../pages/capital-flow/capital-flow';
-import { PersionPwdPage } from '../pages/persion-pwd/persion-pwd';
+import { MarketPage } from '../pages/market/market';
+import { WalletPage } from '../pages/wallet/wallet';
 import { GoldPwdPage } from '../pages/gold-pwd/gold-pwd';
 import { RegisterPage } from '../pages/register/register';
 import { SltpBlockPage } from '../pages/sltp-block/sltp-block';
+import { MyaccountPage } from '../pages/myaccount/myaccount';
+import { DisclaimerPage } from '../pages/disclaimer/disclaimer';
+import { PersionPwdPage } from '../pages/persion-pwd/persion-pwd';
+import { CapitalFlowPage } from '../pages/capital-flow/capital-flow';
+import { DocumentaryPage } from '../pages/documentary/documentary';
+import { ProductdetailPage } from '../pages/productdetail/productdetail';
 import { CurrencyDetailPage } from '../pages/currency-detail/currency-detail';
-import { SubBankPage } from '../pages/sub-bank/sub-bank';
 import { ForgetPasswordPage } from '../pages/forget-password/forget-password';
-import { TraderProvider } from '../providers/trader/trader';
 import { TraderContractPage } from '../pages/trader-contract/trader-contract';
-
 /* provider */
-import { SocketServeProvider } from '../providers/socket-serve/socket-serve';
+import { TraderProvider } from '../providers/trader/trader';
 import { HttpServeProvider } from '../providers/http-serve/http-serve';
+import { SocketServeProvider } from '../providers/socket-serve/socket-serve';
+
 
 @NgModule({
 	declarations: [
 		MyApp,
-		HomePage,
-		TabsPage,
-		LoginPage,
 		AlertComponent,
 		CapitalComponent,
-		ProductdetailPage,
-		TraderContractPage,
-		CapitalFlowPage,
-		PersionPwdPage,
+		TabsPage,
+		HomePage,
+		LoginPage,
+		MarketPage,
+		WalletPage,
 		GoldPwdPage,
 		RegisterPage,
-		ForgetPasswordPage,
 		SltpBlockPage,
-		CurrencyDetailPage,
+		MyaccountPage,
 		DisclaimerPage,
-		SubBankPage
+		PersionPwdPage,
+		CapitalFlowPage,
+		DocumentaryPage,
+		ProductdetailPage,
+		CurrencyDetailPage,
+		ForgetPasswordPage,
+		TraderContractPage
 	],
 	imports: [
 		BrowserModule,
@@ -80,21 +86,23 @@ import { HttpServeProvider } from '../providers/http-serve/http-serve';
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [
-		MyApp,
-		HomePage,
 		TabsPage,
+		HomePage,
 		LoginPage,
-		ProductdetailPage,
-		TraderContractPage,
-		CapitalFlowPage,
-		PersionPwdPage,
+		MarketPage,
+		WalletPage,
 		GoldPwdPage,
 		RegisterPage,
-		ForgetPasswordPage,
 		SltpBlockPage,
-		CurrencyDetailPage,
+		MyaccountPage,
 		DisclaimerPage,
-		SubBankPage
+		PersionPwdPage,
+		CapitalFlowPage,
+		DocumentaryPage,
+		ProductdetailPage,
+		CurrencyDetailPage,
+		ForgetPasswordPage,
+		TraderContractPage
 	],
 	providers: [
 		StatusBar,

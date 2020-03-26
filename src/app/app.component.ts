@@ -1,23 +1,24 @@
+import { Http } from '@angular/http';
 import { Component, ViewChild } from '@angular/core';
-import { Nav } from 'ionic-angular';
-import { Platform, App, ToastController, LoadingController, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { LoginPage } from '../pages/login/login';
-
-import { Http } from '@angular/http';
-
-import { SocketServeProvider } from "../providers/socket-serve/socket-serve";
 import { Keyboard } from '@ionic-native/keyboard';
-import { ProductdetailPage } from '../pages/productdetail/productdetail';
-
-import { HomePage } from '../pages/home/home';
-import { HttpServeProvider } from '../providers/http-serve/http-serve';
 import { TranslateService } from "@ngx-translate/core";
+import { Platform, App, ToastController, LoadingController, NavController, Nav } from 'ionic-angular';
+/* pages */
+import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
+import { WalletPage } from '../pages/wallet/wallet';
+import { MarketPage } from '../pages/market/market';
+import { MyaccountPage } from '../pages/myaccount/myaccount';
+import { DocumentaryPage } from '../pages/documentary/documentary';
+import { ProductdetailPage } from '../pages/productdetail/productdetail';
+/* serves */
+import { HttpServeProvider } from '../providers/http-serve/http-serve';
+import { SocketServeProvider } from "../providers/socket-serve/socket-serve";
 
-declare var Window, window, $;
-/* apk新增 */
-declare var screen: any, indexLibrary, baseConfig;
+declare var Window, window, $, screen: any, indexLibrary, baseConfig;
+
 @Component({
 	templateUrl: 'app.html'
 })
@@ -280,8 +281,12 @@ export class MyApp {
 	goBackLogic() {
 		var currentCmp = this.app.getActiveNav().getActive().component;
 		var isPage1 = currentCmp === HomePage;
-
+		var isPage2 = currentCmp === WalletPage;
+		var isPage3 = currentCmp === DocumentaryPage;
+		var isPage4 = currentCmp === MarketPage;
+		var isPage5 = currentCmp === MyaccountPage;
 		var isPage6 = currentCmp === ProductdetailPage;
+
 		if (isPage6) {
 			if (Window.isFullEcharts) {
 				return false;
@@ -291,7 +296,7 @@ export class MyApp {
 			}
 		}
 		else {
-			if (isPage1) {
+			if (isPage1 || isPage2 || isPage3 || isPage4 || isPage5) {
 				this.checkPage = true
 			}
 			else {

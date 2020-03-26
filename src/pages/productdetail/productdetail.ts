@@ -6,11 +6,9 @@ import { Slides,Navbar } from 'ionic-angular';
 import { ScreenOrientation } from '@ionic-native/screen-orientation'; 
 import { HttpServeProvider } from '../../providers/http-serve/http-serve';
 import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
-import { HomePage } from '../home/home';
 import { AlertComponent } from '../../components/alert/alert';
-import { SelfContactPage } from '../self-contact/self-contact';
-import { OpenAccountPage } from '../../pages/open-account/open-account';
 import { TraderContractPage } from '../trader-contract/trader-contract';
+import { MarketPage } from '../market/market';
 
 declare var Window:any,$:any,store,indexLibrary,window,kline;
 
@@ -81,12 +79,7 @@ export class ProductdetailPage {
 	public CFDidentification = null; // 图表买卖线标识 0: 买 1: 卖
 
 	backButtonClick = (e: UIEvent) => {
-		if(Window.productdetailRecourse == 'HomePage'){
-			this.navCtrl.setRoot(HomePage,{},{animate: true});
-		}
-		else if(Window.productdetailRecourse == 'SelfContactPage'){
-			this.navCtrl.setRoot(SelfContactPage,{},{animate: true});
-		}
+		this.navCtrl.setRoot(MarketPage,{},{animate: true});
 		// 指标参数打开状态则关闭
 		document.getElementById('chart_parameter_settings').classList.remove('clicked');
 		document.getElementById('kline-background').style.display = "none";
@@ -913,7 +906,6 @@ export class ProductdetailPage {
 		}
 		else{
 			this.presentToast('请先开户','toast-red');
-			modal = this.modalCtrl.create(OpenAccountPage,{});
 			modal.onDidDismiss();
 		}
 		modal.present();

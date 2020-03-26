@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
+/* pages */
 import { HomePage } from '../home/home';
-import 'rxjs/add/operator/map';
+import { MarketPage } from '../market/market';
+import { WalletPage } from '../wallet/wallet';
+import { MyaccountPage } from '../myaccount/myaccount';
+import { DocumentaryPage } from '../documentary/documentary';
 
 @Component({
 	templateUrl: 'tabs.html'
@@ -12,25 +16,25 @@ export class TabsPage {
 			{
 				root: HomePage,
 				tabTitle: '首页',
-				tabIcon: 'flash'
+				tabIcon: 'home'
 			},
 			{
-				root: HomePage,
+				root: WalletPage,
 				tabTitle: '钱包',
-				tabIcon: 'contact'
+				tabIcon: 'trending-up'
 			},
 			{
-				root: HomePage,
+				root: DocumentaryPage,
 				tabTitle: '跟单',
-				tabIcon: 'contact'
+				tabIcon: 'list'
 			},
 			{
-				root: HomePage,
+				root: MarketPage,
 				tabTitle: '行情',
 				tabIcon: 'globe'
 			},			
 			{
-				root: HomePage,
+				root: MyaccountPage,
 				tabTitle: '账户',
 				tabIcon: 'contact'
 			}
