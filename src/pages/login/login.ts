@@ -7,7 +7,6 @@ import { TranslateService } from "@ngx-translate/core";
 import { TabsPage } from "../tabs/tabs";
 import { RegisterPage } from '../register/register';
 import { ForgetPasswordPage } from '../forget-password/forget-password';
-import { GoldPwdPage } from '../gold-pwd/gold-pwd';
 
 declare var store, Window, window;
 
@@ -264,16 +263,6 @@ export class LoginPage {
 													}
 												}
 												self.navCtrl.setRoot(TabsPage);
-												// 191016 ---- 判断资金密码 @wuwp
-												if (Window.signUpInfo.resetPassword) {
-													// 跳转资金密码修改页面
-													setTimeout(() => {
-														self.presentToast('资金密码重置后请修改', 'toast-red');
-														// self.navCtrl.push(GoldPwdPage);
-														let modal = self.modalCtrl.create(GoldPwdPage, {});
-														modal.present();
-													});
-												}
 											});
 										}
 									});

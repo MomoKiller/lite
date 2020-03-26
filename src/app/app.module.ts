@@ -17,7 +17,6 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 /* components */
 import { MyApp } from './app.component';
 import { AlertComponent } from '../components/alert/alert';
-import { CapitalComponent } from '../components/capital/capital';
 
 /* pages */
 import { TabsPage } from '../pages/tabs/tabs';
@@ -25,7 +24,6 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { MarketPage } from '../pages/market/market';
 import { WalletPage } from '../pages/wallet/wallet';
-import { GoldPwdPage } from '../pages/gold-pwd/gold-pwd';
 import { RegisterPage } from '../pages/register/register';
 import { MyaccountPage } from '../pages/myaccount/myaccount';
 import { PersionPwdPage } from '../pages/persion-pwd/persion-pwd';
@@ -42,13 +40,11 @@ import { SocketServeProvider } from '../providers/socket-serve/socket-serve';
 	declarations: [
 		MyApp,
 		AlertComponent,
-		CapitalComponent,
 		TabsPage,
 		HomePage,
 		LoginPage,
 		MarketPage,
 		WalletPage,
-		GoldPwdPage,
 		RegisterPage,
 		MyaccountPage,
 		PersionPwdPage,
@@ -81,7 +77,6 @@ import { SocketServeProvider } from '../providers/socket-serve/socket-serve';
 		LoginPage,
 		MarketPage,
 		WalletPage,
-		GoldPwdPage,
 		RegisterPage,
 		MyaccountPage,
 		PersionPwdPage,
