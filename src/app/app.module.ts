@@ -1,22 +1,29 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { HttpModule, JsonpModule } from '@angular/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+
 import { HTTP } from '@ionic-native/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Keyboard } from '@ionic-native/keyboard';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+
+/* components */
 import { MyApp } from './app.component';
+import { AlertComponent } from '../components/alert/alert';
+import { CapitalComponent } from '../components/capital/capital';
+
+/* pages */
 import { TabsPage } from '../pages/tabs/tabs';
 import { HomePage } from '../pages/home/home';
 import { DisclaimerPage } from '../pages/disclaimer/disclaimer';
 import { LoginPage } from '../pages/login/login';
-
-import { AlertComponent } from '../components/alert/alert';
-import { CapitalComponent } from '../components/capital/capital';
-
-import { SocketServeProvider } from '../providers/socket-serve/socket-serve';
-import { HttpServeProvider } from '../providers/http-serve/http-serve';
-
 import { ProductdetailPage } from '../pages/productdetail/productdetail';
 import { CapitalFlowPage } from '../pages/capital-flow/capital-flow';
 import { PersionPwdPage } from '../pages/persion-pwd/persion-pwd';
@@ -27,13 +34,11 @@ import { CurrencyDetailPage } from '../pages/currency-detail/currency-detail';
 import { SubBankPage } from '../pages/sub-bank/sub-bank';
 import { ForgetPasswordPage } from '../pages/forget-password/forget-password';
 import { TraderProvider } from '../providers/trader/trader';
+import { TraderContractPage } from '../pages/trader-contract/trader-contract';
 
-import { HttpModule, JsonpModule } from '@angular/http';
-import { Keyboard } from '@ionic-native/keyboard';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+/* provider */
+import { SocketServeProvider } from '../providers/socket-serve/socket-serve';
+import { HttpServeProvider } from '../providers/http-serve/http-serve';
 
 @NgModule({
 	declarations: [
@@ -44,6 +49,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 		AlertComponent,
 		CapitalComponent,
 		ProductdetailPage,
+		TraderContractPage,
 		CapitalFlowPage,
 		PersionPwdPage,
 		GoldPwdPage,
@@ -79,6 +85,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 		TabsPage,
 		LoginPage,
 		ProductdetailPage,
+		TraderContractPage,
 		CapitalFlowPage,
 		PersionPwdPage,
 		GoldPwdPage,

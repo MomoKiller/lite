@@ -10,6 +10,7 @@ import { HomePage } from '../home/home';
 import { AlertComponent } from '../../components/alert/alert';
 import { SelfContactPage } from '../self-contact/self-contact';
 import { OpenAccountPage } from '../../pages/open-account/open-account';
+import { TraderContractPage } from '../trader-contract/trader-contract';
 
 declare var Window:any,$:any,store,indexLibrary,window,kline;
 
@@ -894,6 +895,21 @@ export class ProductdetailPage {
 			 * commodityType 
 			 * 0:期货 1:连续 2:股配 3:股权期货 4:差价 5:股票
 			 */
+			modal = this.modalCtrl.create(TraderContractPage,{'id':this.id});
+			modal.onDidDismiss(data => {
+				if(this.tabStatus === 3 || this.tabStatus === 4){
+					if(this.supportNative){
+						this.screenOrientation.lock('any');
+					}
+				} else {
+					if(this.supportNative){
+						this.screenOrientation.lock('portrait');
+					}
+				}
+				this.socket.addSingleProListMb2Delay(this.id);
+				Window.nowProId = this.id;
+				this.getRealtimeData();
+			});
 		}
 		else{
 			this.presentToast('请先开户','toast-red');
