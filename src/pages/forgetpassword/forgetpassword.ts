@@ -13,8 +13,8 @@ import { TranslateService } from "@ngx-translate/core";
 
 @IonicPage()
 @Component({
-	selector: 'page-forget-password',
-	templateUrl: 'forget-password.html',
+	selector: 'page-forgetpassword',
+	templateUrl: 'forgetpassword.html',
 })
 export class ForgetPasswordPage {
 	constructor(public toastCtrl: ToastController,public loadingCtrl: LoadingController,public _http: HttpServeProvider,public navCtrl: NavController, public navParams: NavParams, public translate:TranslateService) {

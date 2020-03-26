@@ -26,10 +26,10 @@ import { MarketPage } from '../pages/market/market';
 import { WalletPage } from '../pages/wallet/wallet';
 import { RegisterPage } from '../pages/register/register';
 import { MyaccountPage } from '../pages/myaccount/myaccount';
-import { PersionPwdPage } from '../pages/persion-pwd/persion-pwd';
+import { PersionPwdPage } from '../pages/persionpwd/persionpwd';
 import { DocumentaryPage } from '../pages/documentary/documentary';
 import { ProductdetailPage } from '../pages/productdetail/productdetail';
-import { ForgetPasswordPage } from '../pages/forget-password/forget-password';
+import { ForgetPasswordPage } from '../pages/forgetpassword/forgetpassword';
 /* provider */
 import { HttpServeProvider } from '../providers/http-serve/http-serve';
 import { SocketServeProvider } from '../providers/socket-serve/socket-serve';

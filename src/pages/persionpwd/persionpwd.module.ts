@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { PersionPwdPage } from './persion-pwd';
+import { PersionPwdPage } from './persionpwd';
 
 @NgModule({
   declarations: [],

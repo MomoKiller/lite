@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { ForgetPasswordPage } from './forget-password';
+import { ForgetPasswordPage } from './forgetpassword';
 
 @NgModule({
   declarations: [],

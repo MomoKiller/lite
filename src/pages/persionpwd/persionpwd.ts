@@ -8,8 +8,8 @@ import { HttpServeProvider } from '../../providers/http-serve/http-serve';
 declare var Window;
 @IonicPage()
 @Component({
-	selector: 'page-persion-pwd',
-	templateUrl: 'persion-pwd.html'
+	selector: 'page-persionpwd',
+	templateUrl: 'persionpwd.html'
 })
 export class PersionPwdPage {
 

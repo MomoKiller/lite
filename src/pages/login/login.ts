@@ -6,7 +6,7 @@ import { HttpServeProvider } from '../../providers/http-serve/http-serve';
 import { TranslateService } from "@ngx-translate/core";
 import { TabsPage } from "../tabs/tabs";
 import { RegisterPage } from '../register/register';
-import { ForgetPasswordPage } from '../forget-password/forget-password';
+import { ForgetPasswordPage } from '../forgetpassword/forgetpassword';
 
 declare var store, Window, window;
 

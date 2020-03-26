@@ -5,7 +5,7 @@ import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
 import { HttpServeProvider } from '../../providers/http-serve/http-serve';
 import { AlertComponent } from '../../components/alert/alert';
 import { ProductdetailPage } from '../../pages/productdetail/productdetail';
-import { PersionPwdPage } from '../../pages/persion-pwd/persion-pwd';
+import { PersionPwdPage } from '../../pages/persionpwd/persionpwd';
 
 declare var $:any,Window,indexLibrary,window;
 @Component({
