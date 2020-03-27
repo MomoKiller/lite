@@ -6,6 +6,7 @@ import { HttpServeProvider } from '../../providers/http-serve/http-serve';
 import { AlertComponent } from '../../components/alert/alert';
 import { ProductdetailPage } from '../../pages/productdetail/productdetail';
 import { PersionPwdPage } from '../../pages/persionpwd/persionpwd';
+import { PresentProvider } from '../../providers/present/present';
 
 declare var $:any,Window,indexLibrary,window;
 @Component({
@@ -22,7 +23,17 @@ export class MarketPage {
 	public classifyB:Array<any> = [];
 	public currentClassifyA;
 	public currentClassifyB;
-	constructor(public toastCtrl: ToastController, private screenOrientation: ScreenOrientation, public _http: HttpServeProvider,public modalCtrl: ModalController,public navCtrl: NavController,private socket:SocketServeProvider,private ref: ElementRef,public cd: ChangeDetectorRef) {
+	constructor(
+		public toastCtrl: ToastController, 
+		private screenOrientation: ScreenOrientation, 
+		public _http: HttpServeProvider,
+		public modalCtrl: ModalController,
+		public navCtrl: NavController,
+		private socket:SocketServeProvider,
+		private ref: ElementRef,
+		public cd: ChangeDetectorRef,
+		private present: PresentProvider
+	) {
 		/* 获取默认一级分类 */
 		for(let i=0,r=Window.allContractNav.length;i<r;i++){
 			if(Window.allContractNav[i].categoryLevel == 1){
@@ -30,7 +41,7 @@ export class MarketPage {
 			}
 		}
 		if(Window.allContractNav.length === 0){
-			this.presentToast('未获取到有效的一级分类','toast-red');
+			this.present.presentToast('未获取到有效的一级分类','toast-red');
 			return;
 		}
 		Window.currentClassifyA = Window.currentClassifyA?Window.currentClassifyA:this.classifyA[0].categoryId;
@@ -50,7 +61,7 @@ export class MarketPage {
 				categoryId: '',
 				commodityType: 0
 			}
-			this.presentToast('未获取到有效的二级分类','toast-red');
+			this.present.presentToast('未获取到有效的二级分类','toast-red');
 		}
 		else{
 			Window.currentClassifyB = {
@@ -139,7 +150,7 @@ export class MarketPage {
 					// 191016 -- 判断用户密码是否被重置 @wuwp
 					if(Window.userValidate.resetPassword){	
 						// 跳转密码重置页面
-						self.presentToast('个人密码重置后请修改','toast-red');
+						self.present.presentToast('个人密码重置后请修改','toast-red');
 						self.navCtrl.push(PersionPwdPage);
 						let modal = self.modalCtrl.create(PersionPwdPage,{});
 						modal.present();
@@ -294,16 +305,5 @@ export class MarketPage {
 			return indexLibrary.SortByProps(a,b,{ "marketSort":"descending","commoditySort":"descending","contractSort":"descending"});
 		});
 		this.baseProductList.reverse();
-	}
-	presentToast(text,color) {
-		let toast = this.toastCtrl.create({
-			message: text,
-			position: 'top',
-			duration: 3000,
-			showCloseButton: true,
-			cssClass:color,
-			closeButtonText: '确定'
-		});
-		toast.present();
 	}
 }

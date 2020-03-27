@@ -5,6 +5,7 @@ import { ToastController } from 'ionic-angular';
 import { HTTP } from '@ionic-native/http';
 import { Observable } from 'rxjs';
 import { Platform } from 'ionic-angular';
+import { PresentProvider } from '../present/present';
 
 /*
   Generated class for the HttpServeProvider provider.
@@ -31,7 +32,14 @@ export class HttpServeProvider {
 	/* status=0时 失败连接计数 */
 	public errorContract: number = 0;
 
-	constructor(public toastCtrl: ToastController, public __http: HTTP, public _http: Http, public plt: Platform, public jsonp: Jsonp) {
+	constructor(
+		public toastCtrl: ToastController, 
+		public __http: HTTP, 
+		public _http: Http, 
+		public plt: Platform, 
+		public jsonp: Jsonp,
+		private present: PresentProvider
+	) {
 		if (this.plt.is('ios') && window.cordova) {
 			this.http = this.__http;
 			this.postForm = this.postForm_Cordova;
@@ -88,7 +96,7 @@ export class HttpServeProvider {
 						}
 						else {
 							self.errorContract = 0;
-							this.presentToast('网络信号差', 'toast-red');
+							this.present.presentToast('网络信号差', 'toast-red');
 						}
 					}, 1000);
 					return;
@@ -182,7 +190,7 @@ export class HttpServeProvider {
 								return;
 							}
 							self.errorContract = 0;
-							this.presentToast('网络信号差', 'toast-red');
+							this.present.presentToast('网络信号差', 'toast-red');
 						}
 					}, 1000);
 					return;
@@ -226,7 +234,7 @@ export class HttpServeProvider {
 						}
 						else {
 							this.errorContract = 0;
-							this.presentToast('网络信号差', 'toast-red');
+							this.present.presentToast('网络信号差', 'toast-red');
 						}
 					}, 1000);
 					return;
@@ -272,11 +280,11 @@ export class HttpServeProvider {
 						else {
 							if (url == 'socket.io/get/tonken') {
 								this.postJson_Cordova(url, body, callback, bool);
-								this.presentToast('网络信号差', 'toast-red');
+								this.present.presentToast('网络信号差', 'toast-red');
 								return;
 							}
 							this.errorContract = 0;
-							this.presentToast('网络信号差', 'toast-red');
+							this.present.presentToast('网络信号差', 'toast-red');
 						}
 					}, 1000);
 					return;
@@ -323,7 +331,7 @@ export class HttpServeProvider {
 						}
 						else {
 							this.errorContract = 0;
-							this.presentToast('网络信号差', 'toast-red');
+							this.present.presentToast('网络信号差', 'toast-red');
 						}
 					}, 1000);
 					return;
@@ -396,21 +404,21 @@ export class HttpServeProvider {
 				}
 				else {
 					Window.loginout();
-					this.presentToast('登入过期,请重新登入', 'toast-red');
+					this.present.presentToast('登入过期,请重新登入', 'toast-red');
 				}
 			}
 			else if (msg.code == '700002' || msg.code == '800002' || msg.code == '700000' || msg.code == '900001') {
-				this.presentToast(msg.message, 'toast-red');
+				this.present.presentToast(msg.message, 'toast-red');
 			}
 			else {
 				if (msg.code == 500) {
 					return;
 				}
 				if (msg.code != undefined) {
-					this.presentToast('[' + msg.code + ']:哎呀,你的网络好像有点问题,请重试!', 'toast-red');
+					this.present.presentToast('[' + msg.code + ']:哎呀,你的网络好像有点问题,请重试!', 'toast-red');
 				}
 				else {
-					this.presentToast(JSON.stringify(msg), 'toast-red');
+					this.present.presentToast(JSON.stringify(msg), 'toast-red');
 				}
 			}
 		}
@@ -419,7 +427,7 @@ export class HttpServeProvider {
 				return;
 			}
 			if (error.status != 200) {
-				this.presentToast('[' + error.status + ']:哎呀,你的网络好像有点问题,请重试!', 'toast-red');
+				this.present.presentToast('[' + error.status + ']:哎呀,你的网络好像有点问题,请重试!', 'toast-red');
 			}
 		}
 	}
@@ -429,16 +437,5 @@ export class HttpServeProvider {
 			str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
 		}
 		return str.join("&");
-	}
-	presentToast(text, color) {
-		let toast = this.toastCtrl.create({
-			message: text,
-			position: 'top',
-			duration: 3000,
-			showCloseButton: true,
-			cssClass: color,
-			closeButtonText: '确定'
-		});
-		toast.present();
 	}
 }

@@ -117,7 +117,7 @@ export class TraderContractPage {
 		this.orderConnection = this.socket.getOrderBack().subscribe(res => {
 			let data = JSON.parse(res.toString());
 			console.warn(data.content.orderState);
-			this.presentToast(this.present.translateText(this.orderStateText(data.content.orderState)),'toast-yellow');
+			this.present.presentToast(this.present.translateText(this.orderStateText(data.content.orderState)),'toast-yellow');
 			this.orderRequest();
 			this.present.dismissLoading();
 		});
@@ -327,21 +327,21 @@ export class TraderContractPage {
 			this.present.presentLoading();
 			this.http.postJson("client/trade/order/create",body,function(data){
 				if(data.code != '000000'){
-					self.presentToast(data.message,'toast-red');
+					self.present.presentToast(data.message,'toast-red');
 				}
 				else{
 					let content = JSON.parse(data.content);
 					if(content.errorId == -1099){
 						if(content.errorMsg == 1){
-							self.presentToast(this.present.translateText('国际账号未开户'),'toast-red');
+							self.present.presentToast(this.present.translateText('国际账号未开户'),'toast-red');
 						}
 						else if(content.errorMsg == 2){
-							self.presentToast(this.present.translateText('国内账号未开户'),'toast-red');
+							self.present.presentToast(this.present.translateText('国内账号未开户'),'toast-red');
 						}
 						return;
 					}
 					if(content.errorMsg){
-						self.presentToast(content.errorMsg,'toast-red');
+						self.present.presentToast(content.errorMsg,'toast-red');
 					}
 				}
 				self.viewUntrader = true;
@@ -476,17 +476,6 @@ export class TraderContractPage {
 			}
 		}
 	}
-	presentToast(text,color = '') {
-		let toast = this.toastCtrl.create({
-			message: text,
-			position: 'top',
-			duration: 3000,
-			showCloseButton: true,
-			cssClass:color,
-			closeButtonText: this.present.translateText('确定')
-		});
-		toast.present();
-	}
 	/* 持仓操作 */
 	private choosePostionInfo;
 	pushValue(v){
@@ -497,7 +486,6 @@ export class TraderContractPage {
 	}
 	positionActionSheet() {
 		let actionSheet = this.actionSheetCtrl.create({
-			// title: this.choosePostionInfo.commodityName+'('+this.choosePostionInfo.contractCode+')',
 			title: this.choosePostionInfo.contractCode == '0001' ? (this.choosePostionInfo.commodityName + this.choosePostionInfo.commodityCode) : (this.choosePostionInfo.commodityName + this.choosePostionInfo.commodityCode + this.choosePostionInfo.contractCode),
 			buttons: [
 				{
@@ -601,7 +589,7 @@ export class TraderContractPage {
 					text: '确定',
 					handler: (data: any) => {
 						if(Number($('#partClose').val()) > Number(this.canClosePosition)) {
-							this.presentToast('平仓手数不可大于可平手数', 'toast-red');
+							this.present.presentToast('平仓手数不可大于可平手数', 'toast-red');
 							return;
 						}
 						this.present.presentLoading();

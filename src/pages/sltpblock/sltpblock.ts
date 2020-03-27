@@ -138,11 +138,11 @@ export class SltpBlockPage {
 		this.http.postJson('client/trade/position/sltp',body,(data) => {
 			var res = JSON.parse(data.content);
 			if(data.code == '000000' && res.errorId == 0){
-				this.presentToast('设置成功','toast-green');
+				this.present.presentToast('设置成功','toast-green');
 				this.setSlTpWarning()
 			}
 			else{
-				this.presentToast(res.errorMsg,'toast-red');
+				this.present.presentToast(res.errorMsg,'toast-red');
 			}
 		});
 	}
@@ -150,17 +150,6 @@ export class SltpBlockPage {
 		this.priceConection.unsubscribe();
 		this.socket.rejuceSingleProList(this.baseInfo.productId);
 		this.viewCtrl.dismiss();
-	}
-	presentToast(text,color) {
-		let toast = this.toastCtrl.create({
-			message: text,
-			position: 'top',
-			duration: 3000,
-			showCloseButton: true,
-			cssClass:color,
-			closeButtonText: '确定'
-		});
-		toast.present();
 	}
 	setSlTpWarning() {
 		let alert = this.alertCtrl.create({
