@@ -27,14 +27,17 @@ import { MarketPage } from '../pages/market/market';
 import { WalletPage } from '../pages/wallet/wallet';
 import { RegisterPage } from '../pages/register/register';
 import { MyaccountPage } from '../pages/myaccount/myaccount';
+import { SltpBlockPage } from '../pages/sltpblock/sltpblock';
 import { PersionPwdPage } from '../pages/persionpwd/persionpwd';
 import { OpenAccountPage } from '../pages/openaccount/openaccount';
 import { DocumentaryPage } from '../pages/documentary/documentary';
 import { ProductdetailPage } from '../pages/productdetail/productdetail';
 import { ForgetPasswordPage } from '../pages/forgetpassword/forgetpassword';
 import { TraderContractPage } from '../pages/tradercontract/tradercontract';
+import { PositionDetailPage } from '../pages/positiondetail/positiondetail';
 /* provider */
 import { TraderProvider } from '../providers/trader/trader';
+import { PresentProvider } from '../providers/present/present';
 import { HttpServeProvider } from '../providers/http-serve/http-serve';
 import { SocketServeProvider } from '../providers/socket-serve/socket-serve';
 
@@ -51,12 +54,14 @@ import { SocketServeProvider } from '../providers/socket-serve/socket-serve';
 		WalletPage,
 		RegisterPage,
 		MyaccountPage,
+		SltpBlockPage,
 		PersionPwdPage,
 		OpenAccountPage,
 		DocumentaryPage,
 		ProductdetailPage,
 		ForgetPasswordPage,
-		TraderContractPage
+		TraderContractPage,
+		PositionDetailPage
 	],
 	imports: [
 		BrowserModule,
@@ -85,23 +90,26 @@ import { SocketServeProvider } from '../providers/socket-serve/socket-serve';
 		WalletPage,
 		RegisterPage,
 		MyaccountPage,
+		SltpBlockPage,
 		PersionPwdPage,
 		OpenAccountPage,
 		DocumentaryPage,
 		ProductdetailPage,
 		ForgetPasswordPage,
-		TraderContractPage
+		TraderContractPage,
+		PositionDetailPage
 	],
 	providers: [
 		StatusBar,
+		Keyboard,
 		SplashScreen,
 		{provide: ErrorHandler, useClass: IonicErrorHandler},
 		HTTP,
 		TraderProvider,
+    	PresentProvider,
 		SocketServeProvider,
 		HttpServeProvider,
-		ScreenOrientation,
-		Keyboard
+		ScreenOrientation
 	]
 })
 

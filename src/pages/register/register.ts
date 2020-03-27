@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Navbar, LoadingController, Platform, ToastController } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { TranslateService } from "@ngx-translate/core";
+import { PresentProvider } from '../../providers/present/present';
 
 declare var Window,window;
 @IonicPage()
@@ -12,7 +13,6 @@ declare var Window,window;
 export class RegisterPage {
 	@ViewChild(Navbar) navbar: Navbar;
 	iframeUrl: any = null;
-	private loader:any;
 	constructor(
 		public toastCtrl: ToastController, 
 		public loadingCtrl: LoadingController, 
@@ -20,7 +20,8 @@ export class RegisterPage {
 		public translate: TranslateService, 
 		public navCtrl: NavController, 
 		public navParams: NavParams, 
-		private sanitizer: DomSanitizer
+		private sanitizer: DomSanitizer,
+		private present: PresentProvider
 	) { }
 	public ifloaded = false;
 	public reback = (e) =>{
@@ -29,11 +30,11 @@ export class RegisterPage {
 		}
 		if(e.data == 'open'){
 			this.ifloaded = true;
-			this.dismissLoading();
+			this.present.dismissLoading();
 		}
 	}
 	ionViewDidEnter() {
-		this.presentLoading('正在加载注册页面 ...');
+		this.present.presentLoading('正在加载注册页面 ...', true, 5000);
 		let info = this.navParams.get('info');
 		const time = Date.parse(new Date().toString());
 		let params = null;
@@ -68,10 +69,10 @@ export class RegisterPage {
 			self.timeoutIfra = setTimeout(()=>{
 				if(!self.ifloaded){
 					if(self.requireTime >5){
-						this.presentToast('请求超时，请稍后重试','toast-red');
+						this.present.presentToast('请求超时，请稍后重试','toast-red');
 						setTimeout(()=>{this.navCtrl.pop();}, 1000);
 					}else{
-						this.presentLoading('正在重新请求数据 ...');
+						this.present.presentLoading('正在重新请求数据 ...', true, 5000);
 						self.loadIframe(params);
 					}
 				}
@@ -86,36 +87,5 @@ export class RegisterPage {
 	ionViewWillUnload() {
 		this.iframeUrl = null;
 		window.removeEventListener("message",this.reback,false);
-	}
-	presentLoading(text) {
-		this.loader = this.loadingCtrl.create({
-			content: text,
-			showBackdrop: true,
-			duration: 5000
-		});
-		this.loader.present();
-	}
-	dismissLoading() {
-		this.loader.dismiss();
-	}
-	presentToast(text,color = '') {
-		let toast = this.toastCtrl.create({
-			message: text,
-			position: 'top',
-			duration: 5000,
-			showCloseButton: true,
-			cssClass:color,
-			closeButtonText: this.translateText('确定')
-		});
-		toast.present();
-	}
-	//翻译
-	translateText(text){
-		let result:any;
-		console.log(text);
-		this.translate.get(text).subscribe((res: string) => {
-			result = res;
-		});
-		return result;
 	}
 }

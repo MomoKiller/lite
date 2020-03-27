@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, AlertController, LoadingController } from 'ionic-angular';
-import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
 
-
-/* http request */
+/* serves */
 import { HttpServeProvider } from '../../providers/http-serve/http-serve';
+import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
+import { PresentProvider } from '../../providers/present/present';
 
 declare var Window;
 
@@ -21,10 +21,19 @@ declare var Window;
 	templateUrl: 'sltpblock.html',
 })
 export class SltpBlockPage {
-	constructor(public loadingCtrl: LoadingController, private alertCtrl: AlertController, private socket:SocketServeProvider,public toastCtrl: ToastController,public viewCtrl: ViewController,public navCtrl: NavController, public params: NavParams, public http: HttpServeProvider) {
+	constructor(
+		public loadingCtrl: LoadingController, 
+		private alertCtrl: AlertController, 
+		private socket:SocketServeProvider,
+		public toastCtrl: ToastController,
+		public viewCtrl: ViewController,
+		public navCtrl: NavController, 
+		public params: NavParams, 
+		public http: HttpServeProvider,
+		public present: PresentProvider
+	) {
 		this.baseInfo = params.get('baseInfo');
 	}
-	private loader:any;
 
 	public baseInfo:any;
 	public tp:number;//止盈
@@ -89,7 +98,7 @@ export class SltpBlockPage {
 	setSearch(){
 		/* 设置止盈止损前查询平仓挂单 */
 		const self = this;
-		this.presentLoading();
+		this.present.presentLoading();
 		let body = {
 			page: 1,
 			rows: 99,
@@ -110,7 +119,7 @@ export class SltpBlockPage {
 				}
 			}
 			self.set();
-			self.dismissLoading();
+			self.present.dismissLoading();
 		});
 	}
 	set(){
@@ -190,20 +199,5 @@ export class SltpBlockPage {
 		});
 		alert.present();
 	}
-	presentLoading() {
-		if(!this.loader){
-			this.loader = this.loadingCtrl.create({
-				content: "请等待...",
-				showBackdrop: true,
-				duration: 3000
-			});
-			this.loader.present();
-		}
-	}
-	dismissLoading() {
-		if(this.loader){
-	        this.loader.dismiss();
-	        this.loader = null;
-	    }
-	}
+
 }

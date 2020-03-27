@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { Platform, IonicPage, NavController, ModalController, NavParams, AlertController, LoadingController, ToastController } from 'ionic-angular';
 import { TranslateService } from "@ngx-translate/core";
-/* serves */
-import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
-import { HttpServeProvider } from '../../providers/http-serve/http-serve';
 /* pages */
 import { TabsPage } from "../tabs/tabs";
 import { RegisterPage } from '../register/register';
 import { ForgetPasswordPage } from '../forgetpassword/forgetpassword';
+/* serves */
+import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
+import { HttpServeProvider } from '../../providers/http-serve/http-serve';
+import { PresentProvider } from '../../providers/present/present';
 
 declare var store, Window, window;
 
@@ -36,7 +37,8 @@ export class LoginPage {
 		public navParams: NavParams,
 		public translate: TranslateService,
 		private _http: HttpServeProvider,
-		private _socket: SocketServeProvider
+		private _socket: SocketServeProvider,
+		private present: PresentProvider
 	) {
 		const self = this;
 		Window.loginPageFreshConfig = () => {
@@ -74,17 +76,17 @@ export class LoginPage {
 	logIn(orgcode, username, password) {
 		if (orgcode.length == 0) {
 			this.translate.get('请输入机构代码').subscribe((res: string) => {
-				this.presentToast(res, 'toast-red');
+				this.present.presentToast(res, 'toast-red');
 			});
 		}
 		else if (username.length == 0) {
 			this.translate.get('请输入登录账号').subscribe((res: string) => {
-				this.presentToast(res, 'toast-red');
+				this.present.presentToast(res, 'toast-red');
 			});
 		}
 		else if (password.length == 0) {
 			this.translate.get('请输入登录密码').subscribe((res: string) => {
-				this.presentToast(res, 'toast-red');
+				this.present.presentToast(res, 'toast-red');
 			});
 		}
 		else {
@@ -96,7 +98,7 @@ export class LoginPage {
 			let self = this;
 			if (this.loader === null) {
 				this.translate.get('正在检测线路 ...').subscribe((res: string) => {
-					this.presentLoading(res);
+					this.present.presentLoading(res, true, 6000);
 				});
 			}
 
@@ -137,22 +139,22 @@ export class LoginPage {
 
 							if (num <= 0) {
 								self.translate.get('不存在该账号').subscribe((res: string) => {
-									self.presentToast(res, 'toast-red');
+									self.present.presentToast(res, 'toast-red');
 								});
-								self.dismissLoading();
+								self.present.dismissLoading();
 								return;
 							}
 						}
 						else {
 							self.translate.get('不存在该账号').subscribe((res: string) => {
-								self.presentToast(res, 'toast-red');
+								self.present.presentToast(res, 'toast-red');
 							});
-							self.dismissLoading();
+							self.present.dismissLoading();
 							return;
 						}
-						self.dismissLoading();
+						self.present.dismissLoading();
 						self.translate.get('正在连接行情 ...').subscribe((res: string) => {
-							self.presentLoading(res);
+							self.present.presentLoading(res, true, 6000);
 						});
 						if ((data.content.userState == -2 || data.content.userState == 1 || data.content.userState == 2 || data.content.userState == 8000 || data.content.userState == 8001) && data.content.userType == 4) {
 							if (self.isSaveLoginInfo === true) {
@@ -239,20 +241,20 @@ export class LoginPage {
 						}
 						else {
 							self.translate.get('无效的账号').subscribe((res: string) => {
-								self.presentToast(res, 'toast-red');
+								self.present.presentToast(res, 'toast-red');
 							});
 						}
 					})
 				}
 				else {
-					self.presentToast(data.message, 'toast-red');
-					self.dismissLoading();
+					self.present.presentToast(data.message, 'toast-red');
+					self.present.dismissLoading();
 				}
 			}, false);
 		}
 	}
 	ionViewWillLeave() {
-		this.dismissLoading();
+		this.present.dismissLoading();
 	}
 	// 加载LOGO
 	loadingLogo() {
@@ -274,7 +276,7 @@ export class LoginPage {
 		const self = this;
 		const line = Window.config.line;
 		self.translate.get('正在检测线路 ...').subscribe((res: string) => {
-			self.presentLoading(res);
+			self.present.presentLoading(res, true,6000);
 		});
 		for (let i = 0, r = line.length; i < r; i++) {
 			let befoTime = new Date().getTime();
@@ -288,7 +290,7 @@ export class LoginPage {
 				console.log('[当前配置文件]', Window.config, i);
 				console.log('[更新线路ping]', Window.config.line[i]);
 				if (__status === 200) {
-					self.dismissLoading();
+					self.present.dismissLoading();
 				}
 			});
 		}
@@ -312,11 +314,11 @@ export class LoginPage {
 			Window.currentLine = line[canUseLine[index]];
 			if (Window.currentLine == undefined) {
 				self.checkLoginLine();
-				self.dismissLoading();
+				self.present.dismissLoading();
 				return;
 			}
 			else {
-				self.dismissLoading();
+				self.present.dismissLoading();
 				clearTimeout(this.checkLoginLineTime);
 			}
 		}, 3000);
@@ -340,33 +342,6 @@ export class LoginPage {
 		setTimeout(() => {
 			eval("(" + "self." + model + "='" + _str + "'" + ")");
 		}, 10);
-	}
-	presentLoading(text) {
-		this.loader = this.loadingCtrl.create({
-			content: text,
-			showBackdrop: true,
-			duration: 6000
-		});
-		this.loader.present();
-	}
-	dismissLoading() {
-		if (this.loader) {
-			this.loader.dismiss();
-		}
-		this.loader = null;
-	}
-	presentToast(text, color) {
-		this.translate.get('确定').subscribe((res: string) => {
-			let toast = this.toastCtrl.create({
-				message: text,
-				position: 'top',
-				duration: 3000,
-				showCloseButton: true,
-				cssClass: color,
-				closeButtonText: res
-			});
-			toast.present();
-		});
 	}
 	ping(ip, callback = function (bool) { }) {
 		this._http.check_line(ip, function (status) {

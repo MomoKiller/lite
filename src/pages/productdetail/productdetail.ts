@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
-import { IonicPage, NavController, NavParams, ModalController, LoadingController, ToastController } from 'ionic-angular';
+import { Platform, Slides, Navbar, IonicPage, NavController, NavParams, ModalController, LoadingController, ToastController } from 'ionic-angular';
 /* components */
 import { AlertComponent } from '../../components/alert/alert';
 /* pages */
@@ -10,8 +10,7 @@ import { OpenAccountPage } from '../openaccount/openaccount';
 /* serve */
 import { HttpServeProvider } from '../../providers/http-serve/http-serve';
 import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
-
-import { Platform, Slides, Navbar } from 'ionic-angular';
+import { PresentProvider } from '../../providers/present/present';
 
 declare var Window: any, $: any, indexLibrary, window, kline;
 
@@ -27,7 +26,6 @@ export class ProductdetailPage {
 
   private marginTop: any;
   private marginBottom: number;
-  private loader: any;
 
   //判断平台是否支持native
   private supportNative: boolean = window.cordova ? true : false;
@@ -49,7 +47,8 @@ export class ProductdetailPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private screenOrientation: ScreenOrientation,
-    private socket: SocketServeProvider
+    private socket: SocketServeProvider,
+    private present: PresentProvider
   ) { }
 
   public id: string = Window.nowProId;
@@ -192,8 +191,7 @@ export class ProductdetailPage {
     if (this.supportNative) {
       this.screenChange = this.screenOrientation.onChange().subscribe(() => {
         if (this.tabStatus === 3 || this.tabStatus === 4) {
-          this.presentLoading();
-
+          this.present.presentLoading('正在缩放图表...', true, 2000, false, 'op85Loading');
           if (this.screenOrientation.type.indexOf('landscape') !== -1) {
             this.isFullEcharts = true;
           }
@@ -215,7 +213,7 @@ export class ProductdetailPage {
               window.Control.switchIndic('on');
               $('#chart_show_tools').show();
               $('#chart_toolbar').css('margin-top', '20px');
-              self.dismissLoading();
+              self.present.dismissLoading();
             }, 200);
           }
           else if (!Window.isFullEcharts) {
@@ -232,8 +230,7 @@ export class ProductdetailPage {
               $('#chart_toolpanel').css('display', 'none');
               $('#chart_show_tools').removeClass('selected');
               kline.resize(self.KlineColumnW, self.KlineColumnH);
-
-              self.dismissLoading();
+              self.present.dismissLoading();
             }, 200);
           }
         }
@@ -310,7 +307,7 @@ export class ProductdetailPage {
   browser = () => {
     const self = this;
     if (self.tabStatus === 3 || self.tabStatus === 4) {
-      self.presentLoading();
+      this.present.presentLoading('正在缩放图表...', true, 2000, false, 'op85Loading');
       if (window.orientation === -90 || window.orientation === 90) {
         self.isFullEcharts = true;
       }
@@ -330,7 +327,7 @@ export class ProductdetailPage {
           $('#chart_show_tools').show();
           $('#chart_toolbar').css('margin-top', '20px');
           kline.resize(w, h);
-          self.dismissLoading();
+          self.present.dismissLoading();
         }, 200);
       }
       else if (!Window.isFullEcharts) {
@@ -346,7 +343,7 @@ export class ProductdetailPage {
           $('#chart_toolpanel').css('display', 'none');
           $('#chart_show_tools').removeClass('selected');
           kline.resize(self.KlineColumnW, self.KlineColumnH);
-          self.dismissLoading();
+          self.present.dismissLoading();
         }, 200);
       }
     }
@@ -864,7 +861,7 @@ export class ProductdetailPage {
       });
     }
     else {
-      this.presentToast('请先开户', 'toast-red');
+      this.present.presentToast('请先开户', 'toast-red');
       modal = this.modalCtrl.create(OpenAccountPage, {});
       modal.onDidDismiss();
     }
@@ -881,31 +878,6 @@ export class ProductdetailPage {
       this.bP = bTotal / (totle) * 100;
       this.sP = sTotal / (totle) * 100;
     }
-  }
-
-
-  presentLoading() {
-    this.loader = this.loadingCtrl.create({
-      content: "正在缩放图表...",
-      showBackdrop: true,
-      duration: 2000,
-      cssClass: "op85Loading"
-    });
-    this.loader.present();
-  }
-  dismissLoading() {
-    this.loader.dismiss();
-  }
-  presentToast(text, color) {
-    let toast = this.toastCtrl.create({
-      message: text,
-      position: 'top',
-      duration: 3000,
-      showCloseButton: true,
-      cssClass: color,
-      closeButtonText: '确定'
-    });
-    toast.present();
   }
 }
 

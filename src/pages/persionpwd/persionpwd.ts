@@ -4,6 +4,7 @@ import { TranslateService } from "@ngx-translate/core";
 
 /* http request */
 import { HttpServeProvider } from '../../providers/http-serve/http-serve';
+import { PresentProvider } from '../../providers/present/present';
 /****/
 declare var Window;
 @IonicPage()
@@ -31,8 +32,16 @@ export class PersionPwdPage {
 
 	public userValidate;
 
-	constructor(public alertCtrl: AlertController, public toastCtrl: ToastController, public http: HttpServeProvider, public navCtrl: NavController, public viewCtrl: ViewController, public navParams: NavParams, public translate: TranslateService) {
-	}
+	constructor(
+		public alertCtrl: AlertController, 
+		public toastCtrl: ToastController, 
+		public http: HttpServeProvider, 
+		public navCtrl: NavController, 
+		public viewCtrl: ViewController, 
+		public navParams: NavParams, 
+		public translate: TranslateService,
+		private present: PresentProvider
+	) { }
 
 	ionViewDidLoad() {
 		let self = this;
@@ -48,7 +57,7 @@ export class PersionPwdPage {
 				}
 			}
 			else {
-				self.presentToast(res.message, 'toast-red');
+				self.present.presentToast(res.message, 'toast-red');
 			}
 		});
 	}
@@ -80,13 +89,13 @@ export class PersionPwdPage {
 			let reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
 			if (this.value == '') {
 				this.translate.get('请填写验证邮箱').subscribe((res: string) => {
-					this.presentToast(res, 'toast-red');
+					this.present.presentToast(res, 'toast-red');
 				});
 				return false;
 			}
 			else if (!reg.test(this.value)) {
 				this.translate.get('验证邮箱格式不正确').subscribe((res: string) => {
-					this.presentToast(res, 'toast-red');
+					this.present.presentToast(res, 'toast-red');
 				});
 				return false;
 			}
@@ -95,13 +104,13 @@ export class PersionPwdPage {
 			let reg = new RegExp("^1[3|4|5|7|8][0-9]{9}$");
 			if (this.value == '') {
 				this.translate.get('请填写验证手机').subscribe((res: string) => {
-					this.presentToast(res, 'toast-red');
+					this.present.presentToast(res, 'toast-red');
 				});
 				return false;
 			}
 			else if (!reg.test(this.value)) {
 				this.translate.get('验证手机格式不正确').subscribe((res: string) => {
-					this.presentToast(res, 'toast-red');
+					this.present.presentToast(res, 'toast-red');
 				});
 				return false;
 			}
@@ -121,13 +130,13 @@ export class PersionPwdPage {
 				console.log(res);
 				if (res.code == '000000' && res.success) {
 					self.translate.get('验证码已发送,请注意查收').subscribe((res: string) => {
-						self.presentToast(res, 'toast-green');
+						self.present.presentToast(res, 'toast-green');
 					});
 					self.countDown();
 				}
 				else {
 					self.translate.get('发送失败,请重新尝试').subscribe((res: string) => {
-						self.presentToast(res, 'toast-red');
+						self.present.presentToast(res, 'toast-red');
 					});
 					self.isPostCode = false;
 				}
@@ -139,27 +148,27 @@ export class PersionPwdPage {
 		if (this.checkWays == 'old') {
 			if (this.oldPwd == '') {
 				this.translate.get('密码不能为空').subscribe((res: string) => {
-					this.presentToast(res, 'toast-red');
+					this.present.presentToast(res, 'toast-red');
 				});
 			}
 			else if (!this.newPwd) {
 				this.translate.get('新密码不能为空').subscribe((res: string) => {
-					this.presentToast(res, 'toast-red');
+					this.present.presentToast(res, 'toast-red');
 				});
 			}
 			else if (this.newPwd.length < 8) {
 				this.translate.get('登录密码不能小于8位').subscribe((res: string) => {
-					this.presentToast(res, 'toast-red');
+					this.present.presentToast(res, 'toast-red');
 				});
 			}
 			else if (!this.regPassword.test(this.newPwd)) {
 				this.translate.get('登录密码格式不正确').subscribe((res: string) => {
-					this.presentToast(res, 'toast-red');
+					this.present.presentToast(res, 'toast-red');
 				});
 			}
 			else if (this.newPwd != this.repeatPwd) {
 				this.translate.get('新密码与确认密码不一致').subscribe((res: string) => {
-					this.presentToast(res, 'toast-red');
+					this.present.presentToast(res, 'toast-red');
 				});
 			}
 			else {
@@ -175,7 +184,7 @@ export class PersionPwdPage {
 						self.viewCtrl.dismiss();
 					}
 					else {
-						self.presentToast(res.message, 'toast-red');
+						self.present.presentToast(res.message, 'toast-red');
 					}
 				}, false);
 			}
@@ -183,22 +192,22 @@ export class PersionPwdPage {
 		else {
 			if (!this.newPwd) {
 				this.translate.get('新密码不能为空').subscribe((res: string) => {
-					this.presentToast(res, 'toast-red');
+					this.present.presentToast(res, 'toast-red');
 				});
 			}
 			else if (this.newPwd.length < 8) {
 				this.translate.get('登录密码不能小于8位').subscribe((res: string) => {
-					this.presentToast(res, 'toast-red');
+					this.present.presentToast(res, 'toast-red');
 				});
 			}
 			else if (!this.regPassword.test(this.newPwd)) {
 				this.translate.get('登录密码格式不正确').subscribe((res: string) => {
-					this.presentToast(res, 'toast-red');
+					this.present.presentToast(res, 'toast-red');
 				});
 			}
 			else if (this.newPwd != this.repeatPwd) {
 				this.translate.get('新密码与确认密码不一致').subscribe((res: string) => {
-					this.presentToast(res, 'toast-red');
+					this.present.presentToast(res, 'toast-red');
 				});
 			}
 			else {
@@ -212,12 +221,12 @@ export class PersionPwdPage {
 				this.http.postJson("client/user/update/key2", body, function (data) {
 					if (data.code == '000000') {
 						self.translate.get('密码修改成功,请重新登录').subscribe((res: string) => {
-							self.presentToast(res, 'toast-green');
+							self.present.presentToast(res, 'toast-green');
 						});
 						Window.loginout();
 					}
 					else {
-						self.presentToast(data.message, 'toast-red');
+						self.present.presentToast(data.message, 'toast-red');
 					}
 					self.newPwd = '';
 					self.repeatPwd = '';
@@ -225,33 +234,13 @@ export class PersionPwdPage {
 			}
 		}
 	}
-	//文字翻译转换
-	translateText(text: string) {
-		let str: string;
-		this.translate.get(text).subscribe((res: string) => {
-			str = res;
-		});
-		return str;
-	}
-	presentToast(text, color) {
-		let toast = this.toastCtrl.create({
-			message: text,
-			closeButtonText: this.translateText('确定'),
-			position: 'top',
-			duration: 3000,
-			showCloseButton: true,
-			cssClass: color
-
-		});
-		toast.present();
-	}
 	showPrompt() {
 		const prompt = this.alertCtrl.create({
-			title: this.translateText('提示'),
-			message: this.translateText("密码修改成功,请重新登录"),
+			title: this.present.translateText('提示'),
+			message: this.present.translateText("密码修改成功,请重新登录"),
 			buttons: [
 				{
-					text: this.translateText('确定'),
+					text: this.present.translateText('确定'),
 					handler: data => {
 						Window.currentClassifyA = undefined;
 						Window.currentClassifyB = undefined;

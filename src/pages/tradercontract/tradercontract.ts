@@ -1,14 +1,17 @@
 import { Component,ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ModalController, ToastController, ActionSheetController, AlertController } from 'ionic-angular';
-import { AlertComponent } from '../../components/alert/alert';
-import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
-import { SltpBlockPage } from '../sltpblock/sltpblock';
-import { LoadingController } from 'ionic-angular';
-import { TraderProvider } from "../../providers/trader/trader";
-import { PositionDetailPage } from '../positiondetail/positiondetail';
+import { IonicPage, NavController, NavParams, ViewController, ModalController, ToastController, ActionSheetController, AlertController,LoadingController } from 'ionic-angular';
 import { TranslateService } from "@ngx-translate/core";
-/* http request */
+/* components */
+import { AlertComponent } from '../../components/alert/alert';
+/* pages */
+import { SltpBlockPage } from '../sltpblock/sltpblock';
+import { PositionDetailPage } from '../positiondetail/positiondetail';
+/* serves */
+import { TraderProvider } from "../../providers/trader/trader";
 import { HttpServeProvider } from '../../providers/http-serve/http-serve';
+import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
+import { PresentProvider } from '../../providers/present/present';
+
 /****/
 declare var Window,$;
 /**
@@ -25,11 +28,24 @@ declare var Window,$;
 })
 export class TraderContractPage {
 	@ViewChild(AlertComponent) child: AlertComponent;
-	constructor(public translate:TranslateService, private alertCtrl: AlertController, public trader: TraderProvider,public loadingCtrl: LoadingController,public actionSheetCtrl: ActionSheetController, private socket:SocketServeProvider, public toastCtrl: ToastController,public http: HttpServeProvider,public viewCtrl: ViewController, public navCtrl: NavController, public params: NavParams,public modalCtrl: ModalController) {
+	constructor(
+		public translate:TranslateService, 
+		private alertCtrl: AlertController, 
+		public trader: TraderProvider,
+		public loadingCtrl: LoadingController,
+		public actionSheetCtrl: ActionSheetController,
+		private socket:SocketServeProvider, 
+		public toastCtrl: ToastController,
+		public http: HttpServeProvider,
+		public viewCtrl: ViewController, 
+		public navCtrl: NavController, 
+		public params: NavParams,
+		public modalCtrl: ModalController,
+		public present: PresentProvider
+	) {
 		this.proId = params.get('id');
 		this.basicContractData();
 	}
-	private loader:any;
 
 	/* 买卖手数显示数量 */
 	public traderBSnum:number;
@@ -101,9 +117,9 @@ export class TraderContractPage {
 		this.orderConnection = this.socket.getOrderBack().subscribe(res => {
 			let data = JSON.parse(res.toString());
 			console.warn(data.content.orderState);
-			this.presentToast(this.translateText(this.orderStateText(data.content.orderState)),'toast-yellow');
+			this.presentToast(this.present.translateText(this.orderStateText(data.content.orderState)),'toast-yellow');
 			this.orderRequest();
-			this.dismissLoading();
+			this.present.dismissLoading();
 		});
 		for(let i=0,r=this.productList.length;i<r;i++){
 			if(this.productList[i].productId == this.proId){
@@ -263,9 +279,9 @@ export class TraderContractPage {
 		this.currentOrderVolume = this.marketPriceNum;//委托数量，最大20手，最小1手
 		this.currentProductId = this.proId;
 		
-		this.confirmPrice = (this.currentPriceCondition==0)?this.limitPrice:this.translateText('市价单');
+		this.confirmPrice = (this.currentPriceCondition==0)?this.limitPrice:this.present.translateText('市价单');
 		this.confirmHandel = this.marketPriceNum;
-		this.confirmBS = this.translateText((this.currentOrderDirect == 1)?'买':'卖');
+		this.confirmBS = this.present.translateText((this.currentOrderDirect == 1)?'买':'卖');
 		/* 查询下平仓单时 该合约是否有设置了止盈止损的持仓 */
 		if(this.orderType == 2){
 			let body = {
@@ -308,7 +324,7 @@ export class TraderContractPage {
 			};
 			let self = this;
 			/* 下单请求 */
-			this.presentLoading();
+			this.present.presentLoading();
 			this.http.postJson("client/trade/order/create",body,function(data){
 				if(data.code != '000000'){
 					self.presentToast(data.message,'toast-red');
@@ -317,10 +333,10 @@ export class TraderContractPage {
 					let content = JSON.parse(data.content);
 					if(content.errorId == -1099){
 						if(content.errorMsg == 1){
-							self.presentToast(this.translateText('国际账号未开户'),'toast-red');
+							self.presentToast(this.present.translateText('国际账号未开户'),'toast-red');
 						}
 						else if(content.errorMsg == 2){
-							self.presentToast(this.translateText('国内账号未开户'),'toast-red');
+							self.presentToast(this.present.translateText('国内账号未开户'),'toast-red');
 						}
 						return;
 					}
@@ -423,17 +439,17 @@ export class TraderContractPage {
 	public removeUntraderInfo;
 	removeUntraderActionSheet() {
 		let actionSheet = this.actionSheetCtrl.create({
-			title: this.translateText('委托单号')+': '+this.removeUntraderInfo.localOrderNo,
+			title: this.present.translateText('委托单号')+': '+this.removeUntraderInfo.localOrderNo,
 			buttons: [
 				{
-					text: this.translateText('撤单'),
+					text: this.present.translateText('撤单'),
 					handler: () => {
-						this.presentLoading();
+						this.present.presentLoading();
 						this.trader.removeUntrader(this.removeUntraderInfo.localOrderId);
 					}
 				},
 				{
-					text: this.translateText('关闭'),
+					text: this.present.translateText('关闭'),
 					role: 'cancel',
 					handler: () => {
 						console.log('Cancel clicked');
@@ -467,7 +483,7 @@ export class TraderContractPage {
 			duration: 3000,
 			showCloseButton: true,
 			cssClass:color,
-			closeButtonText: this.translateText('确定')
+			closeButtonText: this.present.translateText('确定')
 		});
 		toast.present();
 	}
@@ -485,15 +501,15 @@ export class TraderContractPage {
 			title: this.choosePostionInfo.contractCode == '0001' ? (this.choosePostionInfo.commodityName + this.choosePostionInfo.commodityCode) : (this.choosePostionInfo.commodityName + this.choosePostionInfo.commodityCode + this.choosePostionInfo.contractCode),
 			buttons: [
 				{
-					text: this.translateText('设置止盈/止损'),
+					text: this.present.translateText('设置止盈/止损'),
 					handler: () => {
 						this.presentModal(SltpBlockPage,{baseInfo:this.choosePostionInfo});
 					}
 				},
 				{
-					text: this.translateText('快捷反手'),
+					text: this.present.translateText('快捷反手'),
 					handler: () => {
-						this.presentLoading();
+						this.present.presentLoading();
 						this.trader.quicklyBackOrder(
 							this.choosePostionInfo.positionVolume,
 							this.choosePostionInfo.direct,
@@ -503,9 +519,9 @@ export class TraderContractPage {
 					}
 				},
 				{
-					text: this.translateText('快捷平仓'),
+					text: this.present.translateText('快捷平仓'),
 					handler: () => {
-						this.presentLoading();
+						this.present.presentLoading();
 						this.trader.quicklyCloseContract(
 							this.choosePostionInfo.positionVolume,
 							this.choosePostionInfo.direct,
@@ -515,23 +531,23 @@ export class TraderContractPage {
 					}
 				},
 				{
-					text: this.translateText('部分平仓'),
+					text: this.present.translateText('部分平仓'),
 					handler: () => {
-						this.presentLoading();
+						this.present.presentLoading();
 						this.searchCanClose((e) => {
-							this.dismissLoading();
+							this.present.dismissLoading();
 							this.closeSomePosition(e);
 						});
 					}
 				},
 				{
-					text: this.translateText('查看持仓明细'),
+					text: this.present.translateText('查看持仓明细'),
 					handler: () => {
 						this.presentModal(PositionDetailPage,{baseInfo:this.choosePostionInfo});
 					}
 				},
 				{
-					text: this.translateText('关闭'),
+					text: this.present.translateText('关闭'),
 					role: 'cancel',
 					handler: () => {
 						console.log('Cancel clicked');
@@ -588,7 +604,7 @@ export class TraderContractPage {
 							this.presentToast('平仓手数不可大于可平手数', 'toast-red');
 							return;
 						}
-						this.presentLoading();
+						this.present.presentLoading();
 						const body = {
 							"orderFormVIce": {
 								"userId": this.choosePostionInfo.userId,
@@ -604,21 +620,13 @@ export class TraderContractPage {
 						}
 						console.log('[最终提交的参数]', body);
 						this.http.postJson('client/trade/order/create',body,(data) => {
-							this.dismissLoading();
+							this.present.dismissLoading();
 						});
 					}
 				}
 			]
 		});
 		close.present();
-	}
-	//翻译
-	translateText(text){
-		let result:any;
-		this.translate.get(text).subscribe((res: string) => {
-			result = res;
-		});
-		return result;
 	}
 	presentModal(page,json) {
 		let modal = this.modalCtrl.create(page,json);
@@ -627,36 +635,20 @@ export class TraderContractPage {
 		});
 		modal.present();
 	}
-	presentLoading() {
-		if(!this.loader){
-			this.loader = this.loadingCtrl.create({
-				content: this.translateText("请等待..."),
-				showBackdrop: true,
-				duration: 3000
-			});
-			this.loader.present();
-		}
-	}
-	dismissLoading() {
-		if(this.loader){
-	        this.loader.dismiss();
-	        this.loader = null;
-	    }
-	}
 	presentConfirm() {
 		let alert = this.alertCtrl.create({
-			title: this.translateText('确认提示'),
-			message: this.translateText('该合约已设止盈止损，平仓委托可能导致止盈止损失效'),
+			title: this.present.translateText('确认提示'),
+			message: this.present.translateText('该合约已设止盈止损，平仓委托可能导致止盈止损失效'),
 			buttons: [
 				{
-					text: this.translateText('取消'),
+					text: this.present.translateText('取消'),
 					role: 'cancel',
 					handler: () => {
 					//
 					}
 				},
 				{
-					text: this.translateText('确定'),
+					text: this.present.translateText('确定'),
 					handler: () => {
 						this.showTraderConfirm = true;
 					}

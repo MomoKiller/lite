@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,LoadingController,ToastController } from 'ionic-angular';
-import { HttpServeProvider } from '../../providers/http-serve/http-serve';
-import { LoginPage } from '../login/login';
 import { TranslateService } from "@ngx-translate/core";
+import { IonicPage, NavController, NavParams,LoadingController,ToastController } from 'ionic-angular';
+import { LoginPage } from '../login/login';
+import { PresentProvider } from '../../providers/present/present';
+import { HttpServeProvider } from '../../providers/http-serve/http-serve';
 
 /**
  * Generated class for the ForgetPasswordPage page.
@@ -17,8 +18,15 @@ import { TranslateService } from "@ngx-translate/core";
 	templateUrl: 'forgetpassword.html',
 })
 export class ForgetPasswordPage {
-	constructor(public toastCtrl: ToastController,public loadingCtrl: LoadingController,public _http: HttpServeProvider,public navCtrl: NavController, public navParams: NavParams, public translate:TranslateService) {
-	}
+	constructor(
+		public toastCtrl: ToastController,
+		public loadingCtrl: LoadingController,
+		public _http: HttpServeProvider,
+		public navCtrl: NavController, 
+		public navParams: NavParams, 
+		public translate:TranslateService,
+		private present: PresentProvider
+	) { }
 	public step:number = 1;
 	public orgCode:string = '';
 	public loginInfo:string = '';
@@ -68,14 +76,14 @@ export class ForgetPasswordPage {
 				console.log(res);
 				if(res.code == '000000' && res.success){
 					this.translate.get('验证码已发送,请注意查收').subscribe((res: string) => {
-						this.presentToast(res,'toast-green');
+						this.present.presentToast(res,'toast-green');
 						this.countDown();
 					});
 					
 				}
 				else{
 					this.translate.get('发送失败,请重新尝试').subscribe((res: string) => {
-						this.presentToast(res,'toast-red');
+						this.present.presentToast(res,'toast-red');
 						this.isPostCode = false;
 					});
 				}
@@ -85,12 +93,12 @@ export class ForgetPasswordPage {
 	step1(){
 		if(this.orgCode == ''){
 			this.translate.get('机构代码不能为空').subscribe((res: string) => {
-				this.presentToast(res,'toast-red');
+				this.present.presentToast(res,'toast-red');
 			});
 		}
 		else if(this.loginInfo == ''){
 			this.translate.get('登录信息不能为空').subscribe((res: string) => {
-				this.presentToast(res,'toast-red');
+				this.present.presentToast(res,'toast-red');
 			});
 		}
 		else{
@@ -99,7 +107,7 @@ export class ForgetPasswordPage {
 				"orgNum": this.orgCode,
 				"loginName": this.loginInfo
 			}
-			this.presentLoading();
+			this.present.presentLoading('请等待...', false, 1000);
 			this._http.postJson("client/user/forget/resetpwd/ways",body,function(res){
 				console.log(res);
 				if(res.code == '000000'){
@@ -108,7 +116,7 @@ export class ForgetPasswordPage {
 					self.step = 2;
 				}
 				else{
-					self.presentToast(res.message,'toast-red');
+					self.present.presentToast(res.message,'toast-red');
 				}
 			});
 		}
@@ -116,22 +124,22 @@ export class ForgetPasswordPage {
 	step2(){
 		if(this.checkCode == ''){
 			this.translate.get('验证码不能为空').subscribe((res: string) => {
-				this.presentToast(res,'toast-red');
+				this.present.presentToast(res,'toast-red');
 			});
 		}
 		else if(this.newPWD.length < 8){
 			this.translate.get('新密码不能小于8位').subscribe((res: string) => {
-				this.presentToast(res,'toast-red');
+				this.present.presentToast(res,'toast-red');
 			});
 		}
 		else if(!this.regPassword.test(this.newPWD)){
 			this.translate.get('新密码格式不正确').subscribe((res: string) => {
-				this.presentToast(res,'toast-red');
+				this.present.presentToast(res,'toast-red');
 			});
 		}
 		else if(this.newPWD !== this.repeatNewPWD){
 			this.translate.get('2次密码输入不一致').subscribe((res: string) => {
-				this.presentToast(res,'toast-red');
+				this.present.presentToast(res,'toast-red');
 			});
 		}
 		else{
@@ -142,40 +150,18 @@ export class ForgetPasswordPage {
 				"code": this.checkCode,
   				"password": this.newPWD
 			}
-			this.presentLoading();
+			this.present.presentLoading('请等待...', false, 1000);
 			this._http.postJson("client/user/forget/resetpwd",body,(res:any)=>{
 				if(res.code == '000000'){
 					this.translate.get('密码修改成功,请重新登录').subscribe((res: string) => {
-						this.presentToast(res,'toast-green');
+						this.present.presentToast(res,'toast-green');
 					});
 					this.navCtrl.setRoot(LoginPage);
 				}
 				else{
-					this.presentToast(res.message,'toast-red');
+					this.present.presentToast(res.message,'toast-red');
 				}
 			});
 		}
-	}
-	presentLoading() {
-		this.translate.get('请等待...').subscribe((res: string) => {
-			let loader = this.loadingCtrl.create({
-				content: res,
-				duration: 1000
-			});
-			loader.present();
-		});
-	}
-	presentToast(text,color) {
-		this.translate.get('确定').subscribe((res: string) => {
-			let toast = this.toastCtrl.create({
-				message: text,
-				position: 'top',
-				duration: 3000,
-				showCloseButton: true,
-				cssClass:color,
-				closeButtonText: res
-			});
-			toast.present();
-		});
 	}
 }

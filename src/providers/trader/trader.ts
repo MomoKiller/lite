@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ToastController, AlertController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 import { TranslateService } from "@ngx-translate/core";
 
 /* http request */
 import { HttpServeProvider } from '../../providers/http-serve/http-serve';
+import { PresentProvider } from '../../providers/present/present';
 declare var Window, indexLibrary;
 /*
   Generated class for the TraderProvider provider.
@@ -13,11 +14,17 @@ declare var Window, indexLibrary;
 */
 @Injectable()
 export class TraderProvider {
-	constructor(public http: HttpServeProvider,public toastCtrl: ToastController, private alertCtrl: AlertController, public translate:TranslateService) { }
+	constructor(
+		public http: HttpServeProvider,
+		public toastCtrl: ToastController, 
+		public translate:TranslateService,
+		private present: PresentProvider
+	) { }
 	/* 快捷反手 */
 	public quicklyBackOrder(volume,orderDirect,productId,positionId=''){
 		let self = this;
-		this.presentConfirm(this.translateText('是否要执行快捷反手操作?'),function(){
+		this.present.presentConfirm(
+			this.present.translateText('是否要执行快捷反手操作?'),function(){
 			let body:any = {
 				"orderFormVIce": {
 					"productId": productId,
@@ -32,11 +39,11 @@ export class TraderProvider {
 				if(data.code == '000000'){
 					let canClose = data.content;
 					if(canClose == 0){
-						self.presentToast(self.translateText('无可反手持仓'),'toast-red');
+						self.present.presentToast(self.present.translateText('无可反手持仓'),'toast-red');
 						return;
 					}
 					if(volume != canClose){
-						self.presentConfirm(self.translateText('可反手手数与可平手数不一致<br/>是否继续?'),function(){
+						self.present.presentConfirm(self.present.translateText('可反手手数与可平手数不一致<br/>是否继续?'),function(){
 							closePosition(canClose,function(){
 								post();
 							});
@@ -49,7 +56,7 @@ export class TraderProvider {
 					}
 				}
 				else{
-					self.presentToast(data.message,'toast-red');
+					self.present.presentToast(data.message,'toast-red');
 				}
 			});
 			//平仓
@@ -71,15 +78,15 @@ export class TraderProvider {
 					if(data.code == '000000'){
 						const _data = JSON.parse(data.content);
 						if(_data.errorId == 0){
-							self.presentToast(self.translateText('请求已发送'),'toast-green');
+							self.present.presentToast(self.present.translateText('请求已发送'),'toast-green');
 							callback();
 						}
 						else{
-							self.presentToast(_data.errorMsg,'toast-green');
+							self.present.presentToast(_data.errorMsg,'toast-green');
 						}
 					}
 					else{
-						self.presentToast(data.message,'toast-red');
+						self.present.presentToast(data.message,'toast-red');
 					}
 				});
 			}
@@ -102,14 +109,14 @@ export class TraderProvider {
 					if(data.code == '000000'){
 						const _data = JSON.parse(data.content);
 						if(_data.errorId == 0){
-							self.presentToast(self.translateText('请求已发送'),'toast-green');
+							self.present.presentToast(self.present.translateText('请求已发送'),'toast-green');
 						}
 						else{
-							self.presentToast(_data.errorMsg,'toast-green');
+							self.present.presentToast(_data.errorMsg,'toast-green');
 						}
 					}
 					else{
-						self.presentToast(data.message,'toast-red');
+						self.present.presentToast(data.message,'toast-red');
 					}
 				});
 			}
@@ -129,16 +136,16 @@ export class TraderProvider {
 			}
 		}
 		if(hasWarning) {
-			this.presentConfirm(self.translateText('是否要执行快捷平仓操作?'),function(){
+			this.present.presentConfirm(self.present.translateText('是否要执行快捷平仓操作?'),function(){
 				self.http.postJson('client/trade/order/get/canclose',body,function(data){
 					if(data.code == '000000'){
 						let canClose = data.content;
 						if(canClose == 0){
-							self.presentToast(self.translateText('无可平持仓'),'toast-red');
+							self.present.presentToast(self.present.translateText('无可平持仓'),'toast-red');
 							return;
 						}
 						if(volume != canClose){
-							self.presentConfirm(self.translateText('可平持仓为')+canClose+self.translateText('手,确定要平仓?'),function(){
+							self.present.presentConfirm(self.present.translateText('可平持仓为')+canClose+self.present.translateText('手,确定要平仓?'),function(){
 								post(canClose);
 							});
 						}
@@ -147,7 +154,7 @@ export class TraderProvider {
 						}
 					}
 					else{
-						self.presentToast(data.message,'toast-red');
+						self.present.presentToast(data.message,'toast-red');
 					}
 				});
 			});
@@ -171,10 +178,10 @@ export class TraderProvider {
 			}
 			self.http.postJson('client/trade/order/create',postBody,function(data){
 				if(data.code == '000000'){
-					self.presentToast(self.translateText('请求已发送'),'toast-green');
+					self.present.presentToast(self.present.translateText('请求已发送'),'toast-green');
 				}
 				else{
-					self.presentToast(data.message,'toast-red');
+					self.present.presentToast(data.message,'toast-red');
 				}
 			});
 		}
@@ -187,19 +194,19 @@ export class TraderProvider {
 			}
 		};
 		let self = this;
-		this.presentConfirm(this.translateText('是否要执行撤单操作?'),function(){
+		this.present.presentConfirm(this.present.translateText('是否要执行撤单操作?'),function(){
 			self.http.postJson("client/trade/order/remove",body,function(data){
 				if(data.code == '000000'){
 					const res = JSON.parse(data.content);
 					if(res.errorId == 0){
-						self.presentToast(self.translateText('请求已发送'),'toast-green');
+						self.present.presentToast(self.present.translateText('请求已发送'),'toast-green');
 					}
 					else{
-						self.presentToast(res.errorMsg,'toast-red');
+						self.present.presentToast(res.errorMsg,'toast-red');
 					}
 				}
 				else{
-					self.presentToast(data.message,'toast-red');
+					self.present.presentToast(data.message,'toast-red');
 				}
 			})
 		});
@@ -246,43 +253,5 @@ export class TraderProvider {
 		}
 		console.log('[返回的参数]' ,_traderNum, _minOrderVol);
 		return _traderNum;
-	}
-	//文字翻译
-	private translateText(text:string){
-		let str:string;
-		this.translate.get(text).subscribe((res: string) => {
-			str = res;
-		});
-		return str;
-	}
-	presentToast(text,color) {
-		let toast = this.toastCtrl.create({
-			message: text,
-			position: 'top',
-			showCloseButton: true,
-			duration: 3000,
-			cssClass:color,
-			closeButtonText: this.translateText('确定')
-		});
-		toast.present();
-	}
-	presentConfirm(text,callback) {
-		let alert = this.alertCtrl.create({
-			title: this.translateText('提示'),
-			message: text,
-			buttons: [
-				{
-					text: this.translateText('取消'),
-					role: 'cancel',
-				},
-				{
-					text: this.translateText('确定'),
-					handler: () => {
-						callback();
-					}
-				}
-			]
-		});
-		alert.present();
 	}
 }

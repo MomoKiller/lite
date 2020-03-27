@@ -15,6 +15,7 @@ import { ProductdetailPage } from '../pages/productdetail/productdetail';
 /* serves */
 import { HttpServeProvider } from '../providers/http-serve/http-serve';
 import { SocketServeProvider } from "../providers/socket-serve/socket-serve";
+import { PresentProvider } from '../providers/present/present';
 
 declare var Window, window, $, screen: any, indexLibrary, baseConfig;
 
@@ -26,7 +27,6 @@ export class MyApp {
 	@ViewChild(Nav) nav: Nav;
 	rootPage: any;
 	pages: Array<{ title: string, component: string, class: string }>;
-	private loader: any;
 	public disconnect: boolean = false;
 	public showIonicMenu: boolean = false;
 	private registerBackButton;
@@ -43,11 +43,12 @@ export class MyApp {
 		public http: Http,
 		public _http: HttpServeProvider,
 		private socket: SocketServeProvider, 
-		public translateService: TranslateService
+		public translateService: TranslateService,
+		private present: PresentProvider
 	) {
 		/* apk新增 */
 		platform.ready().then((readySource) => {
-			this.presentLoading();
+			this.present.presentLoading('初次加载配置文件，请耐心等候 ...', true);
 			window.removeSysLoading();
 			Window.changeUser = true;
 			this.splashScreen.hide();
@@ -55,7 +56,7 @@ export class MyApp {
 				if (localStorage.getItem('config') == null || localStorage.getItem('config') == undefined || localStorage.getItem('config') == "undefined") {
 					Window.config = baseConfig[Window.appVersion];
 					localStorage.setItem('config', JSON.stringify(Window.config));
-					this.dismissLoading();
+					this.present.dismissLoading();
 					this.getConfigResult = Window.config;
 					this.rootPage = LoginPage;
 					this.getOnlineConfig();
@@ -63,7 +64,7 @@ export class MyApp {
 				else {
 					Window.config = JSON.parse(localStorage.getItem('config'));
 					console.warn('[历史的json配置]', Window.config, Window.appVersion);
-					this.dismissLoading();
+					this.present.dismissLoading();
 					this.rootPage = LoginPage;
 					this.getOnlineConfig();
 				}
@@ -179,7 +180,7 @@ export class MyApp {
 				if (res.hasOwnProperty('status') === false) {
 					this.getConfigResult = res[Window.appVersion];
 					if (!this.getConfigResult) {
-						this.presentToast('未在配置列表中找到对应的客户ID', 'toast-red');
+						this.present.presentToast('未在配置列表中找到对应的客户ID', 'toast-red');
 						return;
 					}
 					this.canUseConfigUrl.push(self.currentOnlineConfigUrl[i]);
@@ -200,7 +201,7 @@ export class MyApp {
 				self.whiteBaseConfig(self.getConfigResult, self.canUseConfigUrl);
 				if (Window.config.version != historyConfig.version) {
 					self.translateService.get('检测到配置文件有更新,正在加载配置文件 ...').subscribe((res: string) => {
-						self.presentToast(res, 'toast-green');
+						self.present.presentToast(res, 'toast-green');
 					});
 					Window.loginout();
 				}
@@ -214,12 +215,12 @@ export class MyApp {
 				self.whiteBaseConfig(Window.config, self.canUseConfigUrl);
 				self.rootPage = LoginPage;
 			}
-			self.dismissLoading();
+			self.present.dismissLoading();
 		}
 		function checkRes() {
 			if (Window.config == undefined || self.canUseConfigUrl.length === 0) {
 				setTimeout(function () {
-					self.presentToast('网络环境不佳,正在尝试重连 ...', 'toast-red');
+					self.present.presentToast('网络环境不佳,正在尝试重连 ...', 'toast-red');
 					checkRes();
 				}, 10000);
 			}
@@ -298,33 +299,5 @@ export class MyApp {
 			}
 		}
 		return true;
-	}
-	presentLoading() {
-		this.translateService.get('初次加载配置文件，请耐心等候 ...').subscribe((res: string) => {
-			this.loader = this.loadingCtrl.create({
-				content: res,
-				showBackdrop: true
-			});
-			this.loader.present();
-		});
-	}
-	dismissLoading() {
-		if (this.loader) {
-			this.loader.dismiss();
-		}
-		this.loader = null;
-	}
-	presentToast(text, color = '') {
-		this.translateService.get('确定').subscribe((res: string) => {
-			let toast = this.toastCtrl.create({
-				message: text,
-				position: 'top',
-				duration: 3000,
-				showCloseButton: true,
-				cssClass: color,
-				closeButtonText: res
-			});
-			toast.present();
-		});
 	}
 }

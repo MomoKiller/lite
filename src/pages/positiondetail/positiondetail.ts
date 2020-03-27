@@ -1,13 +1,15 @@
 import { Component,ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController,ActionSheetController, ModalController, ToastController } from 'ionic-angular';
-import { AlertComponent } from '../../components/alert/alert';
-import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
-import { TraderProvider } from "../../providers/trader/trader";
-import { LoadingController, AlertController } from 'ionic-angular';
-import { SltpBlockPage } from '../sltpblock/sltpblock';
+import { IonicPage, NavController, NavParams, ViewController,ActionSheetController, ModalController, ToastController, LoadingController, AlertController } from 'ionic-angular';
 import { TranslateService } from "@ngx-translate/core";
-/* http request */
+/* pages */
+import { SltpBlockPage } from '../sltpblock/sltpblock';
+/* compoments */
+import { AlertComponent } from '../../components/alert/alert';
+/* serves */
+import { TraderProvider } from "../../providers/trader/trader";
 import { HttpServeProvider } from '../../providers/http-serve/http-serve';
+import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
+import { PresentProvider } from '../../providers/present/present';
 /****/
 declare var Window;
 
@@ -30,7 +32,21 @@ export class PositionDetailPage {
 	/* 可平手数 */
 	public canClosePosition: number = 0;
 
-	constructor(public toastCtrl: ToastController, public alertCtrl: AlertController, public translate:TranslateService, public loadingCtrl: LoadingController,public modalCtrl: ModalController,public actionSheetCtrl: ActionSheetController,public navCtrl: NavController,public viewCtrl: ViewController, public params: NavParams, private socket:SocketServeProvider,public http: HttpServeProvider,public trader: TraderProvider) {
+	constructor(
+		public toastCtrl: ToastController, 
+		public alertCtrl: AlertController, 
+		public translate:TranslateService, 
+		public loadingCtrl: LoadingController,
+		public modalCtrl: ModalController,
+		public actionSheetCtrl: ActionSheetController,
+		public navCtrl: NavController,
+		public viewCtrl: ViewController, 
+		public params: NavParams, 
+		private socket:SocketServeProvider,
+		public http: HttpServeProvider,
+		public trader: TraderProvider,
+		public present: PresentProvider
+	) {
 		this.baseInfo = params.get('baseInfo');
 		console.log(this.baseInfo);
 	}
@@ -163,10 +179,10 @@ export class PositionDetailPage {
 					text: '确定',
 					handler: (data: any) => {
 						if(Number(data.number) > Number(this.canClosePosition)) {
-							this.presentToast('平仓手数不可大于可平手数', 'toast-red');
+							this.present.presentToast('平仓手数不可大于可平手数', 'toast-red');
 							return;
 						}
-						this.presentLoading();
+						this.present.presentLoading('请等待...', false, 2000);
 						const body = {
 							"orderFormVIce": {
 								"userId": this.choosePostionInfo.userId,
@@ -181,7 +197,7 @@ export class PositionDetailPage {
 							}
 						}
 						this.http.postJson('client/trade/order/create',body,(data) => {
-							this.dismissLoading();
+							this.present.dismissLoading();
 						});
 					}
 				}
@@ -217,16 +233,16 @@ export class PositionDetailPage {
 			title: this.choosePostionInfo.contractCode == '0001' ? (this.choosePostionInfo.commodityName + this.choosePostionInfo.commodityCode) : (this.choosePostionInfo.commodityName + this.choosePostionInfo.commodityCode + this.choosePostionInfo.contractCode),
 			buttons: [
 				{
-					text: this.translateText('设置止盈/止损'),
+					text: this.present.translateText('设置止盈/止损'),
 					handler: () => {
 						console.log(this.choosePostionInfo);
 						this.presentModal(SltpBlockPage,{baseInfo:this.choosePostionInfo});
 					}
 				},
 				{
-					text: this.translateText('快捷反手'),
+					text: this.present.translateText('快捷反手'),
 					handler: () => {
-						this.presentLoading();
+						this.present.presentLoading('请等待...', false, 2000);
 						this.trader.quicklyBackOrder(
 							this.choosePostionInfo.positionVolume,
 							this.choosePostionInfo.orderDirect,
@@ -236,9 +252,9 @@ export class PositionDetailPage {
 					}
 				},
 				{
-					text: this.translateText('快捷平仓'),
+					text: this.present.translateText('快捷平仓'),
 					handler: () => {
-						this.presentLoading();
+						this.present.presentLoading('请等待...', false, 2000);
 						this.trader.quicklyCloseContract(
 							this.choosePostionInfo.positionVolume,
 							this.choosePostionInfo.orderDirect,
@@ -249,17 +265,17 @@ export class PositionDetailPage {
 					}
 				},
 				{
-					text: this.translateText('部分平仓'),
+					text: this.present.translateText('部分平仓'),
 					handler: () => {
-						this.presentLoading();
+						this.present.presentLoading('请等待...', false, 2000);
 						this.searchCanClose((e) => {
-							this.dismissLoading();
+							this.present.dismissLoading();
 							this.closeSomePosition(e);
 						});
 					}
 				},
 				{
-					text: this.translateText('关闭'),
+					text: this.present.translateText('关闭'),
 					role: 'cancel',
 					handler: () => {
 						console.log('Cancel clicked');
@@ -269,40 +285,8 @@ export class PositionDetailPage {
 		});
 		actionSheet.present();
 	}
-	//翻译
-	translateText(text){
-		let result:any;
-		console.log(text);
-		this.translate.get(text).subscribe((res: string) => {
-			result = res;
-		});
-		return result;
-	}
 	presentModal(page,json) {
 		let modal = this.modalCtrl.create(page,json);
 		modal.present();
-	}
-	presentLoading() {
-		this.loader = this.loadingCtrl.create({
-			content: this.translateText("请等待..."),
-			duration: 2000
-		});
-		this.loader.present();
-	}
-	dismissLoading() {
-		this.loader.dismiss();
-	}
-	presentToast(text,color) {
-		this.translate.get('确定').subscribe((res: string) => {
-			let toast = this.toastCtrl.create({
-				message: text,
-				position: 'top',
-				duration: 3000,
-				showCloseButton: true,
-				cssClass:color,
-				closeButtonText: res
-			});
-			toast.present();
-		});
 	}
 }
