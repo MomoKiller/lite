@@ -13,7 +13,7 @@ import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
 
 import { Platform, Slides, Navbar } from 'ionic-angular';
 
-declare var Window: any, $: any, store, indexLibrary, window, kline;
+declare var Window: any, $: any, indexLibrary, window, kline;
 
 @Component({
   selector: 'page-productdetail',

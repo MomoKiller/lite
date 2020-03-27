@@ -5,11 +5,8 @@
 		</button>
 		<ion-title>首 页</ion-title>
 	</ion-navbar>
-	<!-- <div class="common-title flex flex-start">
-		<a class="w50p active" (tap)="changeTab = 1" [ngClass]="{'':changeTab == 1}">首页信息</a>
-	</div> -->
 </ion-header>
 <ion-content class="content">
-	<iframe class="iframe news" [ngClass]="{'hide':changeTab != 1}" [src]="newsUrl">
+	<iframe class="iframe" [src]="homeUrl">
     </iframe>
 </ion-content>
