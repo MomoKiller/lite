@@ -1,21 +1,15 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ModalController, NavParams, AlertController, LoadingController, ToastController } from 'ionic-angular';
-import { Platform } from 'ionic-angular';
+import { Platform, IonicPage, NavController, ModalController, NavParams, AlertController, LoadingController, ToastController } from 'ionic-angular';
+import { TranslateService } from "@ngx-translate/core";
+/* serves */
 import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
 import { HttpServeProvider } from '../../providers/http-serve/http-serve';
-import { TranslateService } from "@ngx-translate/core";
+/* pages */
 import { TabsPage } from "../tabs/tabs";
 import { RegisterPage } from '../register/register';
 import { ForgetPasswordPage } from '../forgetpassword/forgetpassword';
 
 declare var store, Window, window;
-
-/**
- * Generated class for the LoginPage page.
- *	
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -33,16 +27,16 @@ export class LoginPage {
 	public password: string = '';
 
 	constructor(
-		public plt: Platform, 
-		public loadingCtrl: LoadingController, 
-		public toastCtrl: ToastController, 
-		public alertCtrl: AlertController, 
-		public _http: HttpServeProvider, 
-		public modalCtrl: ModalController, 
-		public navCtrl: NavController, 
-		public navParams: NavParams, 
-		private _socket: SocketServeProvider, 
-		public translate: TranslateService
+		public plt: Platform,
+		public loadingCtrl: LoadingController,
+		public toastCtrl: ToastController,
+		public alertCtrl: AlertController,
+		public modalCtrl: ModalController,
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		public translate: TranslateService,
+		private _http: HttpServeProvider,
+		private _socket: SocketServeProvider
 	) {
 		const self = this;
 		Window.loginPageFreshConfig = () => {
@@ -78,7 +72,6 @@ export class LoginPage {
 	public isShowPWD: string = 'password';
 
 	logIn(orgcode, username, password) {
-
 		if (orgcode.length == 0) {
 			this.translate.get('请输入机构代码').subscribe((res: string) => {
 				this.presentToast(res, 'toast-red');

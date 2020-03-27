@@ -13,9 +13,15 @@ export class RegisterPage {
 	@ViewChild(Navbar) navbar: Navbar;
 	iframe: any = null;
 	private loader:any;
-	constructor(public toastCtrl: ToastController, public loadingCtrl: LoadingController, public platform: Platform, public translate: TranslateService, public navCtrl: NavController, public navParams: NavParams, private sanitizer: DomSanitizer) {
-
-	}
+	constructor(
+		public toastCtrl: ToastController, 
+		public loadingCtrl: LoadingController, 
+		public platform: Platform, 
+		public translate: TranslateService, 
+		public navCtrl: NavController, 
+		public navParams: NavParams, 
+		private sanitizer: DomSanitizer
+	) { }
 	public ifloaded = false;
 	public reback = (e) =>{
 		if(e.data == 'close'){

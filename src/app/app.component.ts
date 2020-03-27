@@ -1,6 +1,5 @@
 import { Http } from '@angular/http';
 import { Component, ViewChild } from '@angular/core';
-import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Keyboard } from '@ionic-native/keyboard';
 import { TranslateService } from "@ngx-translate/core";
@@ -26,21 +25,32 @@ declare var Window, window, $, screen: any, indexLibrary, baseConfig;
 export class MyApp {
 	@ViewChild(Nav) nav: Nav;
 	rootPage: any;
-	private loader: any;
 	pages: Array<{ title: string, component: string, class: string }>;
+	private loader: any;
 	public disconnect: boolean = false;
 	public showIonicMenu: boolean = false;
 	private registerBackButton;
 	public checkPage;
 	public registerBackEvent: Function;
 
-	constructor(public loadingCtrl: LoadingController, public toastCtrl: ToastController, private app: App, private keyboard: Keyboard, public platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private socket: SocketServeProvider, public _http: HttpServeProvider, public translateService: TranslateService, public http: Http) {
+	constructor(
+		private app: App, 
+		private keyboard: Keyboard, 
+		public platform: Platform,
+		private splashScreen: SplashScreen, 
+		public loadingCtrl: LoadingController, 
+		public toastCtrl: ToastController, 
+		public http: Http,
+		public _http: HttpServeProvider,
+		private socket: SocketServeProvider, 
+		public translateService: TranslateService
+	) {
 		/* apk新增 */
 		platform.ready().then((readySource) => {
 			this.presentLoading();
 			window.removeSysLoading();
 			Window.changeUser = true;
-			splashScreen.hide();
+			this.splashScreen.hide();
 			const afterGetVersion = () => {
 				if (localStorage.getItem('config') == null || localStorage.getItem('config') == undefined || localStorage.getItem('config') == "undefined") {
 					Window.config = baseConfig[Window.appVersion];
@@ -148,25 +158,9 @@ export class MyApp {
 			localStorage.setItem('language', language);
 		}
 	}
-	//读取在线配置文件
-	//实盘
-	private onlineConfigUrl = [
-		"http://47.111.146.166:65501/staticResources/config.json",
-		"http://47.111.146.166:65500/staticResources/config.json",
-		"http://47.111.146.166:65503/staticResources/config.json",
-		"http://47.107.114.218:65500/staticResources/config.json",
-		"http://47.107.120.122/staticResources/config.json"
-	];
-	//测试
-	private testConfigUrl = [
-		// 测试环境
-		"http://47.99.210.59:33205/staticResources/config.json"
-		// OTP 环境
-		// "http://47.107.120.122/staticResources/otp/config.json"
-	];
 
 	/* 设置当前配置文件线路 */
-	private currentOnlineConfigUrl = this.testConfigUrl;
+	private currentOnlineConfigUrl = [ "http://47.99.210.59:33205/staticResources/config.json"];
 	/* 热更新提示显示 */
 	public hotCodePushLoading: boolean = false;
 	/* 获取到的配置文件 */
