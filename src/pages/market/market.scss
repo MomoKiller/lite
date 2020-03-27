@@ -135,6 +135,26 @@ page-market .trader-resource-list.red mark {
 page-market .trader-resource-list.green mark {
 	background: green;
 }
+
+/* 样式--@202003--start */
+page-market .trader-resource-list a.btn{
+	display: block;
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    margin-top: 12.5px;
+	border-radius: 5px;
+	color: #fff;
+    background: #bfd3e1;
+}
+page-market .trader-resource-list a.btn.brown {
+	background-color: #d1702e;
+}
+page-market .trader-resource-list a.btn.blue {
+	background-color: #50a698;
+}
+/* 样式--@202003--end */
+
 page-market .turn-page {
 	height: 30px;
 	line-height: 30px;

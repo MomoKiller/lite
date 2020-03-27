@@ -26,9 +26,9 @@
 		<span class="w27p t-l">{{'涨跌幅' | translate}}</span>
 	</div>
 	<div class="market-title" *ngIf="currentClassifyB.commodityType === 4">
-		<span class="w46p t-l">{{'合约名称' | translate}}</span>
-		<span class="w27p t-l">{{'卖出' | translate}}</span>
-		<span class="w27p t-l">{{'买入' | translate}}</span>
+		<span class="w46p t-l">{{'交易品种' | translate}}</span>
+		<span class="w27p t-c">{{'卖出价' | translate}}</span>
+		<span class="w27p t-c">{{'买入价' | translate}}</span>
 	</div>
 	<div class="out-con" (scroll)="dataScroll()">
 		<div *ngFor="let item of baseProductList"  (tap)="toProDetail(item)" class="trader-resource-list data" [ngClass]="{'c_red':item.color == 'red' && currentClassifyB.commodityType !== 4,'c_green':item.color == 'green' && currentClassifyB.commodityType !== 4,'ischange1':item.oldPriceChange == 1,'ischange2':item.oldPriceChange == 2}">
@@ -60,12 +60,10 @@
 				<p><span class="c_999 f12 t-l">最新价: {{item.QChangeRate == 0 && item.QLastPrice == 0?'--':item.QLastPrice}}</span></p>
 			</div>
 			<div class="w27p cfd" *ngIf="currentClassifyB.commodityType === 4">
-				<p><span class="t-l c_blue">{{item.QAskPrice}}</span></p>
-				<p><span class="t-l f12">{{'最低' | translate}}: {{item.QLowPrice == 0 && item.QHighPrice == 0?'--':item.QLowPrice}}</span></p>
+				<a class="btn" [ngClass]="{'blue': item.QAskPrice != 0}">{{item.QAskPrice}}</a>
 			</div>
 			<div class="w27p cfd" *ngIf="currentClassifyB.commodityType === 4">
-				<p><span class="t-l c_blue">{{item.QBidPrice}}</span></p>
-				<p><span class="t-l f12">{{'最高' | translate}}: {{item.QLowPrice == 0 && item.QHighPrice == 0?'--':item.QHighPrice}}</span></p>
+				<a class="btn" [ngClass]="{'brown': item.QBidPrice != 0}">{{item.QBidPrice}}</a>
 			</div>
 		</div>
 	</div>
