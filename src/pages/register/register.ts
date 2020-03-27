@@ -11,7 +11,7 @@ declare var Window,window;
 })
 export class RegisterPage {
 	@ViewChild(Navbar) navbar: Navbar;
-	iframe: any = null;
+	iframeUrl: any = null;
 	private loader:any;
 	constructor(
 		public toastCtrl: ToastController, 
@@ -64,7 +64,7 @@ export class RegisterPage {
 		self.requireTime ++;
 		clearTimeout(self.timeoutIfra);
 		if(Window.currentLine) {
-			self.iframe = this.sanitizer.bypassSecurityTrustResourceUrl(`${Window.currentLine.webUrl.replace('trade/','')}${Window.config.registerUrl}?params=${params}`);
+			self.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`${Window.currentLine.webUrl.replace('trade/','')}${Window.config.registerUrl}?params=${params}`);
 			self.timeoutIfra = setTimeout(()=>{
 				if(!self.ifloaded){
 					if(self.requireTime >5){
@@ -84,7 +84,7 @@ export class RegisterPage {
 		}
 	}
 	ionViewWillUnload() {
-		this.iframe = null;
+		this.iframeUrl = null;
 		window.removeEventListener("message",this.reback,false);
 	}
 	presentLoading(text) {
