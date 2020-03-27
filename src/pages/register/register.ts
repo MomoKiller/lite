@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Navbar, LoadingController, Platform, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Navbar, LoadingController, Platform } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { TranslateService } from "@ngx-translate/core";
 import { PresentProvider } from '../../providers/present/present';
@@ -14,7 +14,6 @@ export class RegisterPage {
 	@ViewChild(Navbar) navbar: Navbar;
 	iframeUrl: any = null;
 	constructor(
-		public toastCtrl: ToastController, 
 		public loadingCtrl: LoadingController, 
 		public platform: Platform, 
 		public translate: TranslateService, 

@@ -1,5 +1,4 @@
 import 'rxjs/add/operator/map';
-import { ToastController } from 'ionic-angular';
 import { Injectable } from '@angular/core';
 /* http request */
 import { Observable } from 'rxjs/Observable';
@@ -14,9 +13,7 @@ declare var Window, io;
 */
 @Injectable()
 export class SocketServeProvider {
-	constructor(public _http: HttpServeProvider, public toastCtrl: ToastController) {
-
-	}
+	constructor(public _http: HttpServeProvider) { }
 	/* 初次连接收到返回的响应 */
 	public firstConnect: string = '';
 
@@ -311,16 +308,5 @@ export class SocketServeProvider {
 		Window.socket.emit("unsubscribe-pub-privacy-info", ["publish-position-total"]);
 		Window.socket.emit("unsubscribe-pub-privacy-info", ["publish-order"]);
 		Window.socket.emit("unsubscribe-pub-privacy-info", ["publish-position"]);
-	}
-	presentToast(text, color) {
-		let toast = this.toastCtrl.create({
-			message: text,
-			position: 'top',
-			duration: 5000,
-			showCloseButton: true,
-			cssClass: color,
-			closeButtonText: '确定'
-		});
-		toast.present();
 	}
 }

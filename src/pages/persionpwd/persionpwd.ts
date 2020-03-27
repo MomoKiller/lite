@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ViewController, NavParams, ToastController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, ViewController, NavParams, AlertController } from 'ionic-angular';
 import { TranslateService } from "@ngx-translate/core";
 
 /* http request */
@@ -34,7 +34,6 @@ export class PersionPwdPage {
 
 	constructor(
 		public alertCtrl: AlertController, 
-		public toastCtrl: ToastController, 
 		public http: HttpServeProvider, 
 		public navCtrl: NavController, 
 		public viewCtrl: ViewController, 

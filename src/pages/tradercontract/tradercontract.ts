@@ -1,5 +1,5 @@
 import { Component,ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ModalController, ToastController, ActionSheetController, AlertController,LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController, ActionSheetController, AlertController,LoadingController } from 'ionic-angular';
 import { TranslateService } from "@ngx-translate/core";
 /* components */
 import { AlertComponent } from '../../components/alert/alert';
@@ -35,7 +35,6 @@ export class TraderContractPage {
 		public loadingCtrl: LoadingController,
 		public actionSheetCtrl: ActionSheetController,
 		private socket:SocketServeProvider, 
-		public toastCtrl: ToastController,
 		public http: HttpServeProvider,
 		public viewCtrl: ViewController, 
 		public navCtrl: NavController, 

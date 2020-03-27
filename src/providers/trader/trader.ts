@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ToastController } from 'ionic-angular';
 import { TranslateService } from "@ngx-translate/core";
 
 /* http request */
@@ -16,7 +15,6 @@ declare var Window, indexLibrary;
 export class TraderProvider {
 	constructor(
 		public http: HttpServeProvider,
-		public toastCtrl: ToastController, 
 		public translate:TranslateService,
 		private present: PresentProvider
 	) { }

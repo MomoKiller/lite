@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from "@ngx-translate/core";
-import { IonicPage, NavController, NavParams,LoadingController,ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { PresentProvider } from '../../providers/present/present';
 import { HttpServeProvider } from '../../providers/http-serve/http-serve';
@@ -19,7 +19,6 @@ import { HttpServeProvider } from '../../providers/http-serve/http-serve';
 })
 export class ForgetPasswordPage {
 	constructor(
-		public toastCtrl: ToastController,
 		public loadingCtrl: LoadingController,
 		public _http: HttpServeProvider,
 		public navCtrl: NavController, 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ToastController, AlertController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, AlertController, LoadingController } from 'ionic-angular';
 
 /* serves */
 import { HttpServeProvider } from '../../providers/http-serve/http-serve';
@@ -25,7 +25,6 @@ export class SltpBlockPage {
 		public loadingCtrl: LoadingController, 
 		private alertCtrl: AlertController, 
 		private socket:SocketServeProvider,
-		public toastCtrl: ToastController,
 		public viewCtrl: ViewController,
 		public navCtrl: NavController, 
 		public params: NavParams, 

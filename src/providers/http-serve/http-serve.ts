@@ -1,7 +1,6 @@
 import { Http, Response, Jsonp } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { ToastController } from 'ionic-angular';
 import { HTTP } from '@ionic-native/http';
 import { Observable } from 'rxjs';
 import { Platform } from 'ionic-angular';
@@ -33,7 +32,6 @@ export class HttpServeProvider {
 	public errorContract: number = 0;
 
 	constructor(
-		public toastCtrl: ToastController, 
 		public __http: HTTP, 
 		public _http: Http, 
 		public plt: Platform, 

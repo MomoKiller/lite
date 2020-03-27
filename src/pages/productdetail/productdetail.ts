@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
-import { Platform, Slides, Navbar, IonicPage, NavController, NavParams, ModalController, LoadingController, ToastController } from 'ionic-angular';
+import { Platform, Slides, Navbar, IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
 /* components */
 import { AlertComponent } from '../../components/alert/alert';
 /* pages */
@@ -39,7 +39,6 @@ export class ProductdetailPage {
   public currentContract: number;
 
   constructor(
-    public toastCtrl: ToastController,
     public loadingCtrl: LoadingController,
     public plt: Platform,
     public http: HttpServeProvider,

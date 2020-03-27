@@ -1,5 +1,5 @@
 import { Component, ViewChild,ElementRef,ChangeDetectorRef } from '@angular/core';
-import { NavController,IonicPage, ToastController, ModalController } from 'ionic-angular';
+import { NavController,IonicPage, ModalController } from 'ionic-angular';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
 import { HttpServeProvider } from '../../providers/http-serve/http-serve';
@@ -24,7 +24,6 @@ export class MarketPage {
 	public currentClassifyA;
 	public currentClassifyB;
 	constructor(
-		public toastCtrl: ToastController, 
 		private screenOrientation: ScreenOrientation, 
 		public _http: HttpServeProvider,
 		public modalCtrl: ModalController,

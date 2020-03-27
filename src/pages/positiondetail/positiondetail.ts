@@ -1,5 +1,5 @@
 import { Component,ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController,ActionSheetController, ModalController, ToastController, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController,ActionSheetController, ModalController, LoadingController, AlertController } from 'ionic-angular';
 import { TranslateService } from "@ngx-translate/core";
 /* pages */
 import { SltpBlockPage } from '../sltpblock/sltpblock';
@@ -33,7 +33,6 @@ export class PositionDetailPage {
 	public canClosePosition: number = 0;
 
 	constructor(
-		public toastCtrl: ToastController, 
 		public alertCtrl: AlertController, 
 		public translate:TranslateService, 
 		public loadingCtrl: LoadingController,

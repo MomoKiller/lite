@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, IonicPage, NavController, ModalController, NavParams, AlertController, LoadingController, ToastController } from 'ionic-angular';
+import { Platform, IonicPage, NavController, ModalController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { TranslateService } from "@ngx-translate/core";
 /* pages */
 import { TabsPage } from "../tabs/tabs";
@@ -30,7 +30,6 @@ export class LoginPage {
 	constructor(
 		public plt: Platform,
 		public loadingCtrl: LoadingController,
-		public toastCtrl: ToastController,
 		public alertCtrl: AlertController,
 		public modalCtrl: ModalController,
 		public navCtrl: NavController,
