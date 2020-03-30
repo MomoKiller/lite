@@ -1,8 +1,8 @@
 page-productdetail ion-header {
-	background-color: #fb874c;
-	color: #fff;
+	background-color: #ffffff;
+	color: #333;
 	ion-icon {
-		color: #fff;
+		color: #333;
 	}
 	.toolbar-title {
 		height: 40px;
@@ -14,7 +14,6 @@ page-productdetail ion-header {
 page-productdetail .scroll-content {
 	background: #e6ecf5;
 	-webkit-overflow-scrolling: unset!important;
-	/* 样式优化 191127 @wuwp */
 	overflow: hidden;
 }
 page-productdetail {
@@ -813,7 +812,7 @@ page-productdetail ion-footer {
 		}
 	}
 	a.active {
-		background-color: #387ef5;
+		background-color: #fb874c;
 		color: #fff;
 	}
 }
@@ -872,9 +871,6 @@ page-productdetail {
 	}
 	ion-header {
 		overflow: hidden;
-	}
-	ion-navbar {
-		border-bottom: 1px solid #eee!important;
 	}
 	.toolbar-content-md {
 		.header-opt {

@@ -26,7 +26,7 @@ ion-header::after {
 }
 
 .toolbar-title {
-  color: #fff;
+  color: #333333;
   font-size: 1.6rem;
   font-weight: 300;
 }
@@ -119,7 +119,8 @@ ion-list .item {
 }
 
 .c_red {
-  color: #ff0033 !important;
+  /*color: #ff0033 !important;*/
+  color: #d1702e !important;
   font-weight: bold !important;
 }
 
@@ -132,7 +133,8 @@ ion-list .item {
 }
 
 .c_green {
-  color: #04b700 !important;
+  /*color: #04b700 !important;*/
+  color: #50a698 !important;
 }
 
 .c_grey {
@@ -194,11 +196,13 @@ ion-list .item {
 }
 
 .green {
-  background-color: #04b700 !important;
+  /*background-color: #04b700 !important;*/
+  background-color: #50a698 !important;
 }
 
 .red {
-  background-color: #ff0033 !important;
+  /* background-color: #ff0033 !important; */
+  background-color: #d1702e !important;
 }
 
 .border0 {
@@ -420,12 +424,12 @@ ion-list .item {
   height: 100%;
   font-size: 1.2rem;
   line-height: 2.0rem;
-  background-color: #6da2ff;
-  color: #bdd5ff !important;
+  background-color: #d1702e;
+  color: #e3e3e3 !important;
 }
 
 .toolbar-content .segment-button.segment-activated {
-  background-color: #1b53b7 !important;
+  background-color:#ff5603 !important;
   color: #fff !important;
 }
 
@@ -704,9 +708,9 @@ ion-content {
 }
 
 ion-header {
-  background-color: #fb874c;
-  color: #fff;
-
+  background-color: #ffffff;
+  color: #333333;
+  border-bottom: 1px solid #e3e3e3;
   ion-icon {
     color: #fff;
   }

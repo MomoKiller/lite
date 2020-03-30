@@ -3,11 +3,8 @@ page-tradercontract ion-toolbar {
 }
 
 page-tradercontract ion-header {
-  background-color: #fb874c;
-  color: #fff;
-
   ion-icon {
-    color: #fff;
+    color: #333333;
   }
 }
 
@@ -182,11 +179,11 @@ page-tradercontract .process-bar>* {
 }
 
 page-tradercontract .process-bar .b {
-  background: #ff0000;
+  background: #d1702e;
 }
 
 page-tradercontract .process-bar .s {
-  background: #5aff00;
+  background: #50a698;
 }
 
 page-tradercontract .trader {
@@ -313,9 +310,7 @@ page-tradercontract .search-list div {
 }
 
 page-tradercontract .new-contract-data {
-  background: #f8f8f8;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  background-color: #eee;
   margin-top: 7px;
 }
 
