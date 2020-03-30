@@ -221,17 +221,36 @@ page-login .scroll-content {
 }
 
 .login-opt i {
+  /*
   color: #fb874c;
   display: inline-block;
   width: 15px;
   font-size: 14px;
+  */
+  color: #fb874c;
+  width: 15px;
+  height: 15px;
+  font-size: 14px;
+  display: block;
+  float: left;
+  margin: 3px 2px 0 0;
 }
 
 .login-opt .forget-pwd i.lock:before {
-  content: url(../../assets/imgs/lock-active.png);
+  content: '';
+  background: url(../../assets/imgs/lock-active.png) no-repeat;
+  background-position: center;
+  height: 15px;
+  width: 15px;
+  display: block;
 }
 
 
 .fa-eye-slash:before {
-  content: url(../../assets/imgs/pwd.png);
+  content: '';
+  background: url(../../assets/imgs/pwd.png) no-repeat;
+  background-position: center;
+  height: 14px;
+  width: 19px;
+  display: block;
 }

@@ -1,3 +1,14 @@
-page-myaccount {
-
+page-myaccount .iframe {
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+page-myaccount .scroll-content {
+	background: #ecf3fa;
+}
+page-myaccount ion-toolbar {
+	min-height: 2.6rem!important;
+}
+page-myaccount .scroll-content {
+    -webkit-overflow-scrolling: touch !important;
 }

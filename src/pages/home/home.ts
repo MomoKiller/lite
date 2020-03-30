@@ -8,7 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 @IonicPage()
 export class HomePage {
-	public homeUrl: any = 'http://news.tradeqq.cn/Appquote/news?l=zh-cn';
+	public homeUrl: any = 'https://www.jin10.com/example/jin10.com.html?fontSize=14px&theme=orange';
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, private sanitizer: DomSanitizer) {
 		this.homeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.homeUrl);

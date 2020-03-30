@@ -1,49 +1,106 @@
 .ion-ios-home-outline:before,
 .tab-button[aria-selected=false] .ion-ios-home:before,
 .tab-button[aria-selected=false] .ion-md-home:before{
-    content: url(../assets/tabsimg/home.png);
+    content: '';
+    background: url(../assets/tabsimg/home.png) no-repeat;
+    background-position: center;
+    height: 30px;
+    width: 30px;
 }
 .tab-button[aria-selected=true] .ion-md-home:before,
 .tab-button[aria-selected=true] .ion-ios-home:before{
-    content: url(../assets/tabsimg/home-active.png);
+    content: '';
+    background: url(../assets/tabsimg/home-active.png) no-repeat;
+    background-position: center;
+    height: 30px;
+    width: 30px;
 }
 
 .ion-ios-wallet-outline:before,
 .tab-button[aria-selected=false] .ion-ios-wallet:before,
 .tab-button[aria-selected=false] .ion-md-wallet:before{
-    content: url(../assets/tabsimg/wallet.png);
+    content: '';
+    background: url(../assets/tabsimg/wallet.png) no-repeat;
+    background-position: center;
+    height: 30px;
+    width: 30px;
 }
 .tab-button[aria-selected=true] .ion-md-wallet:before,
 .tab-button[aria-selected=true] .ion-ios-wallet:before{
-    content: url(../assets/tabsimg/wallet-active.png);
+    content: '';
+    background: url(../assets/tabsimg/wallet-active.png) no-repeat;
+    background-position: center;
+    height: 30px;
+    width: 30px;
 }
 
 .ion-ios-documentary-outline:before,
 .tab-button[aria-selected=false] .ion-ios-documentary:before,
 .tab-button[aria-selected=false] .ion-md-documentary:before{
-    content: url(../assets/tabsimg/documentary.png);
+    content: '';
+    background: url(../assets/tabsimg/documentary.png) no-repeat;
+    background-position: center;
+    height: 30px;
+    width: 30px;
 }
 .tab-button[aria-selected=true] .ion-md-documentary:before,
 .tab-button[aria-selected=true] .ion-ios-documentary:before{
-    content: url(../assets/tabsimg/documentary-active.png);
+    content: '';
+    background: url(../assets/tabsimg/documentary-active.png) no-repeat;
+    background-position: center;
+    height: 30px;
+    width: 30px;
 }
 
 .ion-ios-market-outline:before,
 .tab-button[aria-selected=false] .ion-ios-market:before,
 .tab-button[aria-selected=false] .ion-md-market:before{
-    content: url(../assets/tabsimg/market.png);
+    content: '';
+    background: url(../assets/tabsimg/market.png) no-repeat;
+    background-position: center;
+    height: 30px;
+    width: 30px;
 }
 .tab-button[aria-selected=true] .ion-md-market:before,
 .tab-button[aria-selected=true] .ion-ios-market:before{
-    content: url(../assets/tabsimg/market-active.png);
+    content: '';
+    background: url(../assets/tabsimg/market-active.png) no-repeat;
+    background-position: center;
+    height: 30px;
+    width: 30px;
 }
 
 .ion-ios-myaccount-outline:before,
 .tab-button[aria-selected=false] .ion-ios-myaccount:before,
 .tab-button[aria-selected=false] .ion-md-myaccount:before{
-    content: url(../assets/tabsimg/myaccount.png);
+    content: '';
+    background: url(../assets/tabsimg/myaccount.png) no-repeat;
+    background-position: center;
+    height: 30px;
+    width: 30px;
 }
 .tab-button[aria-selected=true] .ion-md-myaccount:before,
 .tab-button[aria-selected=true] .ion-ios-myaccount:before{
-    content: url(../assets/tabsimg/myaccount-active.png);
+    content: '';
+    background: url(../assets/tabsimg/myaccount-active.png) no-repeat;
+    background-position: center;
+    height: 30px;
+    width: 30px;
+}
+
+.fa-square-o:before{
+    content: '';
+    border: 1px solid;
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    border-radius: 6px;
+}
+.fa-check-square-o:before{
+    content: '';
+    background: url(../assets/imgs/select-active.png) no-repeat;
+    background-position: center;
+    height: 15px;
+    width: 15px;
+    display: block;
 }

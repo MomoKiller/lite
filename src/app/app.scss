@@ -29,6 +29,7 @@ ion-header::after {
   color: #333333;
   font-size: 1.6rem;
   font-weight: 300;
+  font-weight: bold;
 }
 
 ion-toolbar {
@@ -53,7 +54,7 @@ ion-navbar.toolbar {
 
 .tabs .tab-button,
 .tabs .tab-button-icon {
-  color: #bac8d1;
+  color: #9a9a9a;
 }
 
 .tabs .tab-button[aria-selected=true],
@@ -557,7 +558,7 @@ p.maincharts-info span a {
 }
 
 ion-toast.toast-red .toast-wrapper {
-  background: #c70000;
+  background: #ff9900;
   width: calc(100% - 20px);
   margin-top: 10px;
   border-radius: 3px;
@@ -580,7 +581,7 @@ ion-toast .toast-message {
 }
 
 ion-toast.toast-green .toast-wrapper {
-  background: #00f28e;
+  background: #50a698;
   width: calc(100% - 20px);
   margin-top: 10px;
   border-radius: 3px;

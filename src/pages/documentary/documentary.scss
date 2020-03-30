@@ -1,3 +1,136 @@
 page-documentary {
+    .scroll-content{
+        padding: 3px 20px !important;
+    }
+    .content-wrap {
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            li{
+                height: 133px;
+                margin: 0;
+                padding: 0;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px 0px #999;
+                margin-top: 25px;
+                .center{
+                    height: 60px;
+                    overflow: hidden;
+                    .user-img{
+                        display: block;
+                        height: 48px;
+                        width: 48px;
+                        float: left;
+                        margin: 5px 0 0 14px;
+                        border-radius: 24px;
+                        overflow: hidden;
+                        img{
+                            height: 48px;
+                            width: 48px;
+                        }
+                    }
+                    .wrap-info{
+                        overflow: hidden;
+                        width: calc(100% - 64px);
+                        float: right;
+                        p{
+                            padding: 0;
+                            height: 23px;
+                            margin: 0 10px;
+                            a {
+                                color: #ff5603;
+                            }
+                            a.user-name{
+                                font-size: 16px;
+                                width: 70px;
+                                float: left;
+                                color: #333;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 1;
+                                -webkit-box-orient: vertical;
+                                font-weight: bold;
+                                text-align: left;
+                            }
+                            a.follow{
+                                float: left;
+                                font-size: 12px;
+                                color: #999999;
+                                i{
+                                    display: inline-block;
+                                    height: 14px;
+                                    width: 16px;
+                                    background: url(../../assets/imgs/like.png) no-repeat;
+                                    background-size: 100% 100%;
+                                    margin: 2px 5px 0 0;
+                                }
+                                i.active{
+                                    background: url(../../assets/imgs/like-active.png) no-repeat;
+                                    background-size: 100% 100%;
+                                }
+                            }
+                            a.prop{
+                                float: right;
+                            }
+                            a.total{
+                                border: 1px solid;
+                                padding: 1px 5px;
+                                border-radius: 4px;
+                                font-size: 12px;
+                                float: left;
+                            }
+                            a.amount{
+                                color: #999;
+                                float: right;
+                                font-size: 12px;
+                                line-height: 22px;
+                            }
+                        }
+                        p:first-child{
+                            margin: 10px 10px 0 10px;
+                        }
+                    }
+                }
+                .bottom{
+                    border-top: 1px solid #e3e3e3;
+                    margin: 0 10px;
+                    a {
+                        display: inline-block;
+                        width: 66px;
+                        height: 26px;
+                        line-height: 26px;
+                        border: 1px solid;
+                        border-radius: 6px;
+                        margin-top: 21px;
+                        margin: 21px 18px;
+                        color: #ff5603;
+                        border: 1px solid #ff5603;
+                    }
+                    a.market {
+                        color: #333;
+                        text-align: left;
+                        border: 1px solid #fb874c;
+                        i{
+                            background: url(../../assets/imgs/chart.png) no-repeat;
+                            background-size: 100% 100%;
+                            display: block;
+                            height: 16px;
+                            width: 20px;
+                            margin: 4px 4px 0 4px;
+                            float: left;
+                        }
+                    }
+                    a.buy{
+                        background-color: #ff5603;
+                        color: #ffffff;
+                        i{
 
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

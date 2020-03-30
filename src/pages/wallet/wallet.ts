@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the WalletPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { DomSanitizer } from '@angular/platform-browser';
 
 @IonicPage()
 @Component({
@@ -15,11 +9,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class WalletPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  public walletUrl: any = 'https://www.jin10.com/example/jin10.com.html?fontSize=14px&theme=orange';
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad WalletPage');
-  }
+	constructor(public navCtrl: NavController, public navParams: NavParams, private sanitizer: DomSanitizer) {
+		this.walletUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.walletUrl);
+	}
 
 }
