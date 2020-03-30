@@ -1,0 +1,49 @@
+.ion-ios-home-outline:before,
+.tab-button[aria-selected=false] .ion-ios-home:before,
+.tab-button[aria-selected=false] .ion-md-home:before{
+    content: url(../assets/tabsimg/home.png);
+}
+.tab-button[aria-selected=true] .ion-md-home:before,
+.tab-button[aria-selected=true] .ion-ios-home:before{
+    content: url(../assets/tabsimg/home-active.png);
+}
+
+.ion-ios-wallet-outline:before,
+.tab-button[aria-selected=false] .ion-ios-wallet:before,
+.tab-button[aria-selected=false] .ion-md-wallet:before{
+    content: url(../assets/tabsimg/wallet.png);
+}
+.tab-button[aria-selected=true] .ion-md-wallet:before,
+.tab-button[aria-selected=true] .ion-ios-wallet:before{
+    content: url(../assets/tabsimg/wallet-active.png);
+}
+
+.ion-ios-documentary-outline:before,
+.tab-button[aria-selected=false] .ion-ios-documentary:before,
+.tab-button[aria-selected=false] .ion-md-documentary:before{
+    content: url(../assets/tabsimg/documentary.png);
+}
+.tab-button[aria-selected=true] .ion-md-documentary:before,
+.tab-button[aria-selected=true] .ion-ios-documentary:before{
+    content: url(../assets/tabsimg/documentary-active.png);
+}
+
+.ion-ios-market-outline:before,
+.tab-button[aria-selected=false] .ion-ios-market:before,
+.tab-button[aria-selected=false] .ion-md-market:before{
+    content: url(../assets/tabsimg/market.png);
+}
+.tab-button[aria-selected=true] .ion-md-market:before,
+.tab-button[aria-selected=true] .ion-ios-market:before{
+    content: url(../assets/tabsimg/market-active.png);
+}
+
+.ion-ios-myaccount-outline:before,
+.tab-button[aria-selected=false] .ion-ios-myaccount:before,
+.tab-button[aria-selected=false] .ion-md-myaccount:before{
+    content: url(../assets/tabsimg/myaccount.png);
+}
+.tab-button[aria-selected=true] .ion-md-myaccount:before,
+.tab-button[aria-selected=true] .ion-ios-myaccount:before{
+    content: url(../assets/tabsimg/myaccount-active.png);
+}

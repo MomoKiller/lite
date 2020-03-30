@@ -1,22 +1,29 @@
 <ion-content class="login-bg" no-bounce>
-  <figure class="logo">
+  <!-- <figure class="logo">
     <figcaption><img [src]="logoImg" *ngIf="logoImg" /></figcaption>
-  </figure>
+  </figure> -->
+  <div class="back-wrap">
+    <a class="back-icon"><i></i></a>
+    <a class="lan-icon"><i></i></a>
+  </div>
+  <div class="logo">
+    <a class="title">账户登录</a>
+  </div>
   <section class="login-container">
     <div class="rows input">
-      <i class="fa fa-vcard"></i>
-      <i class="fa fa-times-circle clear-val" (tap)="orgcode = ''"></i>
+      <!-- <i class="fa fa-vcard"></i>
+      <i class="fa fa-times-circle clear-val" (tap)="orgcode = ''"></i> -->
       <span><input type="text" placeholder="{{'请输入机构代码' | translate}}" autocomplete="new-password" [(ngModel)]="orgcode"
           (ngModelChange)="clearSpace(orgcode,'orgcode')" /></span>
     </div>
     <div class="rows input">
-      <i class="fa fa-users"></i>
-      <i class="fa fa-times-circle clear-val" (tap)="username = ''"></i>
+      <!-- <i class="fa fa-users"></i>
+      <i class="fa fa-times-circle clear-val" (tap)="username = ''"></i> -->
       <span><input type="text" placeholder="{{'请输入登录账号' | translate}}" autocomplete="new-password"
           [(ngModel)]="username" (ngModelChange)="clearSpace(username,'username')" /></span>
     </div>
     <div class="rows input">
-      <i class="fa fa-unlock-alt"></i>
+      <!-- <i class="fa fa-unlock-alt"></i> -->
       <i class="fa" id="eye" [ngClass]="{'fa-eye-slash':isShowPWD == 'password','fa-eye':isShowPWD == 'text'}"
         (tap)="isShowPWD = (isShowPWD == 'text')?'password':'text'"></i>
       <span><input [attr.type]="isShowPWD" placeholder="{{'请输入登录密码' | translate}}" autocomplete="new-password"
@@ -34,18 +41,17 @@
         <input class="hide" type="checkbox" [(ngModel)]="isSaveLoginInfo" />
         <a>{{'记住密码' | translate}}</a>
       </p>
-
-      <p class="forget-pwd" (tap)="toForgetPwd()" *ngIf="!config.isUseSimpleRegister">
+      <!--  *ngIf="!config.isUseSimpleRegister" -->
+      <p class="forget-pwd" (tap)="toForgetPwd()">
+        <i class="lock"></i>
         <a>{{'忘记密码' | translate}}?</a>
       </p>
     </div>
   </section>
-  <a class="register" (tap)="toRegister()">
-    {{'还没有账号？ 注册' | translate}}
-  </a>
 </ion-content>
 <ion-footer id="login-footer">
-  <div class="login-oth-info">
-    {{'系统版本号' | translate}}: 5.36.1 - k
-  </div>
+  <a class="register">
+    {{'没有账户？' | translate}}
+    <span (tap)="toRegister()">{{'免费开户' | translate}}</span>
+  </a>
 </ion-footer>

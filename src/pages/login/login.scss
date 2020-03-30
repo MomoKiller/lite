@@ -15,11 +15,6 @@ page-login .scroll-content {
   }
 }
 
-.login-bg {
-  background: url('../assets/imgs/login-bg.jpg') no-repeat !important;
-  background-size: 100% 100% !important;
-}
-
 .login-bg .scroll-content {
   background: transparent;
 }
@@ -30,36 +25,62 @@ page-login .scroll-content {
 }
 
 .login-btn button {
-  margin-top: 15px;
+  margin-top: 48px;
   font-size: 1.4rem;
-  background-color: #ff5400;
-  border-radius: 5px;
+  background-color: #fb874c;
+  border-radius: 3.4rem;
   letter-spacing: 3px;
 }
 
 .login-btn button.activated {
-  background-color: #f8be00;
+  background-color: #fb874c;
+}
+
+.back-wrap {
+  position: absolute;
+  top: 35px;
+  width: 100%;
+}
+.back-wrap .back-icon i {
+  display: block;
+  background: url(../../assets/imgs/arrow-left.png) no-repeat;
+  margin-left: 35px;
+  height: 20px;
+  width: 10px;
+  float: left;
+}
+.back-wrap .lan-icon i {
+  display: block;
+  background: url(../../assets/imgs/lan.png) no-repeat;
+  margin-right: 30px;
+  height: 20px;
+  width: 20px;
+  float: right;
 }
 
 .logo {
-  text-align: center;
-  color: #ddd;
-  font-size: 1.2em;
   margin: 0;
   position: absolute;
-  left: 0;
-  top: 80px;
+  top: 110px;
   width: 100%;
+  text-align: left;
 }
 
 .logo img {
   height: 90px;
 }
 
+.logo .title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #000000;
+  margin-left: 40px;
+}
+
 .login-container {
   margin: 30px 20px;
   padding: 20px;
-  margin-top: 180px;
+  margin-top: 150px;
   position: relative;
   z-index: 1;
 }
@@ -69,8 +90,8 @@ page-login .scroll-content {
   color: #999;
   margin-bottom: 10px;
   overflow: hidden;
-  border-radius: 3px;
   position: relative;
+  border-bottom: 1px solid #b6b6b6;
 }
 
 .login-container .rows span {
@@ -83,14 +104,15 @@ page-login .scroll-content {
 .login-container .rows span select {
   width: 100%;
   border: 0px;
-  color: #fff;
+  color: #666666;
   height: 40px;
-  background: url('../assets/imgs/trans-white.png');
   border-radius: 5px;
+  background: none;
+  outline: none;
 }
 
 .login-container .rows span input {
-  padding: 10px 40px;
+  padding: 10px;
 }
 
 .login-container .rows span select {
@@ -122,18 +144,21 @@ page-login .scroll-content {
   display: block;
   text-align: center;
   width: 15px;
-  color: #fff;
+  color: #9c9c9c;
 }
 
 .register {
-  height: 30px;
+  height: 70px;
   line-height: 30px;
-  color: #fff;
+  color: #9c9c9c;
   text-align: center;
-  font-size: 12px;
+  font-size: 14px;
   width: 100%;
-  margin-top: 10%;
-  text-decoration: underline;
+  display: block;
+}
+
+.register span {
+  color: #fb874c;
 }
 
 .login-oth-info {
@@ -194,8 +219,17 @@ page-login .scroll-content {
 }
 
 .login-opt i {
-  color: #488aff;
+  color: #fb874c;
   display: inline-block;
   width: 15px;
   font-size: 14px;
+}
+
+.login-opt .forget-pwd i.lock:before {
+  content: url(../../assets/imgs/lock-active.png);
+}
+
+
+.fa-eye-slash:before {
+  content: url(../../assets/imgs/pwd.png);
 }

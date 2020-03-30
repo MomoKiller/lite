@@ -21,22 +21,22 @@ export class TabsPage {
 			{
 				root: WalletPage,
 				tabTitle: '钱包',
-				tabIcon: 'trending-up'
+				tabIcon: 'wallet'
 			},
 			{
 				root: DocumentaryPage,
 				tabTitle: '跟单',
-				tabIcon: 'list'
+				tabIcon: 'documentary'
 			},
 			{
 				root: MarketPage,
 				tabTitle: '行情',
-				tabIcon: 'globe'
+				tabIcon: 'market'
 			},			
 			{
 				root: MyaccountPage,
 				tabTitle: '账户',
-				tabIcon: 'contact'
+				tabIcon: 'myaccount'
 			}
 		];
 	}

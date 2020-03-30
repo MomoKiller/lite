@@ -58,7 +58,7 @@ ion-navbar.toolbar {
 
 .tabs .tab-button[aria-selected=true],
 .tabs .tab-button[aria-selected=true] .tab-button-icon {
-  color: #488aff;
+  color: #fb874c;
   background: #fff;
 }
 
@@ -352,7 +352,7 @@ ion-list .item {
 .p-b50 {
   padding-bottom: 50px;
 }
-
+/*
 .button:hover {
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 5px, inset rgba(255, 255, 255, 0.25) 0px 1px 0px, inset rgba(0, 0, 0, 0.25) 0px 0px 0px, inset rgba(255, 255, 255, 0.03) 0px 20px 0px, inset rgba(0, 0, 0, 0.15) 0px -20px 20px, inset rgba(255, 255, 255, 0.05) 0px 20px 20px;
   -khtml-box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 5px, inset rgba(255, 255, 255, 0.25) 0px 1px 0px, inset rgba(0, 0, 0, 0.25) 0px 0px 0px, inset rgba(255, 255, 255, 0.03) 0px 20px 0px, inset rgba(0, 0, 0, 0.15) 0px -20px 20px, inset rgba(255, 255, 255, 0.05) 0px 20px 20px;
@@ -368,7 +368,6 @@ ion-list .item {
   -o-box-shadow: rgba(255, 255, 255, 0.25) 0px 1px 0px, inset rgba(255, 255, 255, 0) 0px 1px 0px, inset rgba(0, 0, 0, 0.5) 0px 0px 5px, inset rgba(255, 255, 255, 0.03) 0px 20px 0px, inset rgba(0, 0, 0, 0.15) 0px -20px 20px, inset rgba(255, 255, 255, 0.05) 0px 20px 20px;
   box-shadow: rgba(255, 255, 255, 0.25) 0px 1px 0px, inset rgba(255, 255, 255, 0) 0px 1px 0px, inset rgba(0, 0, 0, 0.5) 0px 0px 5px, inset rgba(255, 255, 255, 0.03) 0px 20px 0px, inset rgba(0, 0, 0, 0.15) 0px -20px 20px, inset rgba(255, 255, 255, 0.05) 0px 20px 20px;
 }
-
 .button.red {
   background: red;
 }
@@ -376,6 +375,7 @@ ion-list .item {
 .button.red:hover:not(.disable-hover) {
   background: red;
 }
+*/
 
 .button.yellow {
   background: #ff9900;
@@ -661,11 +661,11 @@ ion-header {
 
 .segment-button {
   color: #516b7e !important;
-  border-color: #488aff !important;
+  border-color: #fb874c !important;
 }
 
 .segment-activated {
-  background: #488aff !important;
+  background: #fb874c !important;
   color: #fff !important;
 }
 
@@ -704,7 +704,7 @@ ion-content {
 }
 
 ion-header {
-  background-color: #488aff;
+  background-color: #fb874c;
   color: #fff;
 
   ion-icon {
