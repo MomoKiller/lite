@@ -1,7 +1,4 @@
 <ion-content class="login-bg" no-bounce>
-  <!-- <figure class="logo">
-    <figcaption><img [src]="logoImg" *ngIf="logoImg" /></figcaption>
-  </figure> -->
   <div class="back-wrap">
     <a class="back-icon"><i></i></a>
     <a class="lan-icon"><i></i></a>
@@ -11,19 +8,14 @@
   </div>
   <section class="login-container">
     <div class="rows input">
-      <!-- <i class="fa fa-vcard"></i>
-      <i class="fa fa-times-circle clear-val" (tap)="orgcode = ''"></i> -->
       <span><input type="text" placeholder="{{'请输入机构代码' | translate}}" autocomplete="new-password" [(ngModel)]="orgcode"
           (ngModelChange)="clearSpace(orgcode,'orgcode')" /></span>
     </div>
     <div class="rows input">
-      <!-- <i class="fa fa-users"></i>
-      <i class="fa fa-times-circle clear-val" (tap)="username = ''"></i> -->
       <span><input type="text" placeholder="{{'请输入登录账号' | translate}}" autocomplete="new-password"
           [(ngModel)]="username" (ngModelChange)="clearSpace(username,'username')" /></span>
     </div>
     <div class="rows input">
-      <!-- <i class="fa fa-unlock-alt"></i> -->
       <i class="fa" id="eye" [ngClass]="{'fa-eye-slash':isShowPWD == 'password','fa-eye':isShowPWD == 'text'}"
         (tap)="isShowPWD = (isShowPWD == 'text')?'password':'text'"></i>
       <span><input [attr.type]="isShowPWD" placeholder="{{'请输入登录密码' | translate}}" autocomplete="new-password"

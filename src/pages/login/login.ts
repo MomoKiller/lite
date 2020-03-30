@@ -21,7 +21,6 @@ export class LoginPage {
 	private loader: any;
 	private config = Window.config;
 	public lineData = this.config.line;
-	public logoImg = null;
 	/* 记住密码赋值 */
 	public orgcode: string = '';
 	public username: string = '';
@@ -65,8 +64,6 @@ export class LoginPage {
 		}
 		Window.autoLogin();
 		this.checkLoginLine();
-		// 加载LOGO
-		self.loadingLogo();
 	}
 	private isSaveLoginInfo: boolean = false;
 	/* 是否显示密码 */
@@ -255,17 +252,6 @@ export class LoginPage {
 	ionViewWillLeave() {
 		this.present.dismissLoading();
 	}
-	// 加载LOGO
-	loadingLogo() {
-		if (!Window.configurl) {
-			setTimeout(() => {
-				this.loadingLogo();
-			}, 1000);
-		}
-		else {
-			this.logoImg = Window.configurl + 'logo/' + Window.config.logo;
-		}
-	}
 	private checkLoginLineTime: any = null;
 	/**
 	 * 分配线路规则优化  191121  wuwp
@@ -275,7 +261,7 @@ export class LoginPage {
 		const self = this;
 		const line = Window.config.line;
 		self.translate.get('正在检测线路 ...').subscribe((res: string) => {
-			self.present.presentLoading(res, true,6000);
+			self.present.presentLoading(res, true, 6000);
 		});
 		for (let i = 0, r = line.length; i < r; i++) {
 			let befoTime = new Date().getTime();
