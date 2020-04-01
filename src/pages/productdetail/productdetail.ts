@@ -806,7 +806,7 @@ export class ProductdetailPage {
 
         // 修改最后一点时间戳
         let dataLen = window.klineData.data.lines.length;
-        if(dataLen > 0){
+        if (dataLen > 0) {
           window.klineData.data.lines[dataLen - 1][0] += 60 * 1000;
         }
         $('#Kline-column').animate({ 'opacity': 1 });
