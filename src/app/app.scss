@@ -49,7 +49,7 @@ ion-navbar.toolbar {
 
 .tabbar.show-tabbar {
   background: #f8f8f8;
-  border-top: 1px solid #eee;
+  /*border-top: 1px solid #eee;*/
 }
 
 .tabs .tab-button,
@@ -713,7 +713,8 @@ ion-header {
   color: #333333;
   border-bottom: 1px solid #e3e3e3;
   ion-icon {
-    color: #fff;
+    /*color: #fff;*/
+    color: #333;
   }
 }
 

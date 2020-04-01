@@ -63,12 +63,14 @@ page-documentary {
                                     height: 12px;
                                     width: 14px;
                                     background: url(../../assets/imgs/like.png) no-repeat;
-                                    background-size: 100% 100%;
+                                    background-position: center center;
+                                    background-size: contain;
                                     margin: 2px 5px 0 0;
                                 }
                                 i.active{
                                     background: url(../../assets/imgs/like-active.png) no-repeat;
-                                    background-size: 100% 100%;
+                                    background-position: center center;
+                                    background-size: contain;
                                 }
                             }
                             a.prop{
@@ -116,7 +118,8 @@ page-documentary {
                         border: 1px solid #fb874c;
                         i{
                             background: url(../../assets/imgs/chart.png) no-repeat;
-                            background-size: 100% 100%;
+                            background-position: center center;
+                            background-size: contain;
                             display: block;
                             height: 16px;
                             width: 20px;

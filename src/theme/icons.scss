@@ -3,17 +3,21 @@
 .tab-button[aria-selected=false] .ion-md-home:before{
     content: '';
     background: url(../assets/tabsImg/home.png) no-repeat;
-    background-position: center;
-    height: 30px;
-    width: 30px;
+    background-position: center center;
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+    margin-top: 5px;
 }
 .tab-button[aria-selected=true] .ion-md-home:before,
 .tab-button[aria-selected=true] .ion-ios-home:before{
     content: '';
     background: url(../assets/tabsImg/home-active.png) no-repeat;
-    background-position: center;
-    height: 30px;
-    width: 30px;
+    background-position: center center;
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+    margin-top: 5px;
 }
 
 .ion-ios-wallet-outline:before,
@@ -21,17 +25,21 @@
 .tab-button[aria-selected=false] .ion-md-wallet:before{
     content: '';
     background: url(../assets/tabsImg/wallet.png) no-repeat;
-    background-position: center;
-    height: 30px;
-    width: 30px;
+    background-position: center center;
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+    margin-top: 5px;
 }
 .tab-button[aria-selected=true] .ion-md-wallet:before,
 .tab-button[aria-selected=true] .ion-ios-wallet:before{
     content: '';
     background: url(../assets/tabsImg/wallet-active.png) no-repeat;
-    background-position: center;
-    height: 30px;
-    width: 30px;
+    background-position: center center;
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+    margin-top: 5px;
 }
 
 .ion-ios-documentary-outline:before,
@@ -39,17 +47,21 @@
 .tab-button[aria-selected=false] .ion-md-documentary:before{
     content: '';
     background: url(../assets/tabsImg/doc.png) no-repeat;
-    background-position: center;
-    height: 30px;
-    width: 30px;
+    background-position: center center;
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+    margin-top: 5px;
 }
 .tab-button[aria-selected=true] .ion-md-documentary:before,
 .tab-button[aria-selected=true] .ion-ios-documentary:before{
     content: '';
     background: url(../assets/tabsImg/doc-active.png) no-repeat;
-    background-position: center;
-    height: 30px;
-    width: 30px;
+    background-position: center center;
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+    margin-top: 5px;
 }
 
 .ion-ios-market-outline:before,
@@ -57,17 +69,21 @@
 .tab-button[aria-selected=false] .ion-md-market:before{
     content: '';
     background: url(../assets/tabsImg/market.png) no-repeat;
-    background-position: center;
-    height: 30px;
-    width: 30px;
+    background-position: center center;
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+    margin-top: 5px;
 }
 .tab-button[aria-selected=true] .ion-md-market:before,
 .tab-button[aria-selected=true] .ion-ios-market:before{
     content: '';
     background: url(../assets/tabsImg/market-active.png) no-repeat;
-    background-position: center;
-    height: 30px;
-    width: 30px;
+    background-position: center center;
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+    margin-top: 5px;
 }
 
 .ion-ios-myaccount-outline:before,
@@ -75,23 +91,27 @@
 .tab-button[aria-selected=false] .ion-md-myaccount:before{
     content: '';
     background: url(../assets/tabsImg/my.png) no-repeat;
-    background-position: center;
-    height: 30px;
-    width: 30px;
+    background-position: center center;
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+    margin-top: 5px;
 }
 .tab-button[aria-selected=true] .ion-md-myaccount:before,
 .tab-button[aria-selected=true] .ion-ios-myaccount:before{
     content: '';
     background: url(../assets/tabsImg/my-active.png) no-repeat;
-    background-position: center;
-    height: 30px;
-    width: 30px;
+    background-position: center center;
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+    margin-top: 5px;
 }
 
 .fa-square-o:before{
     content: '';
     border: 1px solid;
-    display: inline-block;
+    display: block;
     width: 11px;
     height: 11px;
     border-radius: 6px;
@@ -99,8 +119,9 @@
 .fa-check-square-o:before{
     content: '';
     background: url(../assets/imgs/select-active.png) no-repeat;
-    background-position: center;
-    height: 15px;
-    width: 15px;
+    background-position: center center;
+    background-size: contain;
+    height: 13px;
+    width: 13px;
     display: block;
 }

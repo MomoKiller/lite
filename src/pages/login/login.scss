@@ -45,6 +45,8 @@ page-login .scroll-content {
 .back-wrap .back-icon i {
   display: block;
   background: url(../../assets/imgs/arrow-left.png) no-repeat;
+  background-position: center center;
+  background-size: contain;
   margin-left: 35px;
   height: 20px;
   width: 10px;
@@ -54,6 +56,8 @@ page-login .scroll-content {
 .back-wrap .lan-icon i {
   display: block;
   background: url(../../assets/imgs/lan.png) no-repeat;
+  background-position: center center;
+  background-size: contain;
   margin-right: 30px;
   height: 20px;
   width: 20px;
@@ -150,13 +154,17 @@ page-login .scroll-content {
 }
 
 .register {
-  height: 70px;
+  height: 30px;
   line-height: 30px;
   color: #9c9c9c;
   text-align: center;
   font-size: 14px;
   width: 100%;
   display: block;
+  position: absolute;
+  z-index: 1;
+  background-color: #fff;
+  margin-top: 8rem;
 }
 
 .register span {
@@ -239,9 +247,10 @@ page-login .scroll-content {
 .login-opt .forget-pwd i.lock:before {
   content: '';
   background: url(../../assets/imgs/lock-active.png) no-repeat;
-  background-position: center;
-  height: 15px;
-  width: 15px;
+  background-position: center center;
+  background-size: contain;
+  height: 13px;
+  width: 13px;
   display: block;
 }
 
@@ -249,8 +258,9 @@ page-login .scroll-content {
 .fa-eye-slash:before {
   content: '';
   background: url(../../assets/imgs/pwd.png) no-repeat;
-  background-position: center;
+  background-position: center center;
+  background-size: contain;
   height: 14px;
-  width: 19px;
-  display: block;
+  width: 16px;
+  display: inline-block;
 }

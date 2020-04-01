@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
 
+declare var $:any,Window,indexLibrary,window;
+
 @IonicPage()
 @Component({
   selector: 'page-myaccount',
@@ -15,4 +17,11 @@ export class MyaccountPage {
 		this.myaccountUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.myaccountUrl);
 	}
 
+
+  logout(){
+    Window.currentClassifyA = undefined;
+    Window.currentClassifyB = undefined;
+    Window.changeUser = false;
+    Window.loginout();
+  }
 }
