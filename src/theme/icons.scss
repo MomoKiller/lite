@@ -2,7 +2,7 @@
 .tab-button[aria-selected=false] .ion-ios-home:before,
 .tab-button[aria-selected=false] .ion-md-home:before{
     content: '';
-    background: url(../assets/tabsimg/home.png) no-repeat;
+    background: url(../assets/tabsImg/home.png) no-repeat;
     background-position: center;
     height: 30px;
     width: 30px;
@@ -10,7 +10,7 @@
 .tab-button[aria-selected=true] .ion-md-home:before,
 .tab-button[aria-selected=true] .ion-ios-home:before{
     content: '';
-    background: url(../assets/tabsimg/home-active.png) no-repeat;
+    background: url(../assets/tabsImg/home-active.png) no-repeat;
     background-position: center;
     height: 30px;
     width: 30px;
@@ -20,7 +20,7 @@
 .tab-button[aria-selected=false] .ion-ios-wallet:before,
 .tab-button[aria-selected=false] .ion-md-wallet:before{
     content: '';
-    background: url(../assets/tabsimg/wallet.png) no-repeat;
+    background: url(../assets/tabsImg/wallet.png) no-repeat;
     background-position: center;
     height: 30px;
     width: 30px;
@@ -28,7 +28,7 @@
 .tab-button[aria-selected=true] .ion-md-wallet:before,
 .tab-button[aria-selected=true] .ion-ios-wallet:before{
     content: '';
-    background: url(../assets/tabsimg/wallet-active.png) no-repeat;
+    background: url(../assets/tabsImg/wallet-active.png) no-repeat;
     background-position: center;
     height: 30px;
     width: 30px;
@@ -38,7 +38,7 @@
 .tab-button[aria-selected=false] .ion-ios-documentary:before,
 .tab-button[aria-selected=false] .ion-md-documentary:before{
     content: '';
-    background: url(../assets/tabsimg/documentary.png) no-repeat;
+    background: url(../assets/tabsImg/doc.png) no-repeat;
     background-position: center;
     height: 30px;
     width: 30px;
@@ -46,7 +46,7 @@
 .tab-button[aria-selected=true] .ion-md-documentary:before,
 .tab-button[aria-selected=true] .ion-ios-documentary:before{
     content: '';
-    background: url(../assets/tabsimg/documentary-active.png) no-repeat;
+    background: url(../assets/tabsImg/doc-active.png) no-repeat;
     background-position: center;
     height: 30px;
     width: 30px;
@@ -56,7 +56,7 @@
 .tab-button[aria-selected=false] .ion-ios-market:before,
 .tab-button[aria-selected=false] .ion-md-market:before{
     content: '';
-    background: url(../assets/tabsimg/market.png) no-repeat;
+    background: url(../assets/tabsImg/market.png) no-repeat;
     background-position: center;
     height: 30px;
     width: 30px;
@@ -64,7 +64,7 @@
 .tab-button[aria-selected=true] .ion-md-market:before,
 .tab-button[aria-selected=true] .ion-ios-market:before{
     content: '';
-    background: url(../assets/tabsimg/market-active.png) no-repeat;
+    background: url(../assets/tabsImg/market-active.png) no-repeat;
     background-position: center;
     height: 30px;
     width: 30px;
@@ -74,7 +74,7 @@
 .tab-button[aria-selected=false] .ion-ios-myaccount:before,
 .tab-button[aria-selected=false] .ion-md-myaccount:before{
     content: '';
-    background: url(../assets/tabsimg/myaccount.png) no-repeat;
+    background: url(../assets/tabsImg/my.png) no-repeat;
     background-position: center;
     height: 30px;
     width: 30px;
@@ -82,7 +82,7 @@
 .tab-button[aria-selected=true] .ion-md-myaccount:before,
 .tab-button[aria-selected=true] .ion-ios-myaccount:before{
     content: '';
-    background: url(../assets/tabsimg/myaccount-active.png) no-repeat;
+    background: url(../assets/tabsImg/my-active.png) no-repeat;
     background-position: center;
     height: 30px;
     width: 30px;
