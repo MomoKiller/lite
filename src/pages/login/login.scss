@@ -236,12 +236,9 @@ page-login .scroll-content {
   font-size: 14px;
   */
   color: #fb874c;
+  display: inline-block;
   width: 15px;
-  height: 15px;
   font-size: 14px;
-  display: block;
-  float: left;
-  margin: 3px 2px 0 0;
 }
 
 .login-opt .forget-pwd i.lock:before {

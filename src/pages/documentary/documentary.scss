@@ -40,6 +40,7 @@ page-documentary {
                             margin: 0 10px;
                             a {
                                 color: #ff5603;
+                                line-height: 20px;
                             }
                             a.user-name{
                                 font-size: 16px;
@@ -80,16 +81,16 @@ page-documentary {
                             }
                             a.total{
                                 border: 1px solid;
-                                padding: 1px 5px;
+                                padding: 0 5px;
                                 border-radius: 4px;
                                 font-size: 12px;
                                 float: left;
+                                line-height: 16px;
                             }
                             a.amount{
                                 color: #999;
                                 float: right;
                                 font-size: 12px;
-                                line-height: 22px;
                             }
                         }
                         p:first-child{

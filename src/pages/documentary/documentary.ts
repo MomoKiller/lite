@@ -28,7 +28,7 @@ export class DocumentaryPage {
   }
 
   public traderPage = 1;
-  public traderRows = 10;
+  public traderRows = 5;
   public traderTotal = 0;
   public traderList = [];
 
