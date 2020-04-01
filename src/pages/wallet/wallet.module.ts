@@ -3,9 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { WalletPage } from './wallet';
 
 @NgModule({
-  declarations: [
-    WalletPage,
-  ],
+  declarations: [],
   imports: [
     IonicPageModule.forChild(WalletPage),
   ],
