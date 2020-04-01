@@ -1,17 +1,17 @@
 //监听div大小变化
-(function($, h, c) {
+(function ($, h, c) {
 	var a = $([]),
-	e = $.resize = $.extend($.resize, {}),
-	i,
-	k = "setTimeout",
-	j = "resize",
-	d = j + "-special-event",
-	b = "delay",
-	f = "throttleWindow";
+		e = $.resize = $.extend($.resize, {}),
+		i,
+		k = "setTimeout",
+		j = "resize",
+		d = j + "-special-event",
+		b = "delay",
+		f = "throttleWindow";
 	e[b] = 250;
 	e[f] = true;
 	$.event.special[j] = {
-		setup: function() {
+		setup: function () {
 			if (!e[f] && this[k]) {
 				return false;
 			}
@@ -25,7 +25,7 @@
 				g();
 			}
 		},
-		teardown: function() {
+		teardown: function () {
 			if (!e[f] && this[k]) {
 				return false;
 			}
@@ -36,16 +36,16 @@
 				clearTimeout(i);
 			}
 		},
-		add: function(l) {
+		add: function (l) {
 			if (!e[f] && this[k]) {
 				return false;
 			}
 			var n;
 			function m(s, o, p) {
 				var q = $(this),
-				r = $.data(this, d);
-				r.w = o !== c ? o: q.width();
-				r.h = p !== c ? p: q.height();
+					r = $.data(this, d);
+				r.w = o !== c ? o : q.width();
+				r.h = p !== c ? p : q.height();
 				n.apply(this, arguments);
 			}
 			if ($.isFunction(l)) {
@@ -58,18 +58,18 @@
 		}
 	};
 	function g() {
-		i = h[k](function() {
-			a.each(function() {
+		i = h[k](function () {
+			a.each(function () {
 				var n = $(this),
-				m = n.width(),
-				l = n.height(),
-				o = $.data(this, d);
+					m = n.width(),
+					l = n.height(),
+					o = $.data(this, d);
 				if (m !== o.w || l !== o.h) {
 					n.trigger(j, [o.w = m, o.h = l]);
 				}
 			});
 			g();
 		},
-		e[b]);
+			e[b]);
 	}
 })(jQuery, this);
