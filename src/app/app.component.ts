@@ -1,4 +1,3 @@
-import { Http } from '@angular/http';
 import { Component, ViewChild } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Keyboard } from '@ionic-native/keyboard';
@@ -40,8 +39,7 @@ export class MyApp {
 		private splashScreen: SplashScreen, 
 		public loadingCtrl: LoadingController, 
 		public toastCtrl: ToastController, 
-		public http: Http,
-		public _http: HttpServeProvider,
+		public http: HttpServeProvider,
 		private socket: SocketServeProvider, 
 		public translateService: TranslateService,
 		private present: PresentProvider
@@ -160,8 +158,19 @@ export class MyApp {
 		}
 	}
 
+	/* 用来看的 ^_^
+	private onlineConfigUrl = [
+		"http://47.111.146.166:65501/staticResources/config.json",
+		"http://47.111.146.166:65500/staticResources/config.json",
+		"http://47.111.146.166:65503/staticResources/config.json",
+		"http://47.107.114.218:65500/staticResources/config.json",
+		"http://47.107.120.122/staticResources/config.json"
+	];
+	*/
 	/* 设置当前配置文件线路 */
-	private currentOnlineConfigUrl = [ "http://47.99.210.59:33205/staticResources/config.json"];
+	private currentOnlineConfigUrl = [
+		"http://47.99.210.59:33205/staticResources/config.json"
+	];
 	/* 热更新提示显示 */
 	public hotCodePushLoading: boolean = false;
 	/* 获取到的配置文件 */
@@ -172,7 +181,7 @@ export class MyApp {
 		let self = this;
 		//可用线路数组
 		for (let i = 0, r = this.currentOnlineConfigUrl.length; i < r; i++) {
-			this._http.get(this.currentOnlineConfigUrl[i] + "?time=" + new Date().getTime(), (res: any) => {
+			this.http.get(this.currentOnlineConfigUrl[i] + "?time=" + new Date().getTime(), (res: any) => {
 				console.log('[获取线上配置文件]', res);
 				if (typeof (res) === 'string') {
 					res = JSON.parse(res);

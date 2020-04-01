@@ -9,7 +9,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class WalletPage {
 
-  public walletUrl: any = 'https://www.jin10.com/example/jin10.com.html?fontSize=14px&theme=orange';
+  public walletUrl: any = 'https://www.jin10.com/example/jin10.com.html?fontSize=14px&theme=white';
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, private sanitizer: DomSanitizer) {
 		this.walletUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.walletUrl);

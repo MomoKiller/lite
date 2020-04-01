@@ -9,7 +9,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class MyaccountPage {
 
-  public myaccountUrl: any = 'https://www.jin10.com/example/jin10.com.html?fontSize=14px&theme=orange';
+  public myaccountUrl: any = 'https://www.jin10.com/example/jin10.com.html?fontSize=14px&theme=white';
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, private sanitizer: DomSanitizer) {
 		this.myaccountUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.myaccountUrl);
