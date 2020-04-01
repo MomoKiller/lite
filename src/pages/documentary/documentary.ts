@@ -65,7 +65,7 @@ export class DocumentaryPage {
   }
 
   /* 上拉加载数据 */
-  private infiniteScroll:any = null;
+  public infiniteScroll:any = null;
   appendData(infiniteScroll){
     this.infiniteScroll = infiniteScroll;
 		this.traderRequest(function(){
