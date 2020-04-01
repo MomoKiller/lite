@@ -12,53 +12,43 @@
 
 </ion-header>
 
-<ion-content>
+<ion-content scroll="false">
+  <ion-refresher *ngIf="selectTabs != 1" (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content
+		pullingIcon="arrow-dropdown"
+		pullingText="{{'下拉刷新' | translate}}"
+		refreshingSpinner="circles"
+		refreshingText="{{'正在刷新数据 ...' | translate}}">
+		</ion-refresher-content>
+	</ion-refresher>
   <div class="content-wrap">
     <ul>
-      <li>
+      <li *ngFor="let item of traderList">
         <div class="center">
           <a class="user-img">
             <img src="../../assets/imgs/user-default.png" alt="">
           </a>
           <div class="wrap-info">
             <p>
-              <a class="user-name">Jack</a>
-              <a class="follow"><i class="active"></i>关注  190</a>
-              <a class="prop">收益比例 70%</a>
+              <a class="user-name">{{item.userName}}</a>
+              <a class="follow"><i [ngClass]="{'active': item.orderAmount > 0}"></i>关注 {{item.orderAmount}}</a>
+              <a class="prop">收益比例 {{item.matchPrice}}%</a>
             </p>
             <p>
-              <a class="total">累计获利 5000美金</a>
-              <a class="amount">当前跟单 600人</a>
+              <a class="total">累计获利 {{item.matchProfit}}美金</a>
+              <a class="amount">当前跟单 {{item.matchFeeCurrency}}人</a>
             </p>
           </div>
         </div>
         <div class="bottom">
-          <a class="market"><i></i>行情</a>
-          <a class="buy"><i></i>跟买</a>
-        </div>
-      </li>
-      <li>
-        <div class="center">
-          <a class="user-img">
-            <img src="../../assets/imgs/user-default.png" alt="">
-          </a>
-          <div class="wrap-info">
-            <p>
-              <a class="user-name">Jack</a>
-              <a class="follow"><i></i>关注  190</a>
-              <a class="prop">收益比例 70%</a>
-            </p>
-            <p>
-              <a class="total">累计获利 5000美金</a>
-              <a class="amount">当前跟单 600人</a>
-            </p>
-          </div>
-        </div>
-        <div class="bottom">
-          <a class="market"><i></i>行情</a>
-          <a class="buy"><i></i>跟买</a>
+          <a class="market" (tap)="toDetail(item)"><i></i>行情</a>
+          <a class="buy" (tap)="toBuy(item)"><i></i>跟买</a>
         </div>
       </li>
     </ul>
   </div>
+  <ion-infinite-scroll (ionInfinite)="appendData($event)" threshold="100px">
+		<ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="{{'加载中...' | translate}}">
+		</ion-infinite-scroll-content>
+	</ion-infinite-scroll>
 </ion-content>

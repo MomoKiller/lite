@@ -12,7 +12,7 @@ page-documentary {
                 margin: 0;
                 padding: 0;
                 border-radius: 10px;
-                box-shadow: 0px 0px 10px 0px #999;
+                box-shadow: 0px 0px 10px 0px #ccc;
                 margin-top: 25px;
                 .center{
                     height: 60px;
@@ -60,8 +60,8 @@ page-documentary {
                                 color: #999999;
                                 i{
                                     display: inline-block;
-                                    height: 14px;
-                                    width: 16px;
+                                    height: 12px;
+                                    width: 14px;
                                     background: url(../../assets/imgs/like.png) no-repeat;
                                     background-size: 100% 100%;
                                     margin: 2px 5px 0 0;
@@ -73,6 +73,8 @@ page-documentary {
                             }
                             a.prop{
                                 float: right;
+                                font-size: 12px;
+                                font-weight: bold;
                             }
                             a.total{
                                 border: 1px solid;
