@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, IonicPage, NavController, ModalController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { Platform, IonicPage, NavController, ModalController, NavParams, AlertController, LoadingController, App } from 'ionic-angular';
 import { TranslateService } from "@ngx-translate/core";
 /* pages */
 import { TabsPage } from "../tabs/tabs";
@@ -27,7 +27,7 @@ export class LoginPage {
 	public password: string = '';
 
 	constructor(
-		public plt: Platform,
+		public platform: Platform,
 		public loadingCtrl: LoadingController,
 		public alertCtrl: AlertController,
 		public modalCtrl: ModalController,
@@ -36,7 +36,8 @@ export class LoginPage {
 		public translate: TranslateService,
 		private _http: HttpServeProvider,
 		private _socket: SocketServeProvider,
-		private present: PresentProvider
+		private present: PresentProvider,
+		private app: App
 	) {
 		const self = this;
 		Window.loginPageFreshConfig = () => {
@@ -253,10 +254,7 @@ export class LoginPage {
 		this.present.dismissLoading();
 	}
 	private checkLoginLineTime: any = null;
-	/**
-	 * 分配线路规则优化  191121  wuwp
-	 * 目标: .gif 加载时间最短的路线
-	 */
+	/* 选择线路 */
 	checkLoginLine() {
 		const self = this;
 		const line = Window.config.line;
@@ -332,5 +330,89 @@ export class LoginPage {
 		this._http.check_line(ip, function (status) {
 			callback(status);
 		});
+	}
+
+
+	/* 退出App */
+	public backButtonPressed: boolean = false;
+	exitApp() {
+		this.platform.registerBackButtonAction(() => {
+			let overlay = this.app._appRoot._overlayPortal.getActive() || this.app._appRoot._modalPortal.getActive();
+			if (overlay) {
+				overlay.dismiss();
+				return;
+			}
+			let activeVC = this.navCtrl.getActive();
+			let page = activeVC.instance;
+			if (page.tabs) {
+				let activeNav = page.tabs.getSelected();
+				if (activeNav.canGoBack()) {
+					return activeNav.pop();
+				} else {
+					return this.showExit();
+				}
+			}
+			if (page instanceof LoginPage) {//查看当前页面是否是登陆页面
+				this.showExit();
+				return;
+			}
+			this.app.getActiveNav().pop();//剩余的情况全部使用全局路由进行操作 
+		});
+	}
+
+	// 双击退出
+	showExit() {
+		if (this.backButtonPressed) {
+			this.platform.exitApp();
+		} else {
+			this.present.presentToast('再按一次退出应用');
+			this.backButtonPressed = true;
+			setTimeout(() => {
+				this.backButtonPressed = false;
+			}, 2000)
+		}
+	}
+
+	/* 语言选择 */
+	public languageOpen = false;
+	public languageResult: any;
+	language() {
+		let alert = this.alertCtrl.create();
+		const historyLanguage:string = localStorage.getItem('language')?localStorage.getItem('language'):'zh';
+		alert.addInput({
+			type: 'radio',
+			label: '中文简体',
+			value: 'zh',
+			checked: historyLanguage === 'zh'?true:false
+		});
+
+		alert.addInput({
+			type: 'radio',
+			label: '中文繁体',
+			value: 'hk',
+			checked: historyLanguage === 'hk'?true:false
+		});
+
+		alert.addInput({
+			type: 'radio',
+			label: 'English',
+			value: 'en',
+			checked: historyLanguage === 'en'?true:false
+		});
+		this.translate.get('取消').subscribe((res: string) => {
+			alert.addButton(res);
+		});
+		this.translate.get('确定').subscribe((res: string) => {
+			alert.addButton({
+				text: res,
+				handler: (data: any) => {
+					console.log('language data:', data);
+					window.changeLanguage(data);
+					this.languageOpen = false;
+					this.languageResult = data;
+				}
+			});
+		});
+		alert.present();
 	}
 }

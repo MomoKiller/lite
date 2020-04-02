@@ -35,7 +35,7 @@ export class TabsPage {
 			},			
 			{
 				root: MyaccountPage,
-				tabTitle: '账户',
+				tabTitle: '我的',
 				tabIcon: 'myaccount'
 			}
 		];

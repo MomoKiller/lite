@@ -493,5 +493,13 @@
 	"注册成功,请登录":"Register successfully, please login",
 	"未获取到币种明细":"No currency details were obtained",
 	"实名信息":"User Info",
-	"获取实名信息失败":"Failure to obtain real-name information"
+	"获取实名信息失败":"Failure to obtain real-name information",
+	"账户登录": "Login",
+	"没有账户？": "No account?",
+	"免费开户": "Free account opening",
+	"首页": "Home",
+	"钱包": "Wallet",
+	"跟单": "Document",
+	"我的": "Mine",
+	"资产总览": "Overview of assets"
 }

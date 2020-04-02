@@ -1,10 +1,10 @@
 <ion-content class="login-bg" no-bounce>
   <div class="back-wrap">
-    <a class="back-icon"><i></i></a>
-    <a class="lan-icon"><i></i></a>
+    <a class="back-icon" (tap)="exitApp()"><i></i></a><!-- 退出app -->
+    <a class="lan-icon" (tap)="language()"><i></i></a><!-- 切换语言 -->
   </div>
   <div class="logo">
-    <a class="title">账户登录</a>
+    <a class="title">{{'账户登录' | translate}}</a>
   </div>
   <section class="login-container">
     <div class="rows input">
