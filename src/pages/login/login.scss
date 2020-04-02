@@ -44,7 +44,9 @@ page-login .scroll-content {
 
 .back-wrap .back-icon i {
   display: block;
-  background: url(../../assets/nimgs/arrow-left.png) no-repeat;
+  /*background: url(../../assets/nimgs/arrow-left.png) no-repeat;*/
+  /* 服务器图片 */
+  background: url(http://47.99.210.59:33205/staticResources/nimgs/arrow-left.png) no-repeat;
   background-position: center center;
   background-size: contain;
   margin-left: 35px;
@@ -55,7 +57,9 @@ page-login .scroll-content {
 
 .back-wrap .lan-icon i {
   display: block;
-  background: url(../../assets/nimgs/lan.png) no-repeat;
+  /*background: url(../../assets/nimgs/lan.png) no-repeat;*/
+  /* 服务器图片 */
+  background: url(http://47.99.210.59:33205/staticResources/nimgs/lan.png) no-repeat;
   background-position: center center;
   background-size: contain;
   margin-right: 30px;
@@ -164,7 +168,7 @@ page-login .scroll-content {
   position: absolute;
   z-index: 1;
   background-color: #fff;
-  margin-top: 8rem;
+  margin-top: 7rem;
 }
 
 .register span {
@@ -243,7 +247,9 @@ page-login .scroll-content {
 
 .login-opt .forget-pwd i.lock:before {
   content: '';
-  background: url(../../assets/nimgs/lock-active.png) no-repeat;
+  /*background: url(../../assets/nimgs/lock-active.png) no-repeat;*/ 
+  /* 服务器图片 */
+  background: url(http://47.99.210.59:33205/staticResources/nimgs/lock-active.png) no-repeat;
   background-position: center center;
   background-size: contain;
   height: 13px;
@@ -254,7 +260,9 @@ page-login .scroll-content {
 
 .fa-eye-slash:before {
   content: '';
-  background: url(../../assets/nimgs/pwd.png) no-repeat;
+  /*background: url(../../assets/nimgs/pwd.png) no-repeat;*/
+  /* 服务器图片 */
+  background: url(http://47.99.210.59:33205/staticResources/nimgs/pwd.png) no-repeat;
   background-position: center center;
   background-size: contain;
   height: 14px;

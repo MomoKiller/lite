@@ -63,13 +63,13 @@ page-documentary {
                                     display: inline-block;
                                     height: 12px;
                                     width: 14px;
-                                    background: url(../../assets/nimgs/like.png) no-repeat;
+                                    background: url(http://47.99.210.59:33205/staticResources/nimgs/like.png) no-repeat;
                                     background-position: center center;
                                     background-size: contain;
                                     margin: 2px 5px 0 0;
                                 }
                                 i.active{
-                                    background: url(../../assets/nimgs/like-active.png) no-repeat;
+                                    background: url(http://47.99.210.59:33205/staticResources/nimgs/like-active.png) no-repeat;
                                     background-position: center center;
                                     background-size: contain;
                                 }
@@ -118,7 +118,7 @@ page-documentary {
                         text-align: left;
                         border: 1px solid #fb874c;
                         i{
-                            background: url(../../assets/nimgs/chart.png) no-repeat;
+                            background: url(http://47.99.210.59:33205/staticResources/nimgs/chart.png) no-repeat;
                             background-position: center center;
                             background-size: contain;
                             display: block;
