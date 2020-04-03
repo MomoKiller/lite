@@ -1,23 +1,23 @@
 /******** 重加载标识 start ********/
-var ISReload = false;	//重加载标识
-document.addEventListener('deviceready', onDeviceReady, false);
-setTimeout(function () {
-    if (!ISReload && window.cordova) {
-        window.location.reload();//重加载
-    }
-}, 300);
-var onDeviceReady = function () {
-    ISReload = true;//更新重加载标识
-    app.receivedEvent('deviceready');
-}
-window.onerror = function (msg, url, line) {
-    var idx = url.lastIndexOf("/") || location.href.lastIndexOf("/");
-    if (idx > -1) {
-        url = url.substring(idx + 1);
-    }
-    console.log("ERROR in " + url + " (line #" + line + "): " + msg);
-    return false;
-};
+// var ISReload = false;	//重加载标识
+// document.addEventListener('deviceready', onDeviceReady, false);
+// setTimeout(function () {
+//     if (!ISReload && window.cordova) {
+//         window.location.reload();//重加载
+//     }
+// }, 300);
+// var onDeviceReady = function () {
+//     ISReload = true;//更新重加载标识
+//     app.receivedEvent('deviceready');
+// }
+// window.onerror = function (msg, url, line) {
+//     var idx = url.lastIndexOf("/") || location.href.lastIndexOf("/");
+//     if (idx > -1) {
+//         url = url.substring(idx + 1);
+//     }
+//     console.log("ERROR in " + url + " (line #" + line + "): " + msg);
+//     return false;
+// };
 /******** 重加载标识 end ********/
 
 /******** QQ|微信打开到提示页 start ********/
