@@ -71,6 +71,9 @@
 	"点差":"Spread",
 	"买价":"Bid Price",
 	"卖价":"Ask Price",
+	"交易品种": "Trading varieties",
+	"买入价":"Bid Price",
+	"卖出价":"Ask Price",
 	"买量":"Bid Qty",
 	"卖量":"Ask Qty",
 	"昨收":"Close",
@@ -411,7 +414,7 @@
 	"2次密码输入不一致":"Inconsistent password input twice",
 	"密码修改成功,请重新登录":"Password changed successfully, please log in again",
 	"请等待...":"Please wait...",
-	"行情":"Contract",
+	"行情":"Quotes",
 	"账户":"Account",
 	"可用保证金":"Free margin",
 	"占用保证金":"Occupancy margin",
@@ -499,7 +502,8 @@
 	"免费开户": "Free account opening",
 	"首页": "Home",
 	"钱包": "Wallet",
-	"跟单": "Document",
-	"我的": "Mine",
-	"资产总览": "Overview of assets"
+	"跟单": "Follow",
+	"我的": "Profile",
+	"资产总览": "Overview of assets",
+	"确认退出应用": "Confirm exit from App"
 }

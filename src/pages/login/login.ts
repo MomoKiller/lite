@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, IonicPage, NavController, ModalController, NavParams, AlertController, LoadingController, App } from 'ionic-angular';
+import { Platform, IonicPage, NavController, ModalController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { TranslateService } from "@ngx-translate/core";
 /* pages */
 import { TabsPage } from "../tabs/tabs";
@@ -36,8 +36,7 @@ export class LoginPage {
 		public translate: TranslateService,
 		private _http: HttpServeProvider,
 		private _socket: SocketServeProvider,
-		private present: PresentProvider,
-		private app: App
+		private present: PresentProvider
 	) {
 		const self = this;
 		Window.loginPageFreshConfig = () => {
@@ -332,45 +331,11 @@ export class LoginPage {
 		});
 	}
 
-
 	/* 退出App */
-	public backButtonPressed: boolean = false;
 	exitApp() {
-		this.platform.registerBackButtonAction(() => {
-			let overlay = this.app._appRoot._overlayPortal.getActive() || this.app._appRoot._modalPortal.getActive();
-			if (overlay) {
-				overlay.dismiss();
-				return;
-			}
-			let activeVC = this.navCtrl.getActive();
-			let page = activeVC.instance;
-			if (page.tabs) {
-				let activeNav = page.tabs.getSelected();
-				if (activeNav.canGoBack()) {
-					return activeNav.pop();
-				} else {
-					return this.showExit();
-				}
-			}
-			if (page instanceof LoginPage) {//查看当前页面是否是登陆页面
-				this.showExit();
-				return;
-			}
-			this.app.getActiveNav().pop();//剩余的情况全部使用全局路由进行操作 
-		});
-	}
-
-	// 双击退出
-	showExit() {
-		if (this.backButtonPressed) {
+		this.present.presentConfirm(this.present.translateText('确认退出应用'), ()=>{
 			this.platform.exitApp();
-		} else {
-			this.present.presentToast('再按一次退出应用');
-			this.backButtonPressed = true;
-			setTimeout(() => {
-				this.backButtonPressed = false;
-			}, 2000)
-		}
+		});
 	}
 
 	/* 语言选择 */
