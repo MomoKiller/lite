@@ -41,7 +41,12 @@ page-login .scroll-content {
   top: 35px;
   width: 100%;
 }
-
+.back-wrap a.back-icon{
+  margin-left: 30px;
+  height: 20px;
+  width: 20px;
+  float: left;
+}
 .back-wrap .back-icon i {
   display: block;
   /*background: url(../../assets/nimgs/arrow-left.png) no-repeat;*/
@@ -49,12 +54,16 @@ page-login .scroll-content {
   background: url(http://47.99.210.59:33205/staticResources/nimgs/arrow-left.png) no-repeat;
   background-position: center center;
   background-size: contain;
-  margin-left: 35px;
   height: 20px;
   width: 10px;
-  float: left;
+  margin: 0 auto;
 }
-
+.back-wrap a.lan-icon{
+  margin-right: 30px;
+  height: 20px;
+  width: 20px;
+  float: right;
+}
 .back-wrap .lan-icon i {
   display: block;
   /*background: url(../../assets/nimgs/lan.png) no-repeat;*/
@@ -62,10 +71,8 @@ page-login .scroll-content {
   background: url(http://47.99.210.59:33205/staticResources/nimgs/lan.png) no-repeat;
   background-position: center center;
   background-size: contain;
-  margin-right: 30px;
   height: 20px;
   width: 20px;
-  float: right;
 }
 
 .logo {
