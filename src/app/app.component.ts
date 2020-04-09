@@ -169,7 +169,8 @@ export class MyApp {
 	*/
 	/* 设置当前配置文件线路 */
 	private currentOnlineConfigUrl = [
-		"http://47.99.210.59:33205/staticResources/config.json"
+		// "http://39.105.87.215/staticResources/tt/config.json"		// 灰度盘线路
+		"http://47.99.210.59:33205/staticResources/config.json"		// 测试环境路线
 	];
 	/* 热更新提示显示 */
 	public hotCodePushLoading: boolean = false;

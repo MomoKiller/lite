@@ -1,36 +1,12 @@
 page-register {
-	background: url('../assets/imgs/oth-bg.jpg') no-repeat;
-	background-size: 100% 100%;
-	ion-header {
-		background: transparent!important;
-		background-color: inherit!important;
-		color: #fff;
-		ion-icon {
-			color: #fff;
-		}
-	}
-	.scroll-content{
-		background-color: #fff !important;
-		overflow: hidden;
-	}
-	/* .scroll-content, */
-	.toolbar-background,
-	ion-content,
-	ion-item,
-	ion-header::after {
-		background: transparent!important;
-		background-color: inherit!important;
-		background-image: none;
-		border: 0;
-	}
 	ion-content iframe {
-		border: 0;
+		border: none;
 		width: 100%;
 		height: 100%;
 	}
 	#iframe {
 		width: 100%;
-		height: 100%;										/* 1118 android 低版本无法读取 env(safe-area-inset-bottom) */
+		height: 100%;										/* android 低版本无法读取 env(safe-area-inset-bottom) */
 		height: calc(100% - env(safe-area-inset-bottom));	/* iphonex 兼容 */	
 	}
 }

@@ -20,17 +20,15 @@ export class PresentProvider {
 
 	/* 自定义弹框 */
 	presentToast(text, color = '') {
-		this.translateService.get('确定').subscribe((res: string) => {
-			let toast = this.toastCtrl.create({
-				message: text,
-				position: 'top',
-				duration: 3000,
-				showCloseButton: true,
-				cssClass: color,
-				closeButtonText: res
-			});
-			toast.present();
+		let toast = this.toastCtrl.create({
+			message: this.translateText(text),
+			position: 'top',
+			duration: 3000,
+			showCloseButton: true,
+			cssClass: color,
+			closeButtonText: this.translateText('确定')
 		});
+		toast.present();
 	}
 
 	/* 确认 */

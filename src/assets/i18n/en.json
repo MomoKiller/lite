@@ -505,5 +505,8 @@
 	"跟单": "Follow",
 	"我的": "Profile",
 	"资产总览": "Overview of assets",
-	"确认退出应用": "Confirm exit from App"
+	"确认退出应用": "Confirm exit from App",
+	"请求超时，请稍后重试": "Request timed out, please try again later",
+	"正在重新请求页面 ...": "Re-requesting page ...",
+	"正在加载页面 ...": "Loading page ..."
 }
