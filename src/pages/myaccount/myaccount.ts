@@ -15,12 +15,13 @@ export class MyaccountPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private sanitizer: DomSanitizer) {
     const historyLanguage = localStorage.getItem('language');
+    const curTime = new Date().getTime();
     let params = {
       "loginName": Window.userInfo.loginName,
       "userId": Window.userInfo.userId,
       "pw": localStorage.getItem('j_password')
     };
-    let pageUrl = 'http://154.218.25.112:9002/api/' + historyLanguage + '/my/' + base64.encode(JSON.stringify(params));
+    let pageUrl = 'http://154.218.25.112:9002/api/' + historyLanguage + '/my/' + base64.encode(JSON.stringify(params)) +'?time='+curTime;
     this.myaccountUrl = this.sanitizer.bypassSecurityTrustResourceUrl(pageUrl);
   }
 

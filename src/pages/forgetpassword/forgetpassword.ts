@@ -46,7 +46,8 @@ export class ForgetPasswordPage {
 		self.requireTime ++;
 		clearTimeout(self.iframeTimeout);
 		const historyLanguage = localStorage.getItem('language') || 'zh';
-		let pageUrl = 'http://154.218.25.112:9002/api/' + historyLanguage + '/forgetpassword';
+		const curTime = new Date().getTime();
+		let pageUrl = 'http://154.218.25.112:9002/api/' + historyLanguage + '/forgetpassword?time='+curTime;
 		self.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(pageUrl);
 		self.iframeTimeout = setTimeout(() =>{
 			if(!self.ifloaded){
