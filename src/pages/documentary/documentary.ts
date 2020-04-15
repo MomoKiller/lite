@@ -53,7 +53,7 @@ export class DocumentaryPage {
         else {
           if (_that.traderList.length === res.totalElements) {
             _that.traderPage--;
-            _that.child.alertMsg(_that.present.translateText('已加载至最后一页'));
+            _that.child.alertMsg(_that.present.translateText('','已加载至最后一页'));
           }
           else {
             _that.traderList = _that.traderList.concat(res.content);

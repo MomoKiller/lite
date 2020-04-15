@@ -190,7 +190,7 @@ export class ProductdetailPage {
     if (this.supportNative) {
       this.screenChange = this.screenOrientation.onChange().subscribe(() => {
         if (this.tabStatus === 3 || this.tabStatus === 4) {
-          this.present.presentLoading('正在缩放图表...', true, 2000, false, 'op85Loading');
+          this.present.presentLoading('WAP_43','正在缩放图表...');
           if (this.screenOrientation.type.indexOf('landscape') !== -1) {
             this.isFullEcharts = true;
           }
@@ -306,7 +306,7 @@ export class ProductdetailPage {
   browser = () => {
     const self = this;
     if (self.tabStatus === 3 || self.tabStatus === 4) {
-      this.present.presentLoading('正在缩放图表...', true, 2000, false, 'op85Loading');
+      this.present.presentLoading('WAP_43','正在缩放图表...');
       if (window.orientation === -90 || window.orientation === 90) {
         self.isFullEcharts = true;
       }
@@ -860,7 +860,7 @@ export class ProductdetailPage {
       });
     }
     else {
-      this.present.presentToast('请先开户', 'toast-red');
+      this.present.presentToast('','请先开户', 'toast-red');
       modal = this.modalCtrl.create(OpenAccountPage, {});
       modal.onDidDismiss();
     }

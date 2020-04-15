@@ -74,7 +74,7 @@ export class HttpServeProvider {
 	/* angular http */
 	public postForm_Angular(url, body, callback, bool = true) {
 		let self = this;
-		let baseUrl = Window.currentLine.webUrl;
+		let baseUrl = Window.config.line.webUrl;
 		this.http.post(baseUrl + url + "?time=" + new Date().getTime(), this.transformRequest(body), this.formOptions).toPromise()
 			.then(function (Response) {
 				var data = self.doDataFormat(Response);
@@ -94,7 +94,7 @@ export class HttpServeProvider {
 						}
 						else {
 							self.errorContract = 0;
-							this.present.presentToast('网络信号差', 'toast-red');
+							this.present.presentToast('WAP_498','网络信号差', 'toast-red');
 						}
 					}, 1000);
 					return;
@@ -115,7 +115,7 @@ export class HttpServeProvider {
 			time = 100000;
 		}
 		else {
-			let baseUrl = Window.currentLine.webUrl;
+			let baseUrl = Window.config.line.webUrl;
 			getUrl = baseUrl + url;
 			time = 50000;
 		}
@@ -159,7 +159,7 @@ export class HttpServeProvider {
 	}
 	public postJson_Angular(url, body, callback, bool = true) {
 		let self = this;
-		let baseUrl = Window.currentLine.webUrl;
+		let baseUrl = Window.config.line.webUrl;
 		this.http.post(baseUrl + url, body, this.jsonOptions).toPromise()
 			.then(Response => {
 				var data = self.doDataFormat(Response);
@@ -188,7 +188,7 @@ export class HttpServeProvider {
 								return;
 							}
 							self.errorContract = 0;
-							this.present.presentToast('网络信号差', 'toast-red');
+							this.present.presentToast('WAP_498','网络信号差', 'toast-red');
 						}
 					}, 1000);
 					return;
@@ -204,7 +204,7 @@ export class HttpServeProvider {
 	}
 	/* corfova http */
 	public postForm_Cordova(url, body, callback, bool = true) {
-		const baseUrl = Window.currentLine.webUrl;
+		const baseUrl = Window.config.line.webUrl;
 		let header = {
 			'Content-Type': 'application/x-www-form-urlencoded',
 			'X-Requested-With': 'XMLHttpRequest',
@@ -232,7 +232,7 @@ export class HttpServeProvider {
 						}
 						else {
 							this.errorContract = 0;
-							this.present.presentToast('网络信号差', 'toast-red');
+							this.present.presentToast('WAP_498','网络信号差', 'toast-red');
 						}
 					}, 1000);
 					return;
@@ -246,7 +246,7 @@ export class HttpServeProvider {
 			});
 	}
 	public postJson_Cordova(url, body, callback, bool = true) {
-		const baseUrl = Window.currentLine.webUrl;
+		const baseUrl = Window.config.line.webUrl;
 		const header = {
 			'Content-Type': 'application/json',
 			'X-Requested-With': 'XMLHttpRequest',
@@ -278,11 +278,11 @@ export class HttpServeProvider {
 						else {
 							if (url == 'socket.io/get/tonken') {
 								this.postJson_Cordova(url, body, callback, bool);
-								this.present.presentToast('网络信号差', 'toast-red');
+								this.present.presentToast('WAP_498','网络信号差', 'toast-red');
 								return;
 							}
 							this.errorContract = 0;
-							this.present.presentToast('网络信号差', 'toast-red');
+							this.present.presentToast('WAP_498', '网络信号差', 'toast-red');
 						}
 					}, 1000);
 					return;
@@ -302,7 +302,7 @@ export class HttpServeProvider {
 			getUrl = url;
 		}
 		else {
-			let baseUrl = Window.currentLine.webUrl;
+			let baseUrl = Window.config.line.webUrl;
 			getUrl = baseUrl + url;
 		}
 		const header = {
@@ -329,7 +329,7 @@ export class HttpServeProvider {
 						}
 						else {
 							this.errorContract = 0;
-							this.present.presentToast('网络信号差', 'toast-red');
+							this.present.presentToast('WAP_498','网络信号差', 'toast-red');
 						}
 					}, 1000);
 					return;
@@ -402,21 +402,21 @@ export class HttpServeProvider {
 				}
 				else {
 					Window.loginout();
-					this.present.presentToast('登入过期,请重新登入', 'toast-red');
+					this.present.presentToast('ERRORID_23','登入过期,请重新登入', 'toast-red');
 				}
 			}
 			else if (msg.code == '700002' || msg.code == '800002' || msg.code == '700000' || msg.code == '900001') {
-				this.present.presentToast(msg.message, 'toast-red');
+				this.present.presentToast('',msg.message, 'toast-red');
 			}
 			else {
 				if (msg.code == 500) {
 					return;
 				}
 				if (msg.code != undefined) {
-					this.present.presentToast('[' + msg.code + ']:哎呀,你的网络好像有点问题,请重试!', 'toast-red');
+					this.present.presentToast('WAP_498','[' + msg.code + ']:哎呀,你的网络好像有点问题,请重试!', 'toast-red');
 				}
 				else {
-					this.present.presentToast(JSON.stringify(msg), 'toast-red');
+					this.present.presentToast('',JSON.stringify(msg), 'toast-red');
 				}
 			}
 		}
@@ -425,7 +425,7 @@ export class HttpServeProvider {
 				return;
 			}
 			if (error.status != 200) {
-				this.present.presentToast('[' + error.status + ']:哎呀,你的网络好像有点问题,请重试!', 'toast-red');
+				this.present.presentToast('WAP_498','[' + error.status + ']:哎呀,你的网络好像有点问题,请重试!', 'toast-red');
 			}
 		}
 	}

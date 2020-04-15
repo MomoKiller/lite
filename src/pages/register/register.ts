@@ -32,7 +32,7 @@ export class RegisterPage {
 	}
 
 	ionViewDidEnter(){
-		this.present.presentLoading('正在加载注册页面 ...');
+		this.present.presentLoading('WAP_43','正在加载注册页面 ...');
 		this.loadIframe();
 	}
 
@@ -45,17 +45,19 @@ export class RegisterPage {
 		let self = this;
 		self.requireTime ++;
 		clearTimeout(self.iframeTimeout);
-		const historyLanguage = localStorage.getItem('language') || 'zh';
+		this.present.dismissLoading();
+		const historyLanguage = localStorage.getItem('currentLanguage') || 'zh_CN';
 		const curTime = new Date().getTime();
 		let pageUrl = 'http://154.218.25.112:9002/api/' + historyLanguage + '/register?time='+curTime;
 		self.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(pageUrl);
 		self.iframeTimeout = setTimeout(() =>{
+			this.present.dismissLoading();
 			if(!self.ifloaded){
 				if(self.requireTime > 5){
-					self.present.presentToast('请求超时，请稍后重试', 'toast-red');
+					self.present.presentToast('ERRORID_512','请求超时，请稍后重试', 'toast-red');
 					setTimeout(()=>{self.navCtrl.pop();}, 1000);
 				}else{
-					self.present.presentLoading('正在重新请求页面 ...');
+					self.present.presentLoading('WAP_43','正在重新请求页面 ...');
 					self.loadIframe();
 				}
 			}

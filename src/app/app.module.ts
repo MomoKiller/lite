@@ -9,7 +9,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Keyboard } from '@ionic-native/keyboard';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+// import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -40,7 +40,9 @@ import { TraderProvider } from '../providers/trader/trader';
 import { PresentProvider } from '../providers/present/present';
 import { HttpServeProvider } from '../providers/http-serve/http-serve';
 import { SocketServeProvider } from '../providers/socket-serve/socket-serve';
+import { LanguageProvider } from '../providers/language/language';
 
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
 	declarations: [
@@ -65,21 +67,22 @@ import { SocketServeProvider } from '../providers/socket-serve/socket-serve';
 	],
 	imports: [
 		BrowserModule,
-		TranslateModule.forRoot({
-				loader: {
-					provide: TranslateLoader,
-					useFactory: HttpLoaderFactory,
-					deps: [HttpClient]
-				}
-			}),
-		IonicModule.forRoot(MyApp,{
+		// TranslateModule.forRoot({
+		// 	loader: {
+		// 		provide: TranslateLoader,
+		// 		useFactory: HttpLoaderFactory,
+		// 		deps: [HttpClient]
+		// 	}
+		// }),
+		IonicModule.forRoot(MyApp, {
 			backButtonText: '',
 			tabsHideOnSubPages: 'true',
 			pageTransition: 'wp-transition'
 		}),
 		HttpModule,
 		JsonpModule,
-		HttpClientModule
+		HttpClientModule,
+		PipesModule
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [
@@ -103,17 +106,18 @@ import { SocketServeProvider } from '../providers/socket-serve/socket-serve';
 		StatusBar,
 		Keyboard,
 		SplashScreen,
-		{provide: ErrorHandler, useClass: IonicErrorHandler},
+		{ provide: ErrorHandler, useClass: IonicErrorHandler },
 		HTTP,
 		TraderProvider,
-    	PresentProvider,
+		PresentProvider,
 		SocketServeProvider,
 		HttpServeProvider,
-		ScreenOrientation
+		ScreenOrientation,
+		LanguageProvider
 	]
 })
 
-export class AppModule {}
+export class AppModule { }
 export function HttpLoaderFactory(http: HttpClient) {
 	return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }

@@ -1,6 +1,5 @@
 import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController,ActionSheetController, ModalController, LoadingController, AlertController } from 'ionic-angular';
-import { TranslateService } from "@ngx-translate/core";
 /* pages */
 import { SltpBlockPage } from '../sltpblock/sltpblock';
 /* compoments */
@@ -10,6 +9,7 @@ import { TraderProvider } from "../../providers/trader/trader";
 import { HttpServeProvider } from '../../providers/http-serve/http-serve';
 import { SocketServeProvider } from "../../providers/socket-serve/socket-serve";
 import { PresentProvider } from '../../providers/present/present';
+
 /****/
 declare var Window;
 
@@ -23,18 +23,15 @@ export class PositionDetailPage {
 	@ViewChild(AlertComponent) child: AlertComponent;
 	private positionDetailConnection;
 	private orderConnection;
-
 	/* 持仓列表 */
 	public positionDetailList:any = [];
 	private baseInfo:any;
 	public loader: any;
-
 	/* 可平手数 */
 	public canClosePosition: number = 0;
 
 	constructor(
 		public alertCtrl: AlertController, 
-		public translate:TranslateService, 
 		public loadingCtrl: LoadingController,
 		public modalCtrl: ModalController,
 		public actionSheetCtrl: ActionSheetController,
@@ -44,7 +41,7 @@ export class PositionDetailPage {
 		private socket:SocketServeProvider,
 		public http: HttpServeProvider,
 		public trader: TraderProvider,
-		public present: PresentProvider
+		private present: PresentProvider
 	) {
 		this.baseInfo = params.get('baseInfo');
 		console.log(this.baseInfo);
@@ -178,10 +175,10 @@ export class PositionDetailPage {
 					text: '确定',
 					handler: (data: any) => {
 						if(Number(data.number) > Number(this.canClosePosition)) {
-							this.present.presentToast('平仓手数不可大于可平手数', 'toast-red');
+							this.present.presentToast('', '平仓手数不可大于可平手数', 'toast-red');
 							return;
 						}
-						this.present.presentLoading('请等待...', false, 2000);
+						this.present.presentLoading('WAP_273','请等待...');
 						const body = {
 							"orderFormVIce": {
 								"userId": this.choosePostionInfo.userId,
@@ -232,16 +229,16 @@ export class PositionDetailPage {
 			title: this.choosePostionInfo.contractCode == '0001' ? (this.choosePostionInfo.commodityName + this.choosePostionInfo.commodityCode) : (this.choosePostionInfo.commodityName + this.choosePostionInfo.commodityCode + this.choosePostionInfo.contractCode),
 			buttons: [
 				{
-					text: this.present.translateText('设置止盈/止损'),
+					text: this.present.translateText('WAP_329','设置止盈/止损'),
 					handler: () => {
 						console.log(this.choosePostionInfo);
 						this.presentModal(SltpBlockPage,{baseInfo:this.choosePostionInfo});
 					}
 				},
 				{
-					text: this.present.translateText('快捷反手'),
+					text: this.present.translateText('WAP_376','快捷反手'),
 					handler: () => {
-						this.present.presentLoading('请等待...', false, 2000);
+						this.present.presentLoading('WAP_273','请等待...');
 						this.trader.quicklyBackOrder(
 							this.choosePostionInfo.positionVolume,
 							this.choosePostionInfo.orderDirect,
@@ -251,9 +248,9 @@ export class PositionDetailPage {
 					}
 				},
 				{
-					text: this.present.translateText('快捷平仓'),
+					text: this.present.translateText('WAP_219','快捷平仓'),
 					handler: () => {
-						this.present.presentLoading('请等待...', false, 2000);
+						this.present.presentLoading('WAP_273','请等待...');
 						this.trader.quicklyCloseContract(
 							this.choosePostionInfo.positionVolume,
 							this.choosePostionInfo.orderDirect,
@@ -264,9 +261,9 @@ export class PositionDetailPage {
 					}
 				},
 				{
-					text: this.present.translateText('部分平仓'),
+					text: this.present.translateText('','部分平仓'),
 					handler: () => {
-						this.present.presentLoading('请等待...', false, 2000);
+						this.present.presentLoading('WAP_273','请等待...');
 						this.searchCanClose((e) => {
 							this.present.dismissLoading();
 							this.closeSomePosition(e);
@@ -274,7 +271,7 @@ export class PositionDetailPage {
 					}
 				},
 				{
-					text: this.present.translateText('关闭'),
+					text: this.present.translateText('WAP_345','关闭'),
 					role: 'cancel',
 					handler: () => {
 						console.log('Cancel clicked');

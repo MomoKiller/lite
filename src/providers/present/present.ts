@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastController, LoadingController, AlertController, ModalController } from 'ionic-angular';
 /* serves */
-import { TranslateService } from "@ngx-translate/core";
+import { LanguageProvider } from '../../providers/language/language';
 
 @Injectable()
 export class PresentProvider {
@@ -15,34 +15,36 @@ export class PresentProvider {
 		public alertCtrl: AlertController,
 		public modalCtrl: ModalController,
 		public loadingCtrl: LoadingController,
-		public translateService: TranslateService
+		private language: LanguageProvider
 	) { }
 
 	/* 自定义弹框 */
-	presentToast(text, color = '') {
-		let toast = this.toastCtrl.create({
-			message: this.translateText(text),
-			position: 'top',
-			duration: 3000,
-			showCloseButton: true,
-			cssClass: color,
-			closeButtonText: this.translateText('确定')
-		});
-		toast.present();
+	presentToast(text?,defaultText?,color = '') {
+		this.language.get(text,defaultText, value => {
+            let toast = this.toastCtrl.create({
+				message: value,
+				position: 'top',
+				duration: 3000,
+				showCloseButton: true,
+				cssClass:color,
+				closeButtonText: String(this.translateText('WAP_110','确定'))
+			});
+			toast.present();
+        })
 	}
 
 	/* 确认 */
 	presentConfirm(text, callback) {
 		let alert = this.alertCtrl.create({
-			title: this.translateText('提示'),
+			title: this.translateText('WAP_422','提示'),
 			message: text,
 			buttons: [
 				{
-					text: this.translateText('取消'),
+					text: this.translateText('WAP_61','取消'),
 					role: 'cancel',
 				},
 				{
-					text: this.translateText('确定'),
+					text: this.translateText('WAP_110', '确定'),
 					handler: () => {
 						callback();
 					}
@@ -53,19 +55,16 @@ export class PresentProvider {
 	}
 
 	/* 加载中 */
-	presentLoading(text = '请等待...', showback = true, duration = 3000, pageChange = false, css = '') {
-		this.translateService.get(text).subscribe((res: string) => {
-			this.loader = this.loadingCtrl.create({
-				content: res,
-				showBackdrop: showback,
-				duration: duration,
-				dismissOnPageChange: pageChange,
-				cssClass: css
+	presentLoading(v,defaultValue) {
+		this.language.get(v,defaultValue, value => {
+            this.loader = this.loadingCtrl.create({
+				content: value,
+				showBackdrop: true
 			});
 			this.loader.present();
-		});
+        });
 	}
-
+	
 	/* 加载中-取消 */
 	dismissLoading() {
 		if (this.loader) {
@@ -74,13 +73,9 @@ export class PresentProvider {
 		this.loader = null;
 	}
 
-	//文字翻译
-	translateText(text: string) {
-		let str: string;
-		this.translateService.get(text).subscribe((res: string) => {
-			str = res;
-		});
-		return str;
+	/* 文字翻译 */
+	translateText(value, defaultValue){
+		return this.language.get(value, defaultValue);
 	}
 
 	/* 打开遮罩层 */

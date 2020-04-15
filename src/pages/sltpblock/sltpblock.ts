@@ -97,7 +97,7 @@ export class SltpBlockPage {
 	setSearch(){
 		/* 设置止盈止损前查询平仓挂单 */
 		const self = this;
-		this.present.presentLoading();
+		this.present.presentLoading('WAP_273', '请等待...');
 		let body = {
 			page: 1,
 			rows: 99,
@@ -137,11 +137,11 @@ export class SltpBlockPage {
 		this.http.postJson('client/trade/position/sltp',body,(data) => {
 			var res = JSON.parse(data.content);
 			if(data.code == '000000' && res.errorId == 0){
-				this.present.presentToast('设置成功','toast-green');
+				this.present.presentToast('ERRORID_0','设置成功','toast-green');
 				this.setSlTpWarning()
 			}
 			else{
-				this.present.presentToast(res.errorMsg,'toast-red');
+				this.present.presentToast('', res.errorMsg, 'toast-red');
 			}
 		});
 	}

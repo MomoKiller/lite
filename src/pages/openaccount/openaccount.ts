@@ -14,7 +14,7 @@ export class OpenAccountPage {
 	public domesticUrl: any = null;
 	ionViewDidLoad() {
 		const time = Date.parse(new Date().toString());
-		this.domesticUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`${Window.currentLine.webUrl.replace('trade/', '')}${Window.config.viewRealInfoUrl}?params={time:${time}}`);
+		this.domesticUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`${Window.config.line.webUrl.replace('trade/', '')}${Window.config.viewRealInfoUrl}?params={time:${time}}`);
 	}
 	dismiss() {
 		this.viewCtrl.dismiss();

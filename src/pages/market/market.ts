@@ -40,7 +40,7 @@ export class MarketPage {
 			}
 		}
 		if(Window.allContractNav.length === 0){
-			this.present.presentToast('未获取到有效的一级分类','toast-red');
+			this.present.presentToast('','未获取到有效的一级分类', 'toast-red');
 			return;
 		}
 		Window.currentClassifyA = Window.currentClassifyA?Window.currentClassifyA:this.classifyA[0].categoryId;
@@ -60,7 +60,7 @@ export class MarketPage {
 				categoryId: '',
 				commodityType: 0
 			}
-			this.present.presentToast('未获取到有效的二级分类','toast-red');
+			this.present.presentToast('','未获取到有效的二级分类', 'toast-red');
 		}
 		else{
 			Window.currentClassifyB = {
@@ -149,7 +149,7 @@ export class MarketPage {
 					// 191016 -- 判断用户密码是否被重置 @wuwp
 					if(Window.userValidate.resetPassword){	
 						// 跳转密码重置页面
-						self.present.presentToast('个人密码重置后请修改','toast-red');
+						self.present.presentToast('','个人密码重置后请修改', 'toast-red');
 						self.navCtrl.push(PersionPwdPage);
 						let modal = self.modalCtrl.create(PersionPwdPage,{});
 						modal.present();

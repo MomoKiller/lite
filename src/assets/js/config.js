@@ -3,32 +3,31 @@ var baseConfig = {
 		"version": 1027,
 		"orgcode": ["1@"],
 		"pcId": "test",
-		"line": [{
+		"line": {
 			"id": 0,
+			"lineName": "test环境",
 			"webUrl": "http://47.101.35.248:33207/trade/",
-			"socketUrl": "http://47.101.35.248:33202",
-			"lineName": "test环境"
-		},{       
-			"id": 1,
-			"webUrl": "http://45.119.65.54:45107/trade/",
-			"socketUrl": "http://47.101.35.248:33202",
-			"lineName": "test环境"
-		},{ 
-			"id": 2,
-			"webUrl": "http://45.119.65.54:45107/trade/",
-			"socketUrl": "http://47.101.35.248:33202",
-			"lineName": "test环境"
-		}],
+			"socketUrl": "http://47.101.35.248:33202"
+		},
 		"logo": "sunx.png",
 		"registerUrl": "register/index.html",
 		"homeUrl": "",
 		"wallet": "",
-		"myaccount": "",
-		"*JSON文件--注释": {
-			"registerUrl": "注册链接",
-			"homeUrl": "首页链接",
-			"wallet": "钱包链接",
-			"myaccount": "我的链接",
-		}
+		"myaccount": ""
+	},
+	"tt": {
+		"version": 12,
+		"orgcode": ["1@-20@"],
+		"line": {
+			"id": 0,
+			"webUrl": "http://47.116.105.3:33707/trade/",
+			"socketUrl": "http://47.116.105.3:33702",
+			"lineName": "TT（一）"
+		},
+		"logo": "tt.png",
+		"registerUrl": "register/index.html",
+		"homeUrl": "",
+		"wallet": "",
+		"myaccount": ""
 	}
 }

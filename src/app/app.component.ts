@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Keyboard } from '@ionic-native/keyboard';
-import { TranslateService } from "@ngx-translate/core";
 import { Platform, App, ToastController, LoadingController, NavController, Nav } from 'ionic-angular';
 /* pages */
 import { HomePage } from '../pages/home/home';
@@ -15,6 +14,7 @@ import { ProductdetailPage } from '../pages/productdetail/productdetail';
 import { HttpServeProvider } from '../providers/http-serve/http-serve';
 import { SocketServeProvider } from "../providers/socket-serve/socket-serve";
 import { PresentProvider } from '../providers/present/present';
+import { LanguageProvider } from '../providers/language/language';
 
 declare var Window, window, $, screen: any, indexLibrary, baseConfig;
 
@@ -33,20 +33,20 @@ export class MyApp {
 	public registerBackEvent: Function;
 
 	constructor(
-		private app: App, 
-		private keyboard: Keyboard, 
+		private app: App,
+		private keyboard: Keyboard,
 		public platform: Platform,
-		private splashScreen: SplashScreen, 
-		public loadingCtrl: LoadingController, 
-		public toastCtrl: ToastController, 
+		private splashScreen: SplashScreen,
+		public loadingCtrl: LoadingController,
+		public toastCtrl: ToastController,
 		public http: HttpServeProvider,
-		private socket: SocketServeProvider, 
-		public translateService: TranslateService,
-		private present: PresentProvider
+		private socket: SocketServeProvider,
+		private present: PresentProvider,
+		private language: LanguageProvider
 	) {
 		/* apk新增 */
 		platform.ready().then((readySource) => {
-			this.present.presentLoading('初次加载配置文件，请耐心等候 ...', true);
+			this.present.presentLoading('WAP_123','初次加载配置文件，请耐心等候 ...');
 			window.removeSysLoading();
 			Window.changeUser = true;
 			this.splashScreen.hide();
@@ -56,14 +56,15 @@ export class MyApp {
 					localStorage.setItem('config', JSON.stringify(Window.config));
 					this.present.dismissLoading();
 					this.getConfigResult = Window.config;
-					this.rootPage = LoginPage;
+					// this.rootPage = LoginPage;
+					this.getLanguage(()=>{this.rootPage = LoginPage;});
 					this.getOnlineConfig();
 				}
 				else {
 					Window.config = JSON.parse(localStorage.getItem('config'));
-					console.warn('[历史的json配置]', Window.config, Window.appVersion);
 					this.present.dismissLoading();
-					this.rootPage = LoginPage;
+					// this.rootPage = LoginPage;
+					this.getLanguage(()=>{this.rootPage = LoginPage;});
 					this.getOnlineConfig();
 				}
 				if (window.StatusBar) {
@@ -102,18 +103,6 @@ export class MyApp {
 					}
 				}
 			}, 10);
-			//加载多语言包
-			// --- set i18n begin ---
-			this.translateService.addLangs(["zh", "en", "hk"]);
-			const historyLanguage = localStorage.getItem('language');
-			console.log('[当前语言]', historyLanguage)
-			if (historyLanguage) {
-				this.translateService.use(historyLanguage);
-			}
-			else {
-				this.translateService.use("zh");
-			}
-			// --- set i18n end ---
 			const height = $(window).height();
 
 			if (this.platform.is('ios')) {
@@ -151,14 +140,10 @@ export class MyApp {
 		window.removeSysLoading = function () {
 			$('#enter-loading').remove();
 		};
-		//切换语言
-		window.changeLanguage = (language: string) => {
-			this.translateService.use(language);
-			localStorage.setItem('language', language);
-		}
+
 	}
 
-	/* 用来看的 ^_^
+	/* 正式环境 */
 	private onlineConfigUrl = [
 		"http://47.111.146.166:65501/staticResources/config.json",
 		"http://47.111.146.166:65500/staticResources/config.json",
@@ -166,12 +151,12 @@ export class MyApp {
 		"http://47.107.114.218:65500/staticResources/config.json",
 		"http://47.107.120.122/staticResources/config.json"
 	];
-	*/
-	/* 设置当前配置文件线路 */
-	private currentOnlineConfigUrl = [
-		// "http://39.105.87.215/staticResources/tt/config.json"		// 灰度盘线路
-		"http://47.99.210.59:33205/staticResources/config.json"		// 测试环境路线
+	private testConfigUrl = [
+		"http://47.99.210.59:33205/staticResources/config-2.json"	// 测试环境路径
 	];
+
+	/* 设置当前配置文件线路 */
+	private currentOnlineConfigUrl = this.testConfigUrl;
 	/* 热更新提示显示 */
 	public hotCodePushLoading: boolean = false;
 	/* 获取到的配置文件 */
@@ -181,7 +166,7 @@ export class MyApp {
 	getOnlineConfig() {
 		let self = this;
 		//可用线路数组
-		for (let i = 0, r = this.currentOnlineConfigUrl.length; i < r; i++) {
+		for(let i=0,r=this.currentOnlineConfigUrl.length;i<r;i++){
 			this.http.get(this.currentOnlineConfigUrl[i] + "?time=" + new Date().getTime(), (res: any) => {
 				console.log('[获取线上配置文件]', res);
 				if (typeof (res) === 'string') {
@@ -190,7 +175,7 @@ export class MyApp {
 				if (res.hasOwnProperty('status') === false) {
 					this.getConfigResult = res[Window.appVersion];
 					if (!this.getConfigResult) {
-						this.present.presentToast('未在配置列表中找到对应的客户ID', 'toast-red');
+						this.present.presentToast('WAP_497','未在配置列表中找到对应的客户ID', 'toast-red');
 						return;
 					}
 					this.canUseConfigUrl.push(self.currentOnlineConfigUrl[i]);
@@ -198,6 +183,7 @@ export class MyApp {
 				}
 			}, false, true);
 		}
+		
 		setTimeout(() => {
 			if (this.canUseConfigUrl.length === 0) {
 				this.getOnlineConfig();
@@ -210,27 +196,29 @@ export class MyApp {
 				const historyConfig = JSON.parse(localStorage.getItem('config'));
 				self.whiteBaseConfig(self.getConfigResult, self.canUseConfigUrl);
 				if (Window.config.version != historyConfig.version) {
-					self.translateService.get('检测到配置文件有更新,正在加载配置文件 ...').subscribe((res: string) => {
-						self.present.presentToast(res, 'toast-green');
-					});
+					self.present.presentToast('WAP_493','检测到配置文件有更新,正在加载配置文件 ...','toast-green');
 					Window.loginout();
 				}
 				/* 检测是否有热更新 */
 				if (historyConfig.hotCodePush && Window.config.hotCodePush > historyConfig.hotCodePush) {
 					self.hotCodePushLoading = true;
 				}
-				self.rootPage = LoginPage;
+				// self.rootPage = LoginPage;
+				// 设置语言
+				self.getLanguage(()=>{self.rootPage = LoginPage;});
 			}
 			else {
 				self.whiteBaseConfig(Window.config, self.canUseConfigUrl);
-				self.rootPage = LoginPage;
+				// self.rootPage = LoginPage;
+				// 设置语言
+				self.getLanguage(()=>{self.rootPage = LoginPage;});
 			}
 			self.present.dismissLoading();
 		}
 		function checkRes() {
 			if (Window.config == undefined || self.canUseConfigUrl.length === 0) {
 				setTimeout(function () {
-					self.present.presentToast('网络环境不佳,正在尝试重连 ...', 'toast-red');
+					self.present.presentToast('WAP_498','网络环境不佳,正在尝试重连 ...', 'toast-red');
 					checkRes();
 				}, 10000);
 			}
@@ -271,15 +259,14 @@ export class MyApp {
 			this.platform.exitApp();
 		}
 		else {
-			this.registerBackButton = true;
-			this.translateService.get('再按一次退出应用').subscribe((res: string) => {
-				this.toastCtrl.create({
-					message: res,
+			this.language.get('WAP_352','再按一次退出应用',value => {
+                this.toastCtrl.create({
+					message: value,
 					duration: 2000,
 					position: 'top',
 					cssClass: 'toast-yellow'
 				}).present();
-			});
+            });
 			setTimeout(() => this.registerBackButton = false, 2000);//2秒内没有再次点击返回则将触发标志标记为false
 		}
 	}
@@ -310,4 +297,62 @@ export class MyApp {
 		}
 		return true;
 	}
+
+	/* 语言数组参数 */
+	private currentLanguage: string = localStorage.getItem('currentLanguage') || 'zh_CN';
+    private isoCodes: any = localStorage.getItem('isoCodes') ? JSON.parse(localStorage.getItem('isoCodes')) : null;
+    public currentLanguageMap = {};
+	/* 获取语言数组 */
+	getLanguageArray(callback) {
+        // 获取当前的语言和版本号
+        const data = {
+            "dataCode": "string",
+            "isoCode": this.currentLanguage,
+            "version": localStorage.getItem(this.currentLanguage) ? JSON.parse(localStorage.getItem(this.currentLanguage)).version : -1
+        };
+        this.http.postJson('api/v2/base/dataCodeI8n',data,res => {
+            // 判断是否有新版本
+            if(JSON.stringify(res.content.data) === '{}') {
+                this.currentLanguageMap = JSON.parse(localStorage.getItem(this.currentLanguage)).data;
+            }
+            else {
+                localStorage.setItem(this.currentLanguage,JSON.stringify(res.content));
+                this.currentLanguageMap = res.content.data;
+            }
+            Window.currentLanguageMap = this.currentLanguageMap
+            callback();
+        });
+    }
+	/* 获取语言 */
+	getLanguage(callback) {
+        this.http.get('api/v2/base/isoCodes',res => {
+            console.log(res);
+            if(this.isoCodes) {
+                if(this.isoCodes.length !== res.content.length) {
+                    for(let i = 0,r = res.content.length; i < r; i++) {
+                        let hasLanguage = false;
+                        for(let s = 0,k = this.isoCodes.length; s < k; s++) {
+                            if(this.isoCodes[s].isoCode === res.content[i].isoCode) {
+                                hasLanguage = true;
+                            }
+                        }
+                        // 检测到有新语言
+                        if(hasLanguage === false) {
+                            res.content[i].version = -1;
+                            this.isoCodes.push(res.content[i]);
+                        }
+                    }
+                }
+            }
+            else {
+                this.isoCodes = res.content;
+                this.isoCodes.forEach(x => {
+                    x.version = -1;
+                });
+            }
+            // 把处理好的语言类型列表储存在本地
+            localStorage.setItem('isoCodes',JSON.stringify(this.isoCodes));
+            this.getLanguageArray(callback);
+        });
+    }
 }

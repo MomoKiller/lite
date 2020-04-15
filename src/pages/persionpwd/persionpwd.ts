@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ViewController, NavParams, AlertController } from 'ionic-angular';
-import { TranslateService } from "@ngx-translate/core";
 
-/* http request */
+/* service */
 import { HttpServeProvider } from '../../providers/http-serve/http-serve';
 import { PresentProvider } from '../../providers/present/present';
+import { LanguageProvider } from '../../providers/language/language';
 /****/
 declare var Window;
 @IonicPage()
@@ -38,8 +38,8 @@ export class PersionPwdPage {
 		public navCtrl: NavController, 
 		public viewCtrl: ViewController, 
 		public navParams: NavParams, 
-		public translate: TranslateService,
-		private present: PresentProvider
+		private present: PresentProvider,
+		private language: LanguageProvider
 	) { }
 
 	ionViewDidLoad() {
@@ -56,7 +56,7 @@ export class PersionPwdPage {
 				}
 			}
 			else {
-				self.present.presentToast(res.message, 'toast-red');
+				self.present.presentToast('', res.message, 'toast-red');
 			}
 		});
 	}
@@ -72,7 +72,7 @@ export class PersionPwdPage {
 		if (this.countDownTime > 0) {
 			setTimeout(() => {
 				self.countDownTime--;
-				self.translate.get('秒后可重新获取').subscribe((res: string) => {
+				self.language.get('WAP_163', '秒后可重新获取', res =>{
 					self.postCodeText = self.countDownTime + res;
 				});
 				self.countDown();
@@ -80,37 +80,32 @@ export class PersionPwdPage {
 		}
 		else {
 			this.isPostCode = false;
-			this.postCodeText = '重新获取验证码';
+			self.language.get('WAP_331', '重新获取验证码', res =>{
+				self.postCodeText = res;
+			});
+			
 		}
 	}
 	checkedWays() {
 		if (this.checkWays == 0) {
 			let reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
 			if (this.value == '') {
-				this.translate.get('请填写验证邮箱').subscribe((res: string) => {
-					this.present.presentToast(res, 'toast-red');
-				});
+				this.present.presentToast('WAP_486', '请填写验证邮箱', 'toast-red');
 				return false;
 			}
 			else if (!reg.test(this.value)) {
-				this.translate.get('验证邮箱格式不正确').subscribe((res: string) => {
-					this.present.presentToast(res, 'toast-red');
-				});
+				this.present.presentToast('WAP_39', '验证邮箱格式不正确', 'toast-red');
 				return false;
 			}
 		}
 		else if (this.checkWays == 1) {
 			let reg = new RegExp("^1[3|4|5|7|8][0-9]{9}$");
 			if (this.value == '') {
-				this.translate.get('请填写验证手机').subscribe((res: string) => {
-					this.present.presentToast(res, 'toast-red');
-				});
+				this.present.presentToast('WAP_203', '请填写验证手机', 'toast-red');
 				return false;
 			}
 			else if (!reg.test(this.value)) {
-				this.translate.get('验证手机格式不正确').subscribe((res: string) => {
-					this.present.presentToast(res, 'toast-red');
-				});
+				this.present.presentToast('WAP_262', '验证手机格式不正确', 'toast-red');
 				return false;
 			}
 		}
@@ -128,15 +123,11 @@ export class PersionPwdPage {
 			this.http.postJson("client/user/get/validcode", body, function (res) {
 				console.log(res);
 				if (res.code == '000000' && res.success) {
-					self.translate.get('验证码已发送,请注意查收').subscribe((res: string) => {
-						self.present.presentToast(res, 'toast-green');
-					});
+					this.present.presentToast('WAP_262', '验证码已发送,请注意查收', 'toast-green');
 					self.countDown();
 				}
 				else {
-					self.translate.get('发送失败,请重新尝试').subscribe((res: string) => {
-						self.present.presentToast(res, 'toast-red');
-					});
+					self.present.presentToast('WAP_191', '发送失败,请重新尝试', 'toast-red');
 					self.isPostCode = false;
 				}
 			});
@@ -146,29 +137,19 @@ export class PersionPwdPage {
 		let self = this;
 		if (this.checkWays == 'old') {
 			if (this.oldPwd == '') {
-				this.translate.get('密码不能为空').subscribe((res: string) => {
-					this.present.presentToast(res, 'toast-red');
-				});
+				self.present.presentToast('WAP_101', '密码不能为空', 'toast-red');
 			}
 			else if (!this.newPwd) {
-				this.translate.get('新密码不能为空').subscribe((res: string) => {
-					this.present.presentToast(res, 'toast-red');
-				});
+				self.present.presentToast('WAP_282', '新密码不能为空', 'toast-red');
 			}
 			else if (this.newPwd.length < 8) {
-				this.translate.get('登录密码不能小于8位').subscribe((res: string) => {
-					this.present.presentToast(res, 'toast-red');
-				});
+				self.present.presentToast('WAP_463', '登录密码不能小于8位', 'toast-red');
 			}
 			else if (!this.regPassword.test(this.newPwd)) {
-				this.translate.get('登录密码格式不正确').subscribe((res: string) => {
-					this.present.presentToast(res, 'toast-red');
-				});
+				self.present.presentToast('WAP_53', '登录密码格式不正确', 'toast-red');
 			}
 			else if (this.newPwd != this.repeatPwd) {
-				this.translate.get('新密码与确认密码不一致').subscribe((res: string) => {
-					this.present.presentToast(res, 'toast-red');
-				});
+				self.present.presentToast('WAP_222', '新密码与确认密码不一致', 'toast-red');
 			}
 			else {
 				let body = {
@@ -183,31 +164,23 @@ export class PersionPwdPage {
 						self.viewCtrl.dismiss();
 					}
 					else {
-						self.present.presentToast(res.message, 'toast-red');
+						self.present.presentToast('', res.message, 'toast-red');
 					}
 				}, false);
 			}
 		}
 		else {
 			if (!this.newPwd) {
-				this.translate.get('新密码不能为空').subscribe((res: string) => {
-					this.present.presentToast(res, 'toast-red');
-				});
+				self.present.presentToast('WAP_282', '新密码不能为空', 'toast-red');
 			}
 			else if (this.newPwd.length < 8) {
-				this.translate.get('登录密码不能小于8位').subscribe((res: string) => {
-					this.present.presentToast(res, 'toast-red');
-				});
+				self.present.presentToast('WAP_463', '登录密码不能小于8位', 'toast-red');
 			}
 			else if (!this.regPassword.test(this.newPwd)) {
-				this.translate.get('登录密码格式不正确').subscribe((res: string) => {
-					this.present.presentToast(res, 'toast-red');
-				});
+				self.present.presentToast('WAP_53', '登录密码格式不正确', 'toast-red');
 			}
 			else if (this.newPwd != this.repeatPwd) {
-				this.translate.get('新密码与确认密码不一致').subscribe((res: string) => {
-					this.present.presentToast(res, 'toast-red');
-				});
+				self.present.presentToast('WAP_222', '新密码与确认密码不一致', 'toast-red');
 			}
 			else {
 				let body = {
@@ -219,13 +192,11 @@ export class PersionPwdPage {
 				/* 个人密码修改 */
 				this.http.postJson("client/user/update/key2", body, function (data) {
 					if (data.code == '000000') {
-						self.translate.get('密码修改成功,请重新登录').subscribe((res: string) => {
-							self.present.presentToast(res, 'toast-green');
-						});
+						self.present.presentToast('WAP_343', '密码修改成功,请重新登录', 'toast-red');
 						Window.loginout();
 					}
 					else {
-						self.present.presentToast(data.message, 'toast-red');
+						self.present.presentToast('', data.message, 'toast-red');
 					}
 					self.newPwd = '';
 					self.repeatPwd = '';
@@ -235,11 +206,11 @@ export class PersionPwdPage {
 	}
 	showPrompt() {
 		const prompt = this.alertCtrl.create({
-			title: this.present.translateText('提示'),
-			message: this.present.translateText("密码修改成功,请重新登录"),
+			title: this.present.translateText('WAP_422','提示'),
+			message: this.present.translateText('WAP_343',"密码修改成功,请重新登录"),
 			buttons: [
 				{
-					text: this.present.translateText('确定'),
+					text: this.present.translateText('WAP_110','确定'),
 					handler: data => {
 						Window.currentClassifyA = undefined;
 						Window.currentClassifyB = undefined;

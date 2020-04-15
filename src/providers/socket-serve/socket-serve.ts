@@ -27,7 +27,7 @@ export class SocketServeProvider {
 	public creatNewSocket = (callback) => {
 		/* 获取socket token */
 		let self = this;
-		Window.socket = io(Window.currentLine.socketUrl, { query: { tonken: Window.token }, autoConnect: false, connect_timeout: 500 });
+		Window.socket = io(Window.config.line.socketUrl, { query: { tonken: Window.token }, autoConnect: false, connect_timeout: 500 });
 		console.log('创建socket');
 		Window.socket.open();
 		Window.socket.on("reconnect", function () {

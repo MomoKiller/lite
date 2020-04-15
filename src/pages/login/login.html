@@ -1,29 +1,29 @@
 <ion-content class="login-bg" no-bounce>
   <div class="back-wrap">
     <a class="back-icon" (tap)="exitApp()"><i></i></a><!-- 退出app -->
-    <a class="lan-icon" (tap)="language()"><i></i></a><!-- 切换语言 -->
+    <a class="lan-icon" (tap)="lanSwitch()"><i></i></a><!-- 切换语言 -->
   </div>
   <div class="logo">
-    <a class="title">{{'账户登录' | translate}}</a>
+    <a class="title">{{'账户登录' | translate: '账户登录'}}</a>
   </div>
   <section class="login-container">
     <div class="rows input">
-      <span><input type="text" placeholder="{{'请输入机构代码' | translate}}" autocomplete="new-password" [(ngModel)]="orgcode"
+      <span><input type="text" placeholder="{{'WAP_470' | translate: '请输入机构代码'}}" autocomplete="new-password" [(ngModel)]="orgcode"
           (ngModelChange)="clearSpace(orgcode,'orgcode')" /></span>
     </div>
     <div class="rows input">
-      <span><input type="text" placeholder="{{'请输入登录账号' | translate}}" autocomplete="new-password"
+      <span><input type="text" placeholder="{{'WAP_170' | translate: '请输入登录账号'}}" autocomplete="new-password"
           [(ngModel)]="username" (ngModelChange)="clearSpace(username,'username')" /></span>
     </div>
     <div class="rows input">
       <i class="fa" id="eye" [ngClass]="{'fa-eye-slash':isShowPWD == 'password','fa-eye':isShowPWD == 'text'}"
         (tap)="isShowPWD = (isShowPWD == 'text')?'password':'text'"></i>
-      <span><input [attr.type]="isShowPWD" placeholder="{{'请输入登录密码' | translate}}" autocomplete="new-password"
+      <span><input [attr.type]="isShowPWD" placeholder="{{'WAP_358' | translate: '请输入登录密码'}}" autocomplete="new-password"
           [(ngModel)]="password" (ngModelChange)="clearSpace(password,'password')" /></span>
     </div>
     <div class="login-btn">
       <button ion-button block (tap)="logIn(orgcode, username, password)" icon-only>
-        {{'登录' | translate}}
+        {{'WAP_27' | translate: '登录'}}
       </button>
     </div>
     <div class="flex flex-between login-opt">
@@ -31,17 +31,17 @@
         <i [hidden]="isSaveLoginInfo" class="fa fa-square-o"></i>
         <i [hidden]="!isSaveLoginInfo" class="fa fa-check-square-o"></i>
         <input class="hide" type="checkbox" [(ngModel)]="isSaveLoginInfo" />
-        <a>{{'记住密码' | translate}}</a>
+        <a>{{'WAP_301' | translate: '记住密码'}}</a>
       </p>
       <!--  *ngIf="!config.isUseSimpleRegister" -->
       <p class="forget-pwd" (tap)="toForgetPwd()">
         <i class="lock"></i>
-        <a>{{'忘记密码' | translate}}?</a>
+        <a>{{'WAP_63' | translate: '忘记密码'}}?</a>
       </p>
     </div>
   </section>
   <a class="register">
-    {{'没有账户？' | translate}}
-    <span (tap)="toRegister()">{{'免费开户' | translate}}</span>
+    {{'没有账户？' | translate: '没有账户？'}}
+    <span (tap)="toRegister()">{{'免费开户' | translate: '免费开户'}}</span>
   </a>
 </ion-content>
